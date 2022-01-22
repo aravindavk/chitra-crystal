@@ -7,4 +7,8 @@ authors:
 description: |
   Crystal library to generate 2D graphics.
 
+development_dependencies:
+  ameba:
+    github: crystal-ameba/ameba
+
 license: MIT

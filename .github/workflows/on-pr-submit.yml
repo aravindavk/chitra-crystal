@@ -1,0 +1,27 @@
+name: Run on every PR
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - 'docs/**'
+      - 'extras/**'
+      - '**.md'
+      - '**.adoc'
+
+jobs:
+  # TODO: Add specs
+  tests:
+    name: Chitra tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Crystal and other dependencies
+        run: |
+          curl -fsSL https://crystal-lang.org/install.sh | sudo bash
+          sudo apt install libcairo2 libcairo2-dev
+      - name: Format Check
+        run: make fmt-check
+      - name: Lint
+        run: make lint
