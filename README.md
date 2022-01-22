@@ -8,6 +8,26 @@ Chitra is a Kannada(Karnataka, India) word which means Drawing.
 
 ## Install
 
+Install Cairo
+
+Ubuntu
+
+```console
+sudo apt install libcairo2 libcairo2-dev
+```
+
+Fedora
+
+```console
+sudo yum install cairo-devel
+```
+
+Mac
+
+```console
+brew install cairo
+```
+
 Add this to your application's shard.yml:
 
 ```yaml
@@ -54,7 +74,7 @@ Read the docs [here](docs/).
 
 - [Cairo Graphics](https://www.cairographics.org/)
 - [Cairo crystal bindings](https://github.com/TamasSzekeres/cairo-cr)
-- Drawing APIs are inspired from [Drawbot](https://drawbot.com/) and [Processing](https://processing.org/).
+- Drawing API syntax are inspired from [Drawbot](https://drawbot.com/) and [Processing](https://processing.org/).
 
 ## Contributing
 
