@@ -107,6 +107,22 @@ module Chitra
 
       surface.draw
     end
+
+    # Reset the drawing to clean and empty canvas
+    # ```
+    # ctx = Chitra.new
+    # ctx.fill 0
+    # ctx.rect 0, 0, width, height
+    # ctx.save "slide1.png"
+    # ctx.new_drawing
+    # ctx.fill 0, 0, 1
+    # ctx.rect 0, 0, width, height
+    # ctx.save "slide2.png"
+    # ```
+    def new_drawing
+      @elements = [] of Element
+      # TODO: Reset all the properties except size?
+    end
   end
 
   # Initialize the Chitra drawing Context with default surface size
