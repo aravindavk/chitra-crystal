@@ -4,3 +4,11 @@ shards:
     git: https://github.com/crystal-ameba/ameba.git
     version: 0.14.3
 
+  cairo:
+    git: https://github.com/tamasszekeres/cairo-cr.git
+    version: 1.0.0
+
+  x11:
+    git: https://github.com/tamasszekeres/x11-cr.git
+    version: 1.0.0+git.commit.0e3b3bb7ff521867275571a5951bed4df2ab3b31
+
