@@ -22,7 +22,7 @@ module Chitra
   end
 
   struct Size
-    property width = 700, height = 700
+    property width = 700.0, height = 700.0
 
     def initialize
     end
@@ -36,9 +36,11 @@ module Chitra
   end
 
   class Context
+    # :nodoc:
+    # Validate the RGBA values
     private def color_validate(r, g, b, a)
       if r < 0 || r > 1 || g < 0 || g > 1 || b < 0 || b > 1 || a < 0 || a > 1
-        raise Exception.new("Invalid color value RGBA(#{r}, #{g}, #{b}, #{a})")
+        raise Exception.new("Invalid color value RGBA(%.2f, %.2f, %.2f, %.2f)" % {r, g, b, a})
       end
     end
   end
