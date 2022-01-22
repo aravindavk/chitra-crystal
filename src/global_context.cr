@@ -4,7 +4,7 @@ module Chitra
   class_property global_context = Context.new
 end
 
-FUNCS = %w[width height enable_debug fill no_fill stroke stroke_width save new_drawing]
+FUNCS = %w[width height enable_debug fill no_fill stroke stroke_width save new_drawing rect]
 
 # Define the above global functions
 # by calling equivalant context functions

@@ -1,5 +1,6 @@
 require "./helpers"
 require "./surfaces/*"
+require "./elements/*"
 
 module Chitra
   class Context
@@ -102,7 +103,7 @@ module Chitra
       end
 
       @elements.each do |ele|
-        ele.render(cairo_ctx)
+        ele.draw(cairo_ctx)
       end
 
       surface.draw
