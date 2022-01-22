@@ -10,6 +10,10 @@ module Chitra
   abstract struct Element
   end
 
+  abstract struct Surface
+    property output_file = ""
+  end
+
   struct Color
     property r = 0.0, g = 0.0, b = 0.0, a = 0.0
 
@@ -22,7 +26,7 @@ module Chitra
   end
 
   struct Size
-    property width = 700.0, height = 700.0
+    property width = 700, height = 700
 
     def initialize
     end
