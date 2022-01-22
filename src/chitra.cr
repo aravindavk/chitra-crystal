@@ -9,7 +9,7 @@ module Chitra
     # Get width of the canvas
     # ```
     # #                         width height
-    # ctx = Chitra::Context.new 1600, 900
+    # ctx = Chitra.new 1600, 900
     # puts ctx.width # 1600
     # ```
     def width
@@ -19,17 +19,14 @@ module Chitra
     # Get height of the canvas
     # ```
     # #                         width height
-    # ctx = Chitra::Context.new 1600, 900
+    # ctx = Chitra.new 1600, 900
     # puts ctx.height # 900
     # ```
     def height
       @size.height
     end
 
-    # Initialize the Chitra drawing Context with default surface size
-    # ```
-    # ctx = Chitra::Context.new
-    # ```
+    # :nodoc:
     def initialize
       @output_file = ""
       @out_ext = ""
@@ -38,11 +35,7 @@ module Chitra
       @debug = false
     end
 
-    # Initialize the Chitra drawing Context
-    # ```
-    # #                         width height
-    # ctx = Chitra::Context.new 1600, 900
-    # ```
+    # :nodoc:
     def initialize(w : Int32, h : Int32)
       @size.width = w
       @size.height = h
@@ -52,7 +45,7 @@ module Chitra
     # Enable debug messages to verify if any
     # property applied to an element is not maching
     # ```
-    # ctx = Chitra::Context.new
+    # ctx = Chitra.new
     # ctx.enable_debug
     # ```
     def enable_debug
@@ -86,7 +79,7 @@ module Chitra
 
     # Save the output to a file.
     # ```
-    # ctx = Chitra::Context.new
+    # ctx = Chitra.new
     # #        filename
     # ctx.save "hello.png"
     # ```
@@ -96,7 +89,7 @@ module Chitra
 
       _base, _sep, out_ext = @output_file.rpartition(".")
 
-      surface = get_surface(out_ext)
+      surface = get_surface(out_ext.downcase)
       if surface.nil?
         raise Exception.new("Unknown output file format. Supported formats: #{available_surfaces.join(",")}")
       end
@@ -114,5 +107,22 @@ module Chitra
 
       surface.draw
     end
+  end
+
+  # Initialize the Chitra drawing Context with default surface size
+  # ```
+  # ctx = Chitra.new
+  # ```
+  def self.new
+    Context.new
+  end
+
+  # Initialize the Chitra drawing Context
+  # ```
+  # #                width height
+  # ctx = Chitra.new 1600, 900
+  # ```
+  def self.new(w, h)
+    Context.new(w, h)
   end
 end
