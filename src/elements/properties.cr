@@ -78,7 +78,7 @@ module Chitra
     # ctx.stroke 0, 0.5
     # ```
     def stroke(gray, a = 1.0)
-      fill(gray, gray, gray, a)
+      stroke(gray, gray, gray, a)
     end
 
     # Set Stroke/Line width. Default value is 1.

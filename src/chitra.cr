@@ -5,7 +5,7 @@ require "./elements/*"
 module Chitra
   class Context
     include ShapeProperties
-    property size = Size.new
+    property size = Size.new, debug = false
 
     # Get width of the canvas
     # ```
@@ -33,7 +33,6 @@ module Chitra
       @out_ext = ""
       @output_type = ""
       @elements = [] of Element
-      @debug = false
     end
 
     # :nodoc:

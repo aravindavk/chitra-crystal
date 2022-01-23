@@ -22,5 +22,7 @@ FUNCS = %w[width height enable_debug fill no_fill stroke stroke_width save new_d
 # size 1600, 900
 # ```
 def size(w, h)
+  debug = Chitra.global_context.debug
   Chitra.global_context = Chitra::Context.new(w, h)
+  Chitra.global_context.enable_debug if debug
 end
