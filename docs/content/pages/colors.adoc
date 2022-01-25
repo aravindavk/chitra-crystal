@@ -1,0 +1,66 @@
+= Colors and Stroke
+
+Set Fill and Stroke colors before drawing a shape, path or text. Each color argument values must be float 0 and 1.
+
+Chitra library provides four different ways to set the fill or stroke color. Default fill and stroke color is Black and default opacity is 1 (100% opaque).
+
+== Gray scale
+
+0 is Black and 1 is White. In between values are gray values.
+
+[source,crystal]
+----
+fill 0.85
+stroke 0
+rect 100, 100, 500, 500
+----
+
+== Gray scale with Opacity
+
+alpha 0 is full transparent and alpha 1 is Opaque.
+
+Example: Black with 50% opacity
+
+[source,crystal]
+----
+fill 0, 0.5
+stroke 0
+rect 100, 100, 500, 500
+----
+
+== RGB color
+
+[source,crystal]
+----
+fill 1, 0, 0
+stroke 0
+rect 100, 100, 500, 500
+----
+
+== RGBA color
+
+[source,crystal]
+----
+fill 1, 0, 0, 0.5
+stroke 0
+rect 100, 100, 500, 500
+----
+
+== Disable fill
+
+[source,crystal]
+----
+no_fill
+stroke 0
+rect 100, 100, 500, 500
+----
+
+== Stroke width
+
+Default Stroke width is `1`. Set Stroke width as
+
+[source,crystal]
+----
+stroke_width 10
+rect 100, 100, 500, 500
+----

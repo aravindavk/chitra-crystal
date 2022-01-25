@@ -472,8 +472,17 @@ Ensure the default browser behavior of the `hidden` attribute.
   visibility: visible;
 }
 
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .block {
   display: block;
+}
+
+.flex {
+  display: flex;
 }
 
 .table {
@@ -488,6 +497,26 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: none;
 }
 
+.w-3\/4 {
+  width: 75%;
+}
+
+.w-1\/2 {
+  width: 50%;
+}
+
+.basis-2 {
+  flex-basis: 0.5rem;
+}
+
+.basis-1\/6 {
+  flex-basis: 16.666667%;
+}
+
+.basis-4\/6 {
+  flex-basis: 66.666667%;
+}
+
 .border-collapse {
   border-collapse: collapse;
 }
@@ -500,13 +529,31 @@ Ensure the default browser behavior of the `hidden` attribute.
   resize: both;
 }
 
+.flex-row {
+  flex-direction: row;
+}
+
 .border {
   border-width: 1px;
+}
+
+.bg-blue-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
+}
+
+.font-semibold {
+  font-weight: 600;
 }
 
 .underline {
@@ -516,4 +563,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .outline {
   outline-style: solid;
+}
+
+.content h1 {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgb(29 78 216 / var(--tw-text-opacity));
 }
