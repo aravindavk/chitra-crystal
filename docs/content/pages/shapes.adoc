@@ -1,0 +1,22 @@
+= Shapes
+
+== Rectangle
+
+Draw rectangle by giving x and y co-ordinates from top left. Give width and height of the rectangle as required.
+
+[source,console]
+----
+#    x    y    w    h
+rect 100, 100, 500, 500
+----
+
+== Oval
+
+Draw circle or oval shape by giving x, y co-ordinates with width and height. If width and height are equal then it draws a circle.
+
+[source,console]
+----
+#    x    y    w    h
+oval 100, 100, 500, 500
+----
+
