@@ -88,5 +88,31 @@ module Chitra
     def stroke_width(value)
       @stroke_width = value
     end
+
+    # Set line dash pattern. `line_dash 0` disables
+    # the dash.Symmetric dash pattern with one value
+    # to this function.
+    # ```
+    # line_dash 2
+    # ```
+    # Asymmetric pattern
+    # ```
+    # line_dash 2, 4, 10
+    # ```
+    # To set the offset value to start the pattern
+    # ```
+    # line_dash 2, 4, 10, offset: 1
+    # ```
+    def line_dash(*values, offset = 0)
+      if values.size == 1 && values[0] == 0
+        @line_dash.enabled = false
+        return
+      elsif values.size > 0
+        @line_dash.enabled = true
+      end
+
+      @line_dash.values = (values.map &.to_f64).to_a
+      @line_dash.offset = offset.to_f64
+    end
   end
 end
