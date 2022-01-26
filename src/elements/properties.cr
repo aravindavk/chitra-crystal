@@ -93,15 +93,15 @@ module Chitra
     # the dash.Symmetric dash pattern with one value
     # to this function.
     # ```
-    # line_dash 2
+    # ctx.line_dash 2
     # ```
     # Asymmetric pattern
     # ```
-    # line_dash 2, 4, 10
+    # ctx.line_dash 2, 4, 10
     # ```
     # To set the offset value to start the pattern
     # ```
-    # line_dash 2, 4, 10, offset: 1
+    # ctx.line_dash 2, 4, 10, offset: 1
     # ```
     def line_dash(*values, offset = 0)
       if values.size == 1 && values[0] == 0
@@ -119,17 +119,32 @@ module Chitra
     # Allowed values are butt, round and square.
     # Default value is butt.
     # ```
-    # line_cap "round"
-    # line 100, 100, 500, 100
+    # ctx.line_cap "round"
+    # ctx.line 100, 100, 500, 100
     # ```
     def line_cap(value)
       parsed = Cairo::LineCap.parse?(value)
-      puts typeof(parsed)
-      puts parsed
       if parsed.nil?
         raise Exception.new "Invalid line_cap value"
       else
         @line_cap = parsed
+      end
+    end
+
+    # Set Line join style
+    # Possible values are: miter, round, bevel.
+    # Default value is miter.
+    # ```
+    # ctx.stroke_width 14
+    # ctx.line_join "round"
+    # ctx.rect 100, 100, 500, 500
+    # ```
+    def line_join(value)
+      parsed = Cairo::LineJoin.parse?(value)
+      if parsed.nil?
+        raise Exception.new "Invalid line_join value"
+      else
+        @line_join = parsed
       end
     end
   end

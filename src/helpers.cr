@@ -20,7 +20,8 @@ module Chitra
       stroke_width = 1,
       no_fill = false,
       line_dash = LineDash.new,
-      line_cap = Cairo::LineCap::Butt
+      line_cap = Cairo::LineCap::Butt,
+      line_join = Cairo::LineJoin::Miter
   end
 
   abstract struct Element
@@ -42,6 +43,7 @@ module Chitra
           cairo_ctx.set_dash([] of Float64, 0)
         end
         cairo_ctx.line_cap = @line_cap
+        cairo_ctx.line_join = @line_join
         cairo_ctx.set_source_rgba @stroke.r, @stroke.g, @stroke.b, @stroke.a
         cairo_ctx.stroke
       else
@@ -49,12 +51,31 @@ module Chitra
       end
     end
 
+    def fill_debug_text
+      @no_fill ? "fill=nil" : "fill=#{@fill.debug}"
+    end
+
+    def stroke_debug_text
+      if stroke_width > 0
+        "stroke=#{@stroke.debug} stroke_width=#{@stroke_width}"
+      else
+        "stroke=nil"
+      end
+    end
+
+    def line_dash_debug_text
+      if @line_dash.enabled
+        "line_dash=(#{@line_dash.values.join(",")}, offset: #{@line_dash.offset})"
+      else
+        "line_dash=nil"
+      end
+    end
+
     # :nodoc:
     def debug_text(shape_msg)
-      fill_data = @no_fill ? "fill=nil" : "fill=#{@fill.debug}"
-      stroke_data = @stroke_width > 0 ? "stroke=#{@stroke.debug} stroke_width=#{@stroke_width}" : "stroke=nil"
-      line_dash = @line_dash.enabled ? "line_dash=(#{@line_dash.values.join(",")}, offset: #{@line_dash.offset})" : "line_dash=nil"
-      "#{shape_msg} #{fill_data} #{stroke_data} #{line_dash} line_cap=#{@line_cap}"
+      "#{shape_msg} #{fill_debug_text} #{stroke_debug_text} " +
+        "#{line_dash_debug_text} line_cap=#{@line_cap} " +
+        "line_join=#{@line_join}"
     end
   end
 
@@ -96,6 +117,7 @@ module Chitra
       ele.no_fill = @no_fill
       ele.line_dash = @line_dash
       ele.line_cap = @line_cap
+      ele.line_join = @line_join
       @elements << ele
 
       # Return the element index
