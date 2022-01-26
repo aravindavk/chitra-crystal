@@ -114,5 +114,23 @@ module Chitra
       @line_dash.values = (values.map &.to_f64).to_a
       @line_dash.offset = offset.to_f64
     end
+
+    # Set Line cap style
+    # Allowed values are butt, round and square.
+    # Default value is butt.
+    # ```
+    # line_cap "round"
+    # line 100, 100, 500, 100
+    # ```
+    def line_cap(value)
+      parsed = Cairo::LineCap.parse?(value)
+      puts typeof(parsed)
+      puts parsed
+      if parsed.nil?
+        raise Exception.new "Invalid line_cap value"
+      else
+        @line_cap = parsed
+      end
+    end
   end
 end

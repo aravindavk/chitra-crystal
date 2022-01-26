@@ -19,7 +19,8 @@ module Chitra
       stroke = Color.new,
       stroke_width = 1,
       no_fill = false,
-      line_dash = LineDash.new
+      line_dash = LineDash.new,
+      line_cap = Cairo::LineCap::Butt
   end
 
   abstract struct Element
@@ -40,6 +41,7 @@ module Chitra
         else
           cairo_ctx.set_dash([] of Float64, 0)
         end
+        cairo_ctx.line_cap = @line_cap
         cairo_ctx.set_source_rgba @stroke.r, @stroke.g, @stroke.b, @stroke.a
         cairo_ctx.stroke
       else
@@ -52,7 +54,7 @@ module Chitra
       fill_data = @no_fill ? "fill=nil" : "fill=#{@fill.debug}"
       stroke_data = @stroke_width > 0 ? "stroke=#{@stroke.debug} stroke_width=#{@stroke_width}" : "stroke=nil"
       line_dash = @line_dash.enabled ? "line_dash=(#{@line_dash.values.join(",")}, offset: #{@line_dash.offset})" : "line_dash=nil"
-      "#{shape_msg} #{fill_data} #{stroke_data} #{line_dash}"
+      "#{shape_msg} #{fill_data} #{stroke_data} #{line_dash} line_cap=#{@line_cap}"
     end
   end
 
@@ -93,6 +95,7 @@ module Chitra
       ele.stroke_width = @stroke_width
       ele.no_fill = @no_fill
       ele.line_dash = @line_dash
+      ele.line_cap = @line_cap
       @elements << ele
 
       # Return the element index
