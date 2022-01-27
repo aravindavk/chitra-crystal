@@ -64,10 +64,10 @@ module Chitra
     end
 
     def line_dash_debug_text
-      if @line_dash.enabled
-        "line_dash=(#{@line_dash.values.join(",")}, offset: #{@line_dash.offset})"
-      else
+      if !@line_dash.enabled || @stroke_width == 0
         "line_dash=nil"
+      else
+        "line_dash=(#{@line_dash.values.join(",")}, offset: #{@line_dash.offset})"
       end
     end
 
