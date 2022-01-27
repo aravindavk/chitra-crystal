@@ -110,6 +110,16 @@ module Chitra
       end
     end
 
+    private def coord_pairs_validate(values)
+      points = [] of Array(Float64)
+      values.each_slice(2) do |point|
+        raise Exception.new "Invalid point pairs" if point.size != 2
+        points << (point.map &.to_f64).to_a
+      end
+
+      points
+    end
+
     private def add_shape_properties(ele)
       ele.fill = @fill
       ele.stroke = @stroke
