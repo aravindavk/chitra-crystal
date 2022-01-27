@@ -7,7 +7,7 @@ end
 FUNCS = %w[width height enable_debug fill no_fill stroke
   stroke_width save new_drawing rect oval line
   line_dash line_cap line_join translate rotate scale
-  polygon background
+  polygon background no_stroke
 ]
 
 # Define the above global functions

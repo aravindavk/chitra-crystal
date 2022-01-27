@@ -89,6 +89,16 @@ module Chitra
       @stroke_width = value
     end
 
+    # Disable Stroke.
+    # ```
+    # ctx.stroke_width 0
+    # # OR
+    # ctx.no_stroke
+    # ```
+    def no_stroke
+      @stroke_width = 0
+    end
+
     # Set line dash pattern. `line_dash 0` disables
     # the dash.Symmetric dash pattern with one value
     # to this function.
