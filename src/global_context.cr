@@ -6,7 +6,7 @@ end
 
 FUNCS = %w[width height enable_debug fill no_fill stroke
   stroke_width save new_drawing rect oval line
-  line_dash line_cap line_join translate rotate
+  line_dash line_cap line_join translate rotate scale
 ]
 
 # Define the above global functions
