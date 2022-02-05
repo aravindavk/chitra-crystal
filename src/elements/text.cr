@@ -48,25 +48,44 @@ module Chitra
     # Important function that splits the given string into
     # multiple lines when the rendered text is wider than the
     # available width.
+    # ameba:disable Metrics/CyclomaticComplexity
     private def split_lines(cairo_ctx)
       line = ""
       unconfirmed = ""
       lines = [] of String
+      y = @y
+      overflow = false
+      overflow_text = ""
       @txt.each_grapheme do |v|
         letter = v.to_s
+
+        next overflow_text += letter if overflow
+
         text_w, _text_h = text_size(cairo_ctx, line + unconfirmed + letter)
         if text_w > @w
           if letter == " " || letter == "\n"
-            lines << (line + unconfirmed).strip
+            y += @line_height * @font.height
+            if y > (@y + @h)
+              overflow = true
+              overflow_text = line + unconfirmed + letter
+            else
+              lines << (line + unconfirmed).strip
+            end
             unconfirmed = ""
           else
-            if @hyphenation
-              lines << (line + unconfirmed).strip + @hyphen_char
-              line = letter
+            y += @line_height * @font.height
+            if y > (@y + @h)
+              overflow = true
+              overflow_text = line + unconfirmed + letter
             else
-              lines << line.strip
-              # FIX: If initial width is more than line width available. What to do?
-              line = unconfirmed + letter
+              if @hyphenation
+                lines << (line + unconfirmed).strip + @hyphen_char
+                line = letter
+              else
+                lines << line.strip
+                # FIX: If initial width is more than line width available. What to do?
+                line = unconfirmed + letter
+              end
             end
             unconfirmed = ""
           end
@@ -83,17 +102,24 @@ module Chitra
       remaining = (line + unconfirmed).strip
 
       if remaining != ""
-        lines << remaining
+        y += @line_height * @font.height
+        if y > (@y + @h)
+          overflow = true
+          overflow_text += line + unconfirmed
+        else
+          lines << remaining
+        end
       end
 
       y = @y
-      lines.map do |l|
+      data = lines.map do |l|
         text_w, _text_h = text_size(cairo_ctx, l)
         x = @x + align_x(@w, text_w, @align)
         y += @line_height * @font.height
-        in_box = y > (@y + @h) ? false : true
-        {txt: l, x: x, y: y, in_box: in_box}
+        {txt: l, x: x, y: y}
       end
+
+      {data, overflow_text}
     end
 
     # :nodoc:
@@ -101,15 +127,14 @@ module Chitra
       cairo_ctx.select_font_face(@font.family, @font.slant, @font.weight)
       cairo_ctx.font_size = @font.height
 
-      lines = split_lines(cairo_ctx)
+      lines, overflow_text = split_lines(cairo_ctx)
       lines.each do |line|
-        # TODO: How to return overflow text back to caller?
-        break unless line[:in_box]
-
         cairo_ctx.move_to(line[:x], line[:y])
         cairo_ctx.text_path(line[:txt])
         draw_shape_properties(cairo_ctx)
       end
+
+      overflow_text
     end
 
     # :nodoc:
@@ -125,12 +150,16 @@ module Chitra
     # ```
     def text(txt, x, y)
       t = Text.new(txt, x, y)
-      add_shape_properties(t)
+      idx = add_shape_properties(t)
+      draw_on_default_surface(@elements[idx])
     end
 
     def text_box(txt, x, y, w, h)
       t = TextBox.new(txt, x, y, w, h)
-      add_shape_properties(t)
+      idx = add_shape_properties(t)
+
+      overflow = draw_on_default_surface(@elements[idx])
+      overflow.is_a?(String) ? overflow : ""
     end
   end
 end

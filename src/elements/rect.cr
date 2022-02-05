@@ -27,7 +27,9 @@ module Chitra
     # ```
     def rect(x, y, w, h)
       r = Rect.new(x, y, w, h)
-      add_shape_properties(r)
+      idx = add_shape_properties(r)
+
+      draw_on_default_surface(@elements[idx])
     end
   end
 end

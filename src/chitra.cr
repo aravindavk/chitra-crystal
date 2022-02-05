@@ -35,6 +35,8 @@ module Chitra
       @out_ext = ""
       @output_type = ""
       @elements = [] of Element
+      surface = Cairo::Surface.new(Cairo::Format::ARGB32, @size.width, @size.height)
+      @default_cairo_ctx = Cairo::Context.new surface
     end
 
     # :nodoc:

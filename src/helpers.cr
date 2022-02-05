@@ -133,6 +133,10 @@ module Chitra
       points
     end
 
+    private def draw_on_default_surface(element)
+      element.draw(@default_cairo_ctx)
+    end
+
     private def add_shape_properties(ele)
       ele.fill = @fill
       ele.stroke = @stroke

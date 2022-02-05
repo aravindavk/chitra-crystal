@@ -32,7 +32,9 @@ module Chitra
     def polygon(*points, close = true)
       values = coord_pairs_validate(points)
       p = Polygon.new(values, close)
-      add_shape_properties(p)
+      idx = add_shape_properties(p)
+
+      draw_on_default_surface(@elements[idx])
     end
   end
 end
