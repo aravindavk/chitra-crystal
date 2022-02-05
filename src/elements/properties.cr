@@ -174,5 +174,29 @@ module Chitra
     def font_size(font_size)
       @font.height = font_size
     end
+
+    # Set Text align for text boxes
+    # ```
+    # ctx.text_align "center"
+    # ```
+    def text_align(value)
+      @align = value
+    end
+
+    # Enable/Disable text hyphenation. Default is disabled
+    # ```
+    # ctx.hyphenation true
+    # ```
+    def hyphenation(value)
+      @hyphenation = value
+    end
+
+    # Set Hyphenation char. Default is -
+    # ```
+    # ctx.hyphen_char "*"
+    # ```
+    def hyphen_char(value)
+      @hyphen_char = value
+    end
   end
 end
