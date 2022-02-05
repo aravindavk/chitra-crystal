@@ -89,6 +89,16 @@ module Chitra
             end
             unconfirmed = ""
           end
+        elsif letter == "\n"
+          y += @line_height * @font.height
+          if y > (@y + @h)
+            overflow = true
+            overflow_text = line + unconfirmed + letter
+          else
+            lines << (line + unconfirmed).strip
+            unconfirmed = ""
+            line = ""
+          end
         else
           if letter == " " || letter == "\n"
             line += unconfirmed + letter
