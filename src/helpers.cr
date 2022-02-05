@@ -23,7 +23,7 @@ module Chitra
   end
 
   module TextProperties
-    property font = Font.new
+    property font = Font.new, line_height = 1.5, align = "left", hyphenation = false, hyphen_char = "-"
   end
 
   module ShapeProperties
@@ -142,6 +142,10 @@ module Chitra
       ele.line_cap = @line_cap
       ele.line_join = @line_join
       ele.font = @font
+      ele.line_height = @line_height
+      ele.align = @align
+      ele.hyphenation = @hyphenation
+      ele.hyphen_char = @hyphen_char
       @elements << ele
 
       # Return the element index
