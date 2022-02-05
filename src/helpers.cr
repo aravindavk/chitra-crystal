@@ -14,6 +14,18 @@ module Chitra
     end
   end
 
+  struct Font
+    property family = "Serif", slant = Cairo::FontSlant::Normal,
+      weight = Cairo::FontWeight::Normal, height = 12
+
+    def initialize
+    end
+  end
+
+  module TextProperties
+    property font = Font.new
+  end
+
   module ShapeProperties
     property fill = Color.new,
       stroke = Color.new,
@@ -26,6 +38,7 @@ module Chitra
 
   abstract struct Element
     include ShapeProperties
+    include TextProperties
 
     def draw_shape_properties(cairo_ctx)
       if @no_fill
@@ -128,6 +141,7 @@ module Chitra
       ele.line_dash = @line_dash
       ele.line_cap = @line_cap
       ele.line_join = @line_join
+      ele.font = @font
       @elements << ele
 
       # Return the element index
