@@ -25,6 +25,8 @@ module Chitra
     def translate(x, y)
       t = Translate.new(x, y)
       @elements << t
+
+      draw_on_default_surface(t)
     end
   end
 end

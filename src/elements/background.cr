@@ -39,7 +39,7 @@ module Chitra
       ele.fill.a = a.to_f64
       @elements[idx] = ele
 
-      idx
+      draw_on_default_surface(@elements[idx])
     end
 
     # Fill background color(Gray scale)

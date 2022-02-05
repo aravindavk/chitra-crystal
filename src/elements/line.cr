@@ -27,7 +27,9 @@ module Chitra
     # ```
     def line(x1, y1, x2, y2)
       l = Line.new(x1, y1, x2, y2)
-      add_shape_properties(l)
+      idx = add_shape_properties(l)
+
+      draw_on_default_surface(@elements[idx])
     end
   end
 end

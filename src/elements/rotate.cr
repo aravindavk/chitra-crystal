@@ -41,6 +41,8 @@ module Chitra
       rad = Math::PI * angle / 180
       t = Rotate.new(rad, center_x, center_y)
       @elements << t
+
+      draw_on_default_surface(t)
     end
   end
 end

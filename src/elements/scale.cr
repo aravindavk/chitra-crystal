@@ -34,6 +34,8 @@ module Chitra
     def scale(scale_x, scale_y = 0)
       s = Scale.new(scale_x, scale_y)
       @elements << s
+
+      draw_on_default_surface(s)
     end
   end
 end

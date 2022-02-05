@@ -29,7 +29,9 @@ module Chitra
     # ```
     def oval(x, y, w, h)
       o = Oval.new(x, y, w, h)
-      add_shape_properties(o)
+      idx = add_shape_properties(o)
+
+      draw_on_default_surface(@elements[idx])
     end
   end
 end
