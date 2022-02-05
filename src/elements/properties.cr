@@ -157,5 +157,22 @@ module Chitra
         @line_join = parsed
       end
     end
+
+    # Set Font family and size
+    # ```
+    # ctx.font "Times", 30
+    # ```
+    def font(font_name, font_size)
+      @font.family = font_name
+      @font.height = font_size
+    end
+
+    # Set Font size
+    # ```
+    # ctx.font_size 30
+    # ```
+    def font_size(font_size)
+      @font.height = font_size
+    end
   end
 end

@@ -5,6 +5,8 @@ require "./elements/*"
 module Chitra
   class Context
     include ShapeProperties
+    include TextProperties
+
     property size = Size.new, debug = false
 
     # Get width of the canvas
