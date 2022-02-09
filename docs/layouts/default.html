@@ -8,10 +8,20 @@
         <!-- you don't need to keep this, but it's cool for stats! -->
         <meta name="generator" content="Nanoc <%= Nanoc::VERSION %>">
     </head>
-    <body>
-        <div id="main" class="flex-row flex w-1/2 mx-auto">
+    <body class="bg-blue-100">
+        <div id="main" class="flex-row flex w-full mx-auto">
             <div class="basis-1/6 bg-blue-100">
-                Shapes
+                <img class="block" src="/static/logo.png"/>
+                <div class="px-10">
+                    <ul>
+                        <li>Introduction</li>
+                        <li>Installation</li>
+                        <li>Page</li>
+                        <li>Shapes</li>
+                        <li>Fill and Stroke</li>
+                        <li>Line properties</li>
+                    </ul>
+                </div>
             </div>
             <div class="content basis-4/6">
                 <%= yield %>

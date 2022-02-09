@@ -1,0 +1,27 @@
+= Saving
+
+Chitra supports `png`, `svg` and `pdf` formats.
+
+== Save as png image
+
+[source,crystal]
+----
+rect 100, 100, 500, 500
+save "rect.png"
+----
+
+== Save as svg
+
+[source,crystal]
+----
+rect 100, 100, 500, 500
+save "rect.svg"
+----
+
+== Save as pdf
+
+[source,crystal]
+----
+rect 100, 100, 500, 500
+save "rect.pdf"
+----

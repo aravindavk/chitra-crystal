@@ -1,0 +1,67 @@
+= Text
+
+== Draw text
+
+Draw text by giving x and y details.
+
+[source,crystal]
+----
+text "Hello World", 20, 20
+----
+
+== Set font
+
+[source,crystal]
+----
+font "Latin Modern Roman", 30
+text "Hello World", 50, 50
+----
+
+== Text color
+
+Use fill and Stroke for drawing text as well.
+
+[source,crystal]
+----
+fill 1, 0, 0
+no_stroke
+text "Hello World", 50, 50
+----
+
+== Text Box
+
+Draw aligned text by giving the box co-ordinates.
+
+[source,crystal]
+----
+text_align "center"
+font "Times", 50
+text_box "Hello World!", 0, height/2, width, 100
+----
+
+`text_box` API returns the overflow text. Use that to create the text boxes when required.
+
+[source,crystal]
+----
+gap = 20
+x = gap
+w = 200
+txt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula scelerisque ..."
+loop do
+   txt = text_box txt, x, 50, 200, height-100
+   x += 200 + gap
+    break if txt == ""
+end
+----
+
+== Hyphenation
+
+Enable hyphenation
+
+[source,crystal]
+----
+hyphenation true
+hyphen_char "-"
+txt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula scelerisque ..."
+text_box txt, 100, 100, 200, 200
+----
