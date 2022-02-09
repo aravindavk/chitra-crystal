@@ -64,3 +64,17 @@ Default Stroke width is `1`. Set Stroke width as
 stroke_width 10
 rect 100, 100, 500, 500
 ----
+
+== Disable Stroke
+
+[source,crystal]
+----
+stroke_width 0
+----
+
+OR
+
+[source,crystal]
+----
+no_stroke
+----

@@ -5,3 +5,10 @@
 .content h1 {
     @apply text-3xl font-semibold text-blue-700;
 }
+
+.content h2 {
+    @apply text-2xl mt-10 mb-2;
+}
+.content pre {
+    @apply bg-blue-200 py-5 px-5 rounded-lg;
+}

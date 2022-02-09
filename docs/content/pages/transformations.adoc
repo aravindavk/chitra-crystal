@@ -1,0 +1,59 @@
+= Transformations
+
+== Translate
+
+To shift the co-ordinates origin to a given x and y.
+
+[source,crystal]
+----
+def draw_rects
+    rect 0, 0, 200, 200
+    rect 100, 100, 200, 200
+end
+
+# Move to middle of the canvas
+translate width/2, height/2
+
+draw_rects
+
+# Move back to original origin
+translate -width/2, -height/2
+----
+
+== Rotate
+
+Rotate the drawing canvas in clockwise direction to a given angle in degrees. Negative angle rotates in anti-clockwise direction.
+
+[source,crystal]
+----
+size 200, 200
+rotate 45
+rect 50, 50, 50, 50
+----
+
+By default center of rotation is `(0, 0)`. Change the center by
+
+[source,crystal]
+----
+size 200, 200
+rotate 45, 50, 50
+rect 50, 50, 50, 50
+----
+
+== Scale
+
+Scale the canvas to given x and y scales.
+
+[source,crystal]
+----
+size 200, 200
+scale 2
+rect 50, 50, 50, 50
+----
+
+[source,crystal]
+----
+size 200, 200
+scale 2, 1
+rect 50, 50, 50, 50
+----

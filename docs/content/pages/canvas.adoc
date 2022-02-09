@@ -1,0 +1,90 @@
+= Canvas
+
+Co-ordinate system starts from top left.
+
+== Size
+
+Define the size of the canvas by specifying width and height.
+
+To create a canvas with equal width and height
+
+[source,crystal]
+----
+size 500
+----
+
+To set custom width and height
+
+[source,crystal]
+----
+size 1600, 900
+----
+
+== Background fill
+
+Fill the canvas with a background color.
+
+Gray scale
+
+[source,crystal]
+----
+#          gray
+background 0.5
+----
+
+With opacity
+
+[source,crystal]
+----
+#          gray a
+background 0.5, 0.5
+----
+
+RGB or RGBA color,
+
+[source,crystal]
+----
+#          r  g  b
+background 1, 0, 0
+
+#          r  g  b  a
+background 1, 0, 0, 0.5
+----
+
+== Canvas width and height
+
+Get size of canvas anytime by using `width` and `height` functions. For example, to draw a rectangle with half size of the canvas.
+
+[source,crystal]
+----
+rect width/4, height/4, width/2, height/2
+----
+
+== New drawing
+
+To save multiple drawings, use `new_drawing` API
+
+[source,crystal]
+----
+size 200, 10
+
+(0..100).each do |x|
+    fill x/100, 0, 0
+    rect x*2, 0, 2, height
+end
+save "all_red.png"
+
+new_drawing
+(0..100).each do |x|
+    fill 0, x/100, 0
+    rect x*2, 0, 2, height
+end
+save "all_green.png"
+
+new_drawing
+(0..100).each do |x|
+    fill 0, 0, x/100
+    rect x*2, 0, 2, height
+end
+save "all_blue.png"
+----

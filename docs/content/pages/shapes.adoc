@@ -2,12 +2,17 @@
 
 == Rectangle
 
-Draw rectangle by giving x and y co-ordinates from top left. Give width and height of the rectangle as required.
+Draw rectangle or square by giving x and y co-ordinates from top left. Give width and height of the rectangle as required.
 
 [source,crystal]
 ----
+# Square
 #    x    y    w    h
 rect 100, 100, 500, 500
+
+# Rectangle
+#    x    y    w    h
+rect 100, 100, 500, 200
 ----
 
 == Oval
@@ -16,8 +21,13 @@ Draw circle or oval shape by giving x, y co-ordinates with width and height. If 
 
 [source,crystal]
 ----
+# Circle
 #    x    y    w    h
 oval 100, 100, 500, 500
+
+# Oval
+#    x    y    w    h
+oval 100, 100, 500, 200
 ----
 
 == Line
