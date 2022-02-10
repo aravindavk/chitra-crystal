@@ -53,15 +53,3 @@ loop do
     break if txt == ""
 end
 ----
-
-== Hyphenation
-
-Enable hyphenation
-
-[source,crystal]
-----
-hyphenation true
-hyphen_char "-"
-txt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula scelerisque ..."
-text_box txt, 100, 100, 200, 200
-----
