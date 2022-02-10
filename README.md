@@ -13,19 +13,19 @@ Install Cairo
 Ubuntu
 
 ```console
-sudo apt install libcairo2 libcairo2-dev
+sudo apt install libcairo2 libcairo2-dev libpango1.0-dev
 ```
 
 Fedora
 
 ```console
-sudo yum install cairo-devel
+sudo yum install cairo-devel pango-devel
 ```
 
 Mac
 
 ```console
-brew install cairo
+brew install cairo pango
 ```
 
 Add this to your application's shard.yml:
