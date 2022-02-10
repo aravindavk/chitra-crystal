@@ -11,6 +11,7 @@ no_stroke
 fill 0.5, 0.45
 rect 10, 90, 320, 320
 text_align "left"
+line_height 1.1
 txt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas rutrum erat eu tincidunt ornare. Donec ut sodales diam, a faucibus sapien. Sed eleifend posuere enim, eget condimentum massa eleifend in. Nullam laoreet tortor sit amet dolor tempor molestie. Pellentesque tincidunt magna nec est rhoncus, eu finibus orci ultrices. Phasellus vitae urna pharetra, tempus eros ut, ornare orci. Vivamus placerat commodo lobortis. Mauris euismod dapibus ipsum, in fermentum libero fringilla ut. Etiam vel diam ut quam cursus imperdiet sit amet eget metus."
 fill 0
 overflow = text_box txt, 20, 100, 300, 300

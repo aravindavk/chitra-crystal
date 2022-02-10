@@ -198,5 +198,9 @@ module Chitra
     def hyphen_char(value)
       @hyphen_char = value
     end
+
+    def line_height(value)
+      @line_height = value.to_f64
+    end
   end
 end
