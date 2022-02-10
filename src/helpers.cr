@@ -114,6 +114,18 @@ module Chitra
     end
   end
 
+  struct State
+    include ShapeProperties
+    include TextProperties
+
+    property size = Size.new, debug = false
+
+    def initialize(w, h)
+      @size.width = w
+      @size.height = h
+    end
+  end
+
   class Context
     # :nodoc:
     # Validate the RGBA values
@@ -154,6 +166,63 @@ module Chitra
 
       # Return the element index
       @elements.size - 1
+    end
+
+    # Save Context state
+    # ```
+    # ctx.save_state
+    # ctx.fill 0, 0, 1
+    # ```
+    def save_state
+      @saved_context.fill = @fill
+      @saved_context.stroke = @stroke
+      @saved_context.stroke_width = @stroke_width
+      @saved_context.no_fill = @no_fill
+      @saved_context.line_dash = @line_dash
+      @saved_context.line_cap = @line_cap
+      @saved_context.line_join = @line_join
+      @saved_context.font = @font
+      @saved_context.line_height = @line_height
+      @saved_context.align = @align
+      @saved_context.hyphenation = @hyphenation
+      @saved_context.hyphen_char = @hyphen_char
+    end
+
+    # Restore Context state
+    # ```
+    # ctx.restore_state
+    # ```
+    def restore_state
+      @fill = @saved_context.fill
+      @stroke = @saved_context.stroke
+      @stroke_width = @saved_context.stroke_width
+      @no_fill = @saved_context.no_fill
+      @line_dash = @saved_context.line_dash
+      @line_cap = @saved_context.line_cap
+      @line_join = @saved_context.line_join
+      @font = @saved_context.font
+      @line_height = @saved_context.line_height
+      @align = @saved_context.align
+      @hyphenation = @saved_context.hyphenation
+      @hyphen_char = @saved_context.hyphen_char
+    end
+
+    # Use Saved state as block that applies save_state and
+    # restore_state automatically.
+    # ```
+    # ctx.fill 1, 0, 0
+    # ctx.saved_state do
+    #   ctx.fill 0, 0, 1
+    #   # Blue rect
+    #   ctx.rect 100, 100, 200, 200
+    # end
+    # # Red Rect
+    # ctx.rect 200, 200, 200, 200
+    # ```
+    def saved_state(&block)
+      save_state
+      block.call
+      restore_state
     end
   end
 end

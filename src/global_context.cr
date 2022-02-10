@@ -9,6 +9,7 @@ FUNCS = %w[width height enable_debug fill no_fill stroke
   line_dash line_cap line_join translate rotate scale
   polygon background no_stroke font font_size text text_box
   hyphenation hyphen_char text_align line_height point
+  save_state restore_state
 ]
 
 # Define the above global functions
@@ -30,4 +31,21 @@ def size(w, h)
   debug = Chitra.global_context.debug
   Chitra.global_context = Chitra::Context.new(w, h)
   Chitra.global_context.enable_debug if debug
+end
+
+# Draw with the state changes that
+# don't change the Global state
+# ```
+# # Set Fill color Red
+# ctx.fill 1, 0, 0
+# ctx.saved_state do
+#   # Change the fill color to Blue
+#   ctx.fill 0, 0, 1
+#   ctx.rect 100, 100, 200, 200
+# end
+# # Draw rect with the fill color set previously
+# ctx.rect 200, 200, 200, 200
+# ```
+def saved_state(&block)
+  Chitra.global_context.saved_state(&block)
 end
