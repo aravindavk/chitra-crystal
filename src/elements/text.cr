@@ -1,3 +1,5 @@
+require "../pangocairo"
+
 module Chitra
   struct Text < Element
     include ShapeProperties
@@ -9,10 +11,16 @@ module Chitra
 
     # :nodoc:
     def draw(cairo_ctx)
-      cairo_ctx.select_font_face(@font.family, @font.slant, @font.weight)
-      cairo_ctx.font_size = @font.height
+      cairo_ctx.antialias = Cairo::Antialias::Best
       cairo_ctx.move_to(@x, @y)
-      cairo_ctx.text_path(@txt)
+      layout = LibPangoCairo.pango_cairo_create_layout(cairo_ctx)
+      LibPangoCairo.pango_layout_set_text(layout, @txt, -1)
+      desc = LibPangoCairo.pango_font_description_from_string("#{@font.family}, Bold #{@font.height}")
+      LibPangoCairo.pango_layout_set_font_description(layout, desc)
+      LibPangoCairo.pango_font_description_free(desc)
+      LibPangoCairo.pango_cairo_update_layout(cairo_ctx, layout)
+      LibPangoCairo.pango_cairo_show_layout(cairo_ctx, layout)
+      LibPangoCairo.pango_cairo_layout_path(cairo_ctx, layout)
       draw_shape_properties(cairo_ctx)
     end
 
@@ -30,119 +38,52 @@ module Chitra
     def initialize(@txt : String, @x : Float64, @y : Float64, @w : Float64, @h : Float64)
     end
 
-    private def text_size(cairo_ctx, txt)
-      data = cairo_ctx.text_extents(txt)
-      {data.width, data.height}
-    end
-
-    private def align_x(w, text_w, align)
-      # TODO: align: justify
-      case align
-      when "right"  then w - text_w
-      when "center" then (w - text_w)/2
-      else
-        0
-      end
-    end
-
-    # Important function that splits the given string into
-    # multiple lines when the rendered text is wider than the
-    # available width.
-    # ameba:disable Metrics/CyclomaticComplexity
-    private def split_lines(cairo_ctx)
-      line = ""
-      unconfirmed = ""
-      lines = [] of String
-      y = @y
-      overflow = false
-      overflow_text = ""
-      @txt.each_grapheme do |v|
-        letter = v.to_s
-
-        next overflow_text += letter if overflow
-
-        text_w, _text_h = text_size(cairo_ctx, line + unconfirmed + letter)
-        if text_w > @w
-          if letter == " " || letter == "\n"
-            y += @line_height * @font.height
-            if y > (@y + @h)
-              overflow = true
-              overflow_text = line + unconfirmed + letter
-            else
-              lines << (line + unconfirmed).strip
-            end
-            unconfirmed = ""
-          else
-            y += @line_height * @font.height
-            if y > (@y + @h)
-              overflow = true
-              overflow_text = line + unconfirmed + letter
-            else
-              if @hyphenation
-                lines << (line + unconfirmed).strip + @hyphen_char
-                line = letter
-              else
-                lines << line.strip
-                # FIX: If initial width is more than line width available. What to do?
-                line = unconfirmed + letter
-              end
-            end
-            unconfirmed = ""
-          end
-        elsif letter == "\n"
-          y += @line_height * @font.height
-          if y > (@y + @h)
-            overflow = true
-            overflow_text = line + unconfirmed + letter
-          else
-            lines << (line + unconfirmed).strip
-            unconfirmed = ""
-            line = ""
-          end
-        else
-          if letter == " " || letter == "\n"
-            line += unconfirmed + letter
-            unconfirmed = ""
-          else
-            unconfirmed += letter
-          end
-        end
-      end
-
-      remaining = (line + unconfirmed).strip
-
-      if remaining != ""
-        y += @line_height * @font.height
-        if y > (@y + @h)
-          overflow = true
-          overflow_text += line + unconfirmed
-        else
-          lines << remaining
-        end
-      end
-
-      y = @y
-      data = lines.map do |l|
-        text_w, _text_h = text_size(cairo_ctx, l)
-        x = @x + align_x(@w, text_w, @align)
-        y += @line_height * @font.height
-        {txt: l, x: x, y: y}
-      end
-
-      {data, overflow_text}
-    end
-
     # :nodoc:
     def draw(cairo_ctx)
-      cairo_ctx.select_font_face(@font.family, @font.slant, @font.weight)
-      cairo_ctx.font_size = @font.height
-
-      lines, overflow_text = split_lines(cairo_ctx)
-      lines.each do |line|
-        cairo_ctx.move_to(line[:x], line[:y])
-        cairo_ctx.text_path(line[:txt])
-        draw_shape_properties(cairo_ctx)
+      cairo_ctx.move_to(@x, @y)
+      cairo_ctx.antialias = Cairo::Antialias::Best
+      layout = LibPangoCairo.pango_cairo_create_layout(cairo_ctx)
+      LibPangoCairo.pango_layout_set_width(layout, @w*LibPangoCairo::SCALE)
+      LibPangoCairo.pango_layout_set_height(layout, @h*LibPangoCairo::SCALE)
+      desc = LibPangoCairo.pango_font_description_from_string("#{@font.family}, #{@font.slant} #{@font.weight} #{@font.height}")
+      LibPangoCairo.pango_layout_set_font_description(layout, desc)
+      LibPangoCairo.pango_font_description_free(desc)
+      LibPangoCairo.pango_layout_set_line_spacing(layout, @line_height)
+      LibPangoCairo.pango_layout_set_wrap(layout, LibPangoCairo::WrapMode::WordChar)
+      case @align
+      when "justify" then LibPangoCairo.pango_layout_set_justify(layout, true)
+      when "center"  then LibPangoCairo.pango_layout_set_alignment(layout, LibPangoCairo::Alignment::Center)
+      when "right"   then LibPangoCairo.pango_layout_set_alignment(layout, LibPangoCairo::Alignment::Right)
+      else
+        LibPangoCairo.pango_layout_set_alignment(layout, LibPangoCairo::Alignment::Left)
       end
+
+      txt = ""
+      overflow_text = ""
+      overflow = false
+      @txt.each_grapheme do |letter|
+        unless overflow
+          LibPangoCairo.pango_layout_set_text(layout, txt + letter.to_s, -1)
+          LibPangoCairo.pango_layout_get_size(layout, out w, out h)
+
+          if h/LibPangoCairo::SCALE > @h
+            overflow = true
+          end
+        end
+
+        if overflow
+          overflow_text += letter.to_s
+        else
+          txt += letter.to_s
+        end
+      end
+
+      LibPangoCairo.pango_layout_set_text(layout, txt, -1)
+
+      LibPangoCairo.pango_cairo_update_layout(cairo_ctx, layout)
+      LibPangoCairo.pango_cairo_show_layout(cairo_ctx, layout)
+      LibPangoCairo.pango_cairo_layout_path(cairo_ctx, layout)
+      draw_shape_properties(cairo_ctx)
 
       overflow_text
     end

@@ -15,8 +15,8 @@ module Chitra
   end
 
   struct Font
-    property family = "Serif", slant = Cairo::FontSlant::Normal,
-      weight = Cairo::FontWeight::Normal, height = 12
+    property family = "Serif", slant = "Normal",
+      weight = "Normal", height = 12
 
     def initialize
     end
