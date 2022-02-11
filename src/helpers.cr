@@ -118,11 +118,21 @@ module Chitra
     include ShapeProperties
     include TextProperties
 
-    property size = Size.new, debug = false
+    property size = Size.new, debug = false,
+      enabled = false,
+      transformations = [] of Element
 
     def initialize(w, h)
       @size.width = w
       @size.height = h
+    end
+
+    def add_transformation(ele : Element)
+      @transformations << ele
+    end
+
+    def reset_transformations
+      @transformations = [] of Element
     end
   end
 
@@ -174,6 +184,7 @@ module Chitra
     # ctx.fill 0, 0, 1
     # ```
     def save_state
+      @saved_context.enabled = true
       @saved_context.fill = @fill
       @saved_context.stroke = @stroke
       @saved_context.stroke_width = @stroke_width
@@ -205,6 +216,28 @@ module Chitra
       @align = @saved_context.align
       @hyphenation = @saved_context.hyphenation
       @hyphen_char = @saved_context.hyphen_char
+
+      # Reverse the Transformations added during the saved state
+      @saved_context.transformations.reverse_each do |ele|
+        case ele
+        when Translate
+          t = Translate.new -ele.@x, -ele.@y
+          @elements << t
+          draw_on_default_surface(t)
+        when Scale
+          scale_x = ele.@scale_x > 0 ? 1/ele.@scale_x : 0.0
+          scale_y = ele.@scale_y > 0 ? 1/ele.@scale_y : 0.0
+          s = Scale.new(scale_x, scale_y)
+          @elements << s
+          draw_on_default_surface(s)
+        when Rotate
+          r = Rotate.new(-ele.@angle, ele.@center_x, ele.@center_y)
+          @elements << r
+          draw_on_default_surface(r)
+        end
+      end
+      @saved_context.enabled = false
+      @saved_context.reset_transformations
     end
 
     # Use Saved state as block that applies save_state and
