@@ -42,6 +42,8 @@ module Chitra
       t = Rotate.new(rad, center_x, center_y)
       @elements << t
 
+      @saved_context.add_transformation(t) if @saved_context.enabled
+
       draw_on_default_surface(t)
     end
   end
