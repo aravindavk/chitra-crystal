@@ -24,6 +24,14 @@ module Chitra
 
   module TextProperties
     property font = Font.new, line_height = 1.5, align = "left", hyphenation = false, hyphen_char = "-"
+
+    def reset_text_properties
+      @font = Font.new
+      @line_height = 1.5
+      @align = "left"
+      @hyphenation = false
+      @hyphen_char = "-"
+    end
   end
 
   module ShapeProperties
@@ -34,6 +42,16 @@ module Chitra
       line_dash = LineDash.new,
       line_cap = Cairo::LineCap::Butt,
       line_join = Cairo::LineJoin::Miter
+
+    def reset_shape_properties
+      @fill = Color.new
+      @stroke = Color.new
+      @stroke_width = 1
+      @no_fill = false
+      @line_dash = LineDash.new
+      @line_cap = Cairo::LineCap::Butt
+      @line_join = Cairo::LineJoin::Miter
+    end
   end
 
   abstract struct Element
