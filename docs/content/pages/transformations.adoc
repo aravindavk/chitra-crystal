@@ -7,8 +7,11 @@ To shift the co-ordinates origin to a given x and y.
 [source,crystal]
 ----
 def draw_rects
-    rect 0, 0, 200, 200
-    rect 100, 100, 200, 200
+  fill 1, 0, 0
+  rect 0, 0, 200, 200
+
+  fill 0, 0, 1
+  rect 100, 100, 200, 200
 end
 
 # Move to middle of the canvas
@@ -20,25 +23,30 @@ draw_rects
 translate -width/2, -height/2
 ----
 
+image::/images/transformations_translate.png[Translate]
+
 == Rotate
 
 Rotate the drawing canvas in clockwise direction to a given angle in degrees. Negative angle rotates in anti-clockwise direction.
 
 [source,crystal]
 ----
-size 200, 200
 rotate 45
-rect 50, 50, 50, 50
+rect 0, 0, 200, 200
+rect 220, 0, 200, 200
 ----
+
+image::/images/transformations_rotate_1.png["Rotate with center (0,0)"]
 
 By default center of rotation is `(0, 0)`. Change the center by
 
 [source,crystal]
 ----
-size 200, 200
-rotate 45, 50, 50
-rect 50, 50, 50, 50
+rotate 45, width/2, height/2
+rect (width-200)/2, (height-200)/2, 200, 200
 ----
+
+image::/images/transformations_rotate_2.png["Rotate with center (350,350)"]
 
 == Scale
 
@@ -46,14 +54,50 @@ Scale the canvas to given x and y scales.
 
 [source,crystal]
 ----
-size 200, 200
+rect 20, 20, 200, 200
+translate 240, 240
 scale 2
-rect 50, 50, 50, 50
+rect 0, 0, 200, 200
 ----
+
+image::/images/transformations_scale_1.png["Uniform Scale"]
 
 [source,crystal]
 ----
-size 200, 200
+rect 20, 20, 200, 200
+translate 240, 240
 scale 2, 1
-rect 50, 50, 50, 50
+rect 0, 0, 200, 200
 ----
+
+image::/images/transformations_scale_2.png["Scale"]
+
+== Saved state
+
+`saved_state` block makes any changes you make to the graphics state like colors and transformations temporary.
+Canvas state will be reset to previous state at the end of this block.
+
+[source,crystal]
+----
+# Fill color red
+fill 1, 0, 0
+
+translate 50, 50
+
+saved_state do
+  # Effective translate is (200, 200)
+  translate 100, 100
+
+  scale 2
+
+  # Fill color blue
+  fill 0, 0, 1
+  rect 0, 0, 200, 200
+end
+
+# Rect with Red background, no scale
+# and translation moved back to (50,50)
+rect 0, 0, 200, 200
+----
+
+image::/images/transformations_saved_state.png["Saved State"]
