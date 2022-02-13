@@ -128,7 +128,8 @@ module Chitra
       @elements = [] of Element
       surface = Cairo::Surface.new(Cairo::Format::ARGB32, @size.width, @size.height)
       @default_cairo_ctx = Cairo::Context.new surface
-      # TODO: Reset all the properties except size?
+      reset_text_properties
+      reset_shape_properties
     end
   end
 
