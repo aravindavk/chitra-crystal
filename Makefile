@@ -9,3 +9,7 @@ lint:
 
 fmt:
 	crystal tool format src
+
+docs-build:
+	crystal run docs/doc_drawings.cr
+	cd docs && make site-build

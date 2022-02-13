@@ -501,14 +501,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: none;
 }
 
-.w-1\/2 {
-  width: 50%;
-}
-
-.w-3\/4 {
-  width: 75%;
-}
-
 .w-full {
   width: 100%;
 }
@@ -539,6 +531,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .flex-row {
   flex-direction: row;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
 }
 
 .border {
@@ -623,6 +619,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .content pre {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
   border-radius: 0.5rem;
   --tw-bg-opacity: 1;
   background-color: rgb(191 219 254 / var(--tw-bg-opacity));

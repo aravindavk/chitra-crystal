@@ -14,12 +14,9 @@
                 <img class="block" src="/static/logo.png"/>
                 <div class="px-10">
                     <ul>
-                        <li>Introduction</li>
-                        <li>Installation</li>
-                        <li>Page</li>
-                        <li>Shapes</li>
-                        <li>Fill and Stroke</li>
-                        <li>Line properties</li>
+                        <% for chapter in chapters %>
+                        <li><a href="<%= chapter["link"] %>"><%= chapter["title"] %></a></li>
+                        <% end %>
                     </ul>
                 </div>
             </div>

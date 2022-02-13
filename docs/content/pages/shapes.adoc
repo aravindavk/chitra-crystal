@@ -9,11 +9,18 @@ Draw rectangle or square by giving x and y co-ordinates from top left. Give widt
 # Square
 #    x    y    w    h
 rect 100, 100, 500, 500
+----
 
+image::/images/shapes_square.png[Square]
+
+[source,crystal]
+----
 # Rectangle
 #    x    y    w    h
 rect 100, 100, 500, 200
 ----
+
+image::/images/shapes_rect.png[Rectangle]
 
 == Oval
 
@@ -24,11 +31,18 @@ Draw circle or oval shape by giving x, y co-ordinates with width and height. If 
 # Circle
 #    x    y    w    h
 oval 100, 100, 500, 500
+----
 
+image::/images/shapes_circle.png[Circle]
+
+[source,crystal]
+----
 # Oval
 #    x    y    w    h
 oval 100, 100, 500, 200
 ----
+
+image::/images/shapes_oval.png[Oval]
 
 == Line
 
@@ -39,5 +53,7 @@ Draw a line from one point to another
 stroke_width 10
 
 #    x1   y1   x2   y2
-line 100, 100, 500, 500
+line 100, 100, 600, 600
 ----
+
+image::/images/shapes_line.png[Line]
