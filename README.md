@@ -51,7 +51,7 @@ save "all_red.png"
 
 Above example produces nice gradient like below.
 
-![All Red](screenshots/all_red.png)
+![All Red](docs/content/images/all_red.png)
 
 ## Example (Without using global context)
 

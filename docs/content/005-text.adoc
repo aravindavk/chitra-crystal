@@ -1,4 +1,6 @@
-= Text
+---
+title: Text
+---
 
 == Draw text
 
@@ -6,16 +8,22 @@ Draw text by giving x and y details.
 
 [source,crystal]
 ----
-text "Hello World", 20, 20
+no_stroke
+text "Hello World!", 20, 20
 ----
+
+image::/images/text_default.png[Text]
 
 == Set font
 
 [source,crystal]
 ----
-font "Latin Modern Roman", 30
-text "Hello World", 50, 50
+no_stroke
+font "Latin Modern Roman", 20
+text "Hello World!", 20, 20
 ----
+
+image::/images/text_font.png[Text Custom font]
 
 == Text color
 
@@ -25,8 +33,10 @@ Use fill and Stroke for drawing text as well.
 ----
 fill 1, 0, 0
 no_stroke
-text "Hello World", 50, 50
+text "Hello World!", 20, 20
 ----
+
+image::/images/text_color.png[Text Color]
 
 == Text Box
 
@@ -35,21 +45,34 @@ Draw aligned text by giving the box co-ordinates.
 [source,crystal]
 ----
 text_align "center"
-font "Times", 50
-text_box "Hello World!", 0, height/2, width, 100
+font "Times", 20
+text_box "Hello World!", 0, 10, width, height
 ----
+
+image::/images/text_box_align.png[Text Box Align]
 
 `text_box` API returns the overflow text. Use that to create the text boxes when required.
 
 [source,crystal]
 ----
+size 380, 80
+background 1
+
+font "Latin Modern Roman", 12
 gap = 20
 x = gap
-w = 200
+w = 100
+h = 60
+y = 10
+
+text_align "justify"
 txt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula scelerisque ..."
+
 loop do
-   txt = text_box txt, x, 50, 200, height-100
-   x += 200 + gap
+   txt = text_box txt, x, y, w, h
+   x += w + gap
     break if txt == ""
 end
 ----
+
+image::/images/text_box_overflow.png[Text Box Overflow]

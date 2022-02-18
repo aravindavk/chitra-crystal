@@ -1,4 +1,6 @@
-= Canvas
+---
+title: Canvas
+---
 
 Co-ordinate system starts from top left.
 
@@ -13,12 +15,16 @@ To create a canvas with equal width and height
 size 500
 ----
 
+image::/images/size_x.png[Size]
+
 To set custom width and height
 
 [source,crystal]
 ----
 size 1600, 900
 ----
+
+image::/images/size_x_y.png[Size]
 
 == Background fill
 
@@ -32,6 +38,8 @@ Gray scale
 background 0.5
 ----
 
+image::/images/background_half_gray.png[Half Gray]
+
 With opacity
 
 [source,crystal]
@@ -40,16 +48,25 @@ With opacity
 background 0.5, 0.5
 ----
 
+image::/images/background_half_gray_opacity.png[Half Gray with opacity]
+
 RGB or RGBA color,
 
 [source,crystal]
 ----
 #          r  g  b
 background 1, 0, 0
+----
 
+image::/images/background_rgb.png[Red]
+
+[source,crystal]
+----
 #          r  g  b  a
 background 1, 0, 0, 0.5
 ----
+
+image::/images/background_rgb_opacity.png[Red with opacity]
 
 == Canvas width and height
 
@@ -59,6 +76,8 @@ Get size of canvas anytime by using `width` and `height` functions. For example,
 ----
 rect width/4, height/4, width/2, height/2
 ----
+
+image::/images/width_height.png[Width and Height]
 
 == New drawing
 
@@ -88,3 +107,5 @@ new_drawing
 end
 save "all_blue.png"
 ----
+
+image::/images/new_drawing.png[New drawing]

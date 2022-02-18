@@ -1,4 +1,6 @@
-= Colors and Stroke
+---
+title: Colors and Stroke
+---
 
 Set Fill and Stroke colors before drawing a shape, path or text. Each color argument values must be float 0 and 1.
 
@@ -15,6 +17,8 @@ stroke 0
 rect 100, 100, 500, 500
 ----
 
+image::/images/colors_gray_scale.png[Gray Scale]
+
 == Gray scale with Opacity
 
 alpha 0 is full transparent and alpha 1 is Opaque.
@@ -28,6 +32,8 @@ stroke 0
 rect 100, 100, 500, 500
 ----
 
+image::/images/colors_gray_scale_opacity.png[Gray Scale with Opacity]
+
 == RGB color
 
 [source,crystal]
@@ -36,6 +42,8 @@ fill 1, 0, 0
 stroke 0
 rect 100, 100, 500, 500
 ----
+
+image::/images/colors_rgb.png[RGB]
 
 == RGBA color
 
@@ -46,6 +54,8 @@ stroke 0
 rect 100, 100, 500, 500
 ----
 
+image::/images/colors_rgb_opacity.png[RGBA]
+
 == Disable fill
 
 [source,crystal]
@@ -54,6 +64,8 @@ no_fill
 stroke 0
 rect 100, 100, 500, 500
 ----
+
+image::/images/colors_no_fill.png[No fill]
 
 == Stroke width
 
@@ -65,16 +77,24 @@ stroke_width 10
 rect 100, 100, 500, 500
 ----
 
+image::/images/colors_no_fill_stroke_width.png[Stroke Width]
+
 == Disable Stroke
 
 [source,crystal]
 ----
+fill 0, 0, 1, 0.5
 stroke_width 0
+rect 100, 100, 500, 500
 ----
 
 OR
 
 [source,crystal]
 ----
+fill 0, 0, 1, 0.5
 no_stroke
+rect 100, 100, 500, 500
 ----
+
+image::/images/colors_no_stroke.png[No Stroke]

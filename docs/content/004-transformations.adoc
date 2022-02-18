@@ -1,4 +1,6 @@
-= Transformations
+---
+title: Transformations
+---
 
 == Translate
 

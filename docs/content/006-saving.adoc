@@ -1,4 +1,6 @@
-= Saving
+---
+title: Saving
+---
 
 Chitra supports `png`, `svg` and `pdf` formats.
 

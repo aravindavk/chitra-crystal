@@ -11,8 +11,8 @@ loop do
     y += gap
   end
 
-  stroke_width 2
-  point x, y
+  no_stroke
+  oval x, y
   x += gap
 end
 
