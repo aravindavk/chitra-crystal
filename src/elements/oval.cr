@@ -27,8 +27,9 @@ module Chitra
     # x y w h
     # ctx.oval 100, 100, 500, 500
     # ```
-    def oval(x, y, w, h)
-      o = Oval.new(x, y, w, h)
+    def oval(x, y, w = 2.0, h = 0.0)
+      h = w if h == 0.0
+      o = Oval.new(x, y, w.to_f64, h.to_f64)
       idx = add_shape_properties(o)
 
       draw_on_default_surface(@elements[idx])

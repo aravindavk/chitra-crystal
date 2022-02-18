@@ -25,7 +25,8 @@ module Chitra
     # x y w h
     # ctx.rect 100, 100, 500, 500
     # ```
-    def rect(x, y, w, h)
+    def rect(x, y, w, h = 0.0)
+      h = w if h == 0
       r = Rect.new(x, y, w, h)
       idx = add_shape_properties(r)
 

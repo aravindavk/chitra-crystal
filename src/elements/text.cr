@@ -11,11 +11,19 @@ module Chitra
 
     # :nodoc:
     def draw(cairo_ctx)
+      # Set fill color before Pango drawing to
+      # avoid using previously used color for fill
+      if @no_fill
+        cairo_ctx.set_source_rgba 0, 0, 0, 0
+      else
+        cairo_ctx.set_source_rgba @fill.r, @fill.g, @fill.b, @fill.a
+      end
+
       cairo_ctx.antialias = Cairo::Antialias::Best
       cairo_ctx.move_to(@x, @y)
       layout = LibPangoCairo.pango_cairo_create_layout(cairo_ctx)
       LibPangoCairo.pango_layout_set_text(layout, @txt, -1)
-      desc = LibPangoCairo.pango_font_description_from_string("#{@font.family}, Bold #{@font.height}")
+      desc = LibPangoCairo.pango_font_description_from_string("#{@font.family},  #{@font.slant} #{@font.weight} #{@font.height}px")
       LibPangoCairo.pango_layout_set_font_description(layout, desc)
       LibPangoCairo.pango_font_description_free(desc)
       LibPangoCairo.pango_cairo_update_layout(cairo_ctx, layout)
@@ -40,12 +48,20 @@ module Chitra
 
     # :nodoc:
     def draw(cairo_ctx)
+      # Set fill color before Pango drawing to
+      # avoid using previously used color for fill
+      if @no_fill
+        cairo_ctx.set_source_rgba 0, 0, 0, 0
+      else
+        cairo_ctx.set_source_rgba @fill.r, @fill.g, @fill.b, @fill.a
+      end
+
       cairo_ctx.move_to(@x, @y)
       cairo_ctx.antialias = Cairo::Antialias::Best
       layout = LibPangoCairo.pango_cairo_create_layout(cairo_ctx)
       LibPangoCairo.pango_layout_set_width(layout, @w*LibPangoCairo::SCALE)
       LibPangoCairo.pango_layout_set_height(layout, @h*LibPangoCairo::SCALE)
-      desc = LibPangoCairo.pango_font_description_from_string("#{@font.family}, #{@font.slant} #{@font.weight} #{@font.height}")
+      desc = LibPangoCairo.pango_font_description_from_string("#{@font.family}, #{@font.slant} #{@font.weight} #{@font.height}px")
       LibPangoCairo.pango_layout_set_font_description(layout, desc)
       LibPangoCairo.pango_font_description_free(desc)
       LibPangoCairo.pango_layout_set_line_spacing(layout, @line_height)
