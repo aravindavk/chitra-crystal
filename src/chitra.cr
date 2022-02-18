@@ -41,7 +41,9 @@ module Chitra
     end
 
     # :nodoc:
-    def initialize(w : Int32, h : Int32)
+    def initialize(w : Int32, h : Int32 = 0)
+      h = w if h == 0
+
       @size.width = w
       @size.height = h
       initialize
@@ -146,7 +148,7 @@ module Chitra
   # #                width height
   # ctx = Chitra.new 1600, 900
   # ```
-  def self.new(w, h)
+  def self.new(w, h = 0)
     Context.new(w, h)
   end
 end
