@@ -20,9 +20,9 @@ compile '/**/*.adoc' do
   layout '/default.*'
 
   if item.identifier =~ '**/index.*'
-    write item.identifier.to_s
+    write item.identifier.to_s.sub(/[0-9]+-/, "")
   else
-    write item.identifier.without_ext + '/index.html'
+    write item.identifier.without_ext.sub(/[0-9]+-/, "") + '/index.html'
   end
 end
 

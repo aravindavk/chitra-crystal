@@ -1,8 +1,19 @@
-= Shapes
+---
+title: Shapes
+---
 
 == Rectangle
 
 Draw rectangle or square by giving x and y co-ordinates from top left. Give width and height of the rectangle as required.
+
+[source,crystal]
+----
+# Square
+#    x    y    w
+rect 100, 100, 500
+----
+
+OR
 
 [source,crystal]
 ----
@@ -29,8 +40,8 @@ Draw circle or oval shape by giving x, y co-ordinates with width and height. If 
 [source,crystal]
 ----
 # Circle
-#    x    y    w    h
-oval 100, 100, 500, 500
+#    x    y    w
+oval 100, 100, 500
 ----
 
 image::/images/shapes_circle.png[Circle]
@@ -43,6 +54,15 @@ oval 100, 100, 500, 200
 ----
 
 image::/images/shapes_oval.png[Oval]
+
+[source, crystal]
+----
+# Point
+#    x    y
+oval 100, 100
+----
+
+image::/images/shapes_point.png[Point]
 
 == Line
 
@@ -57,3 +77,4 @@ line 100, 100, 600, 600
 ----
 
 image::/images/shapes_line.png[Line]
+

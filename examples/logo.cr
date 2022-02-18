@@ -1,10 +1,10 @@
 require "../src/global_context"
 
-size 300, 50
+size 200, 70
 
-no_stroke
 font "Quicksand", 50
 stroke_width 2
 no_fill
-text "chitra", 10, 40
+text_align "center"
+text_box "chitra", 0, 0, width, height
 save "./logo.png"

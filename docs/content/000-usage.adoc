@@ -1,0 +1,69 @@
+---
+title: Usage
+---
+
+== Install
+
+Install Cairo and Pango
+
+**Ubuntu**
+
+[source,console]
+----
+$ sudo apt install libcairo2 libcairo2-dev libpango1.0-dev
+----
+
+**Fedora**
+
+[source,console]
+----
+$ sudo yum install cairo-devel pango-devel
+----
+
+**Mac**
+
+[source,console]
+----
+$ brew install cairo pango
+----
+
+Add this to your application's shard.yml:
+
+[source,yaml]
+----
+dependencies:
+  chitra:
+    github: aravindavk/chitra
+----
+
+== Using Global context
+
+[source,crystal]
+----
+require "chitra/global_context"
+
+size 200, 10
+(0..100).each do |x|
+    fill x/100, 0, 0
+    rect x*2, 0, 2, height
+end
+save "all_red.png"
+----
+
+Above example produces nice gradient like below.
+
+image::/images/all_red.png[All Red]
+
+== Without using global context
+
+[source,crystal]
+----
+require "chitra"
+
+ctx = Chitra.new 200, 10
+(0..100).each do |x|
+    ctx.fill x/100, 0, 0
+    ctx.rect x*2, 0, 2, ctx.height
+end
+ctx.save "all_red.png"
+----
