@@ -1,0 +1,25 @@
+---
+title: Context
+---
+
+== Custom Context
+
+[source,crystal]
+----
+require "chitra"
+
+ctx = Chitra.new 500, 500
+ctx.rect 50, 50, 400, 400
+ctx.save "hello_rect.png"
+----
+
+== Using Global Context
+
+[source,crystal]
+----
+require "chitra/global_context"
+
+size 500, 500
+rect 50, 50, 400, 400
+save "hello_rect.png"
+----

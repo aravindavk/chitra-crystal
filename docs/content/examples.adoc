@@ -31,6 +31,35 @@ end
 save "random_blue_rects.png"
 ----
 
+OR
+
+[source,crystal]
+----
+require "chitra"
+
+ctx = Chitra.new 600, 200
+
+rect_s = 10
+gap = 0
+x = gap
+y = gap
+loop do
+  if x > ctx.width
+    x = gap
+    y += rect_s + gap
+  end
+
+  break if y > ctx.height
+
+  ctx.fill 0, 0, Random.new.rand(0.0...1.0)
+
+  ctx.rect x, y, rect_s, rect_s
+  x += rect_s + gap
+end
+
+ctx.save "random_blue_rects.png"
+----
+
 image::/images/blue_rects.png[Random Blues]
 
 == Random Colors
@@ -60,6 +89,35 @@ loop do
 end
 
 save "random_color_rects.png"
+----
+
+OR
+
+[source,crystal]
+----
+require "chitra"
+
+ctx = Chitra.new 600, 200
+
+rect_s = 10
+gap = 0
+x = gap
+y = gap
+loop do
+  if x > ctx.width
+    x = gap
+    y += rect_s + gap
+  end
+
+  break if y > ctx.height
+
+  ctx.fill Random.new.rand(0.0...1.0), Random.new.rand(0.0...1.0), Random.new.rand(0.0...1.0)
+
+  ctx.rect x, y, rect_s, rect_s
+  x += rect_s + gap
+end
+
+ctx.save "random_color_rects.png"
 ----
 
 image::/images/random_color_rects.png[Random Colors]

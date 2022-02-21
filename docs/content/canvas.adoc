@@ -15,6 +15,13 @@ To create a canvas with equal width and height
 size 500
 ----
 
+OR
+
+[source,crystal]
+----
+ctx = Chitra.new 500
+----
+
 image::/images/size_x.png[Size]
 
 To set custom width and height
@@ -22,6 +29,13 @@ To set custom width and height
 [source,crystal]
 ----
 size 1600, 900
+----
+
+OR
+
+[source,crystal]
+----
+ctx = Chitra.new 1600, 900
 ----
 
 image::/images/size_x_y.png[Size]
@@ -38,6 +52,14 @@ Gray scale
 background 0.5
 ----
 
+OR
+
+[source,crystal]
+----
+#              gray
+ctx.background 0.5
+----
+
 image::/images/background_half_gray.png[Half Gray]
 
 With opacity
@@ -46,6 +68,14 @@ With opacity
 ----
 #          gray a
 background 0.5, 0.5
+----
+
+OR
+
+[source,crystal]
+----
+#              gray a
+ctx.background 0.5, 0.5
 ----
 
 image::/images/background_half_gray_opacity.png[Half Gray with opacity]
@@ -58,12 +88,28 @@ RGB or RGBA color,
 background 1, 0, 0
 ----
 
+OR
+
+[source,crystal]
+----
+#              r  g  b
+ctx.background 1, 0, 0
+----
+
 image::/images/background_rgb.png[Red]
 
 [source,crystal]
 ----
 #          r  g  b  a
 background 1, 0, 0, 0.5
+----
+
+OR
+
+[source,crystal]
+----
+#              r  g  b  a
+ctx.background 1, 0, 0, 0.5
 ----
 
 image::/images/background_rgb_opacity.png[Red with opacity]
@@ -75,6 +121,13 @@ Get size of canvas anytime by using `width` and `height` functions. For example,
 [source,crystal]
 ----
 rect width/4, height/4, width/2, height/2
+----
+
+OR
+
+[source,crystal]
+----
+ctx.rect ctx.width/4, ctx.height/4, ctx.width/2, ctx.height/2
 ----
 
 image::/images/width_height.png[Width and Height]
@@ -106,6 +159,33 @@ new_drawing
     rect x*2, 0, 2, height
 end
 save "all_blue.png"
+----
+
+OR
+
+[source,crystal]
+----
+ctx = Chitra.new 200, 10
+
+(0..100).each do |x|
+    ctx.fill x/100, 0, 0
+    ctx.rect x*2, 0, 2, ctx.height
+end
+ctx.save "all_red.png"
+
+ctx.new_drawing
+(0..100).each do |x|
+    ctx.fill 0, x/100, 0
+    ctx.rect x*2, 0, 2, ctx.height
+end
+ctx.save "all_green.png"
+
+ctx.new_drawing
+(0..100).each do |x|
+    ctx.fill 0, 0, x/100
+    ctx.rect x*2, 0, 2, ctx.height
+end
+ctx.save "all_blue.png"
 ----
 
 image::/images/new_drawing.png[New drawing]

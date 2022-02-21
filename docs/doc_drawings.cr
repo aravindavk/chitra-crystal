@@ -26,6 +26,11 @@ save "docs/content/images/shapes_oval.png"
 
 new_drawing
 background 1
+polygon 5*u, 45*u, 5*u, 5*u, 45*u, 5*u, 10*u, 10*u, close: true
+save "docs/content/images/shapes_polygon.png"
+
+new_drawing
+background 1
 stroke_width u*1
 
 #    x1   y1   x2   y2

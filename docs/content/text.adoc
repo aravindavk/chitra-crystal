@@ -12,6 +12,14 @@ no_stroke
 text "Hello World!", 20, 20
 ----
 
+OR
+
+[source,crystal]
+----
+ctx.no_stroke
+ctx.text "Hello World!", 20, 20
+----
+
 image::/images/text_default.png[Text]
 
 == Set font
@@ -21,6 +29,15 @@ image::/images/text_default.png[Text]
 no_stroke
 font "Latin Modern Roman", 20
 text "Hello World!", 20, 20
+----
+
+OR
+
+[source,crystal]
+----
+ctx.no_stroke
+ctx.font "Latin Modern Roman", 20
+ctx.text "Hello World!", 20, 20
 ----
 
 image::/images/text_font.png[Text Custom font]
@@ -36,6 +53,15 @@ no_stroke
 text "Hello World!", 20, 20
 ----
 
+OR
+
+[source,crystal]
+----
+ctx.fill 1, 0, 0
+ctx.no_stroke
+ctx.text "Hello World!", 20, 20
+----
+
 image::/images/text_color.png[Text Color]
 
 == Text Box
@@ -47,6 +73,15 @@ Draw aligned text by giving the box co-ordinates.
 text_align "center"
 font "Times", 20
 text_box "Hello World!", 0, 10, width, height
+----
+
+OR
+
+[source,crystal]
+----
+ctx.text_align "center"
+ctx.font "Times", 20
+ctx.text_box "Hello World!", 0, 10, ctx.width, ctx.height
 ----
 
 image::/images/text_box_align.png[Text Box Align]
@@ -70,6 +105,30 @@ txt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula sc
 
 loop do
    txt = text_box txt, x, y, w, h
+   x += w + gap
+    break if txt == ""
+end
+----
+
+OR
+
+[source,crystal]
+----
+ctx = Chitra.new 380, 80
+ctx.background 1
+
+ctx.font "Latin Modern Roman", 12
+gap = 20
+x = gap
+w = 100
+h = 60
+y = 10
+
+ctx.text_align "justify"
+txt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula scelerisque ..."
+
+loop do
+   txt = ctx.text_box txt, x, y, w, h
    x += w + gap
     break if txt == ""
 end
