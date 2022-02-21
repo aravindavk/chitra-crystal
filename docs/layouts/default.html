@@ -17,7 +17,7 @@
                 <div class="px-10">
                     <ul>
                         <% for chapter in chapters %>
-                        <li><a href="<%= chapter["link"] %>"><%= chapter["title"] %></a></li>
+                        <li><a href="/<%= chapter["slug"] %>"><%= chapter["title"] %></a></li>
                         <% end %>
                     </ul>
                 </div>

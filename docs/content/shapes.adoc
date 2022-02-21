@@ -1,0 +1,159 @@
+---
+title: Shapes
+---
+
+== Rectangle
+
+Draw rectangle or square by giving x and y co-ordinates from top left. Give width and height of the rectangle as required.
+
+[source,crystal]
+----
+# Square
+#    x    y    w
+rect 100, 100, 500
+
+# OR by giving same width and height
+#    x    y    w    h
+rect 100, 100, 500, 500
+----
+
+OR
+
+[source,crystal]
+----
+# Square
+#        x    y    w
+ctx.rect 100, 100, 500
+
+# OR by giving same width and height
+#        x    y    w    h
+ctx.rect 100, 100, 500, 500
+----
+
+image::/images/shapes_square.png[Square]
+
+[source,crystal]
+----
+# Rectangle
+#    x    y    w    h
+rect 100, 100, 500, 200
+----
+
+OR
+
+[source,crystal]
+----
+# Rectangle
+#        x    y    w    h
+ctx.rect 100, 100, 500, 200
+----
+
+image::/images/shapes_rect.png[Rectangle]
+
+== Oval
+
+Draw circle or oval shape by giving x, y co-ordinates with width and height. If width and height are equal then it draws a circle.
+
+[source,crystal]
+----
+# Circle
+#    x    y    w
+oval 100, 100, 500
+
+# OR by giving same width and height
+#    x    y    w    h
+oval 100, 100, 500, 500
+----
+
+OR
+
+[source,crystal]
+----
+# Circle
+#        x    y    w
+ctx.oval 100, 100, 500
+
+# OR by giving same width and height
+#        x    y    w    h
+ctx.oval 100, 100, 500, 500
+----
+
+image::/images/shapes_circle.png[Circle]
+
+[source,crystal]
+----
+# Oval
+#    x    y    w    h
+oval 100, 100, 500, 200
+----
+
+OR
+
+[source,crystal]
+----
+# Oval
+#        x    y    w    h
+ctx.oval 100, 100, 500, 200
+----
+
+image::/images/shapes_oval.png[Oval]
+
+[source, crystal]
+----
+# Point
+#    x    y
+oval 100, 100
+----
+
+OR
+
+[source, crystal]
+----
+# Point
+#        x    y
+ctx.oval 100, 100
+----
+
+image::/images/shapes_point.png[Point]
+
+== Line
+
+Draw a line from one point to another
+
+[source,crystal]
+----
+stroke_width 10
+
+#    x1   y1   x2   y2
+line 100, 100, 600, 600
+----
+
+OR
+
+[source,crystal]
+----
+ctx.stroke_width 10
+
+#         x1   y1   x2   y2
+ctx.line 100, 100, 600, 600
+----
+
+image::/images/shapes_line.png[Line]
+
+== Polygon
+
+[source,crystal]
+----
+#       x1  y1   x2  y2  x3   y3  x4   y4
+polygon 50, 450, 50, 50, 450, 50, 100, 100, close: true
+----
+
+OR
+
+[source,crystal]
+----
+#           x1  y1   x2  y2  x3   y3  x4   y4
+ctx.polygon 50, 450, 50, 50, 450, 50, 100, 100, close: true
+----
+
+image::/images/shapes_polygon.png[Polygon]

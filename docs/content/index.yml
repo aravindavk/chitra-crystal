@@ -1,0 +1,19 @@
+chapters:
+  - title: Usage
+    slug: usage
+  - title: Context
+    slug: context
+  - title: Canvas
+    slug: canvas
+  - title: Colors and Stroke
+    slug: colors
+  - title: Shapes
+    slug: shapes
+  - title: Transformations
+    slug: transformations
+  - title: Text
+    slug: text
+  - title: Saving
+    slug: saving
+  - title: Examples
+    slug: examples

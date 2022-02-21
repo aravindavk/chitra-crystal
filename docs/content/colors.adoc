@@ -17,6 +17,15 @@ stroke 0
 rect 100, 100, 500, 500
 ----
 
+OR
+
+[source,crystal]
+----
+ctx.fill 0.85
+ctx.stroke 0
+ctx.rect 100, 100, 500, 500
+----
+
 image::/images/colors_gray_scale.png[Gray Scale]
 
 == Gray scale with Opacity
@@ -32,6 +41,15 @@ stroke 0
 rect 100, 100, 500, 500
 ----
 
+OR
+
+[source,crystal]
+----
+ctx.fill 0, 0.5
+ctx.stroke 0
+ctx.rect 100, 100, 500, 500
+----
+
 image::/images/colors_gray_scale_opacity.png[Gray Scale with Opacity]
 
 == RGB color
@@ -41,6 +59,15 @@ image::/images/colors_gray_scale_opacity.png[Gray Scale with Opacity]
 fill 1, 0, 0
 stroke 0
 rect 100, 100, 500, 500
+----
+
+OR
+
+[source,crystal]
+----
+ctx.fill 1, 0, 0
+ctx.stroke 0
+ctx.rect 100, 100, 500, 500
 ----
 
 image::/images/colors_rgb.png[RGB]
@@ -54,6 +81,15 @@ stroke 0
 rect 100, 100, 500, 500
 ----
 
+OR
+
+[source,crystal]
+----
+ctx.fill 1, 0, 0, 0.5
+ctx.stroke 0
+ctx.rect 100, 100, 500, 500
+----
+
 image::/images/colors_rgb_opacity.png[RGBA]
 
 == Disable fill
@@ -63,6 +99,15 @@ image::/images/colors_rgb_opacity.png[RGBA]
 no_fill
 stroke 0
 rect 100, 100, 500, 500
+----
+
+OR
+
+[source,crystal]
+----
+ctx.no_fill
+ctx.stroke 0
+ctx.rect 100, 100, 500, 500
 ----
 
 image::/images/colors_no_fill.png[No fill]
@@ -77,6 +122,14 @@ stroke_width 10
 rect 100, 100, 500, 500
 ----
 
+OR
+
+[source,crystal]
+----
+ctx.stroke_width 10
+ctx.rect 100, 100, 500, 500
+----
+
 image::/images/colors_no_fill_stroke_width.png[Stroke Width]
 
 == Disable Stroke
@@ -86,15 +139,23 @@ image::/images/colors_no_fill_stroke_width.png[Stroke Width]
 fill 0, 0, 1, 0.5
 stroke_width 0
 rect 100, 100, 500, 500
+# OR use no_stroke
+fill 0, 0, 1, 0.5
+no_stroke
+rect 100, 100, 500, 500
 ----
 
 OR
 
 [source,crystal]
 ----
-fill 0, 0, 1, 0.5
-no_stroke
-rect 100, 100, 500, 500
+ctx.fill 0, 0, 1, 0.5
+ctx.stroke_width 0
+ctx.rect 100, 100, 500, 500
+# OR use no_stroke
+ctx.fill 0, 0, 1, 0.5
+ctx.no_stroke
+ctx.rect 100, 100, 500, 500
 ----
 
 image::/images/colors_no_stroke.png[No Stroke]
