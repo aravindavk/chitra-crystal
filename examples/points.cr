@@ -16,4 +16,4 @@ loop do
   x += gap
 end
 
-save "dots.png"
+save "./docs/content/images/dots.png"

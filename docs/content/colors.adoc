@@ -134,6 +134,8 @@ image::/images/colors_no_fill_stroke_width.png[Stroke Width]
 
 == Disable Stroke
 
+Use `stroke_width 0` or `no_stroke`.
+
 [source,crystal]
 ----
 fill 0, 0, 1, 0.5

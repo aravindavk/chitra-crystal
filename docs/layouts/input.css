@@ -10,7 +10,7 @@
     @apply text-2xl font-semibold mt-10 mb-2;
 }
 .content pre {
-    @apply bg-blue-100 py-5 px-5 rounded-lg my-5;
+    @apply bg-blue-100 py-5 px-5 rounded-lg my-5 overflow-x-auto;
 }
 .content ul {
     @apply list-inside list-disc;

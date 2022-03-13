@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Chitra - <%= @item[:title] %></title>
+        <link rel="stylesheet" href="/stylesheet.css">
+        <link rel="stylesheet" href="/static/syntax-highlight-emacs.css">
+        <script defer src="/static/alpinejs@3.9.0.min.js"></script>
+
+        <!-- you don't need to keep this, but it's cool for stats! -->
+        <meta name="generator" content="Nanoc <%= Nanoc::VERSION %>">
+    </head>
+    <body>
+        <%= yield %>
+        <div class="bg-blue-300 py-10">
+            <div class="text-center px-5">
+                &copy; 2022 <a class="text-blue-900" href="https://aravindavk.in">Aravinda Vishwanathapura</a>. Created using <a href="https://nanoc.app/" class="text-blue-900">Nanoc</a>.
+            </div>
+        </div>
+    </body>
+</html>
