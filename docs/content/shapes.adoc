@@ -30,7 +30,7 @@ ctx.rect 100, 100, 500
 ctx.rect 100, 100, 500, 500
 ----
 
-image::/images/shapes_square.png[Square]
+image::/chitra/images/shapes_square.png[Square]
 
 [source,crystal]
 ----
@@ -48,7 +48,7 @@ OR
 ctx.rect 100, 100, 500, 200
 ----
 
-image::/images/shapes_rect.png[Rectangle]
+image::/chitra/images/shapes_rect.png[Rectangle]
 
 == Oval
 
@@ -78,7 +78,7 @@ ctx.oval 100, 100, 500
 ctx.oval 100, 100, 500, 500
 ----
 
-image::/images/shapes_circle.png[Circle]
+image::/chitra/images/shapes_circle.png[Circle]
 
 [source,crystal]
 ----
@@ -96,7 +96,7 @@ OR
 ctx.oval 100, 100, 500, 200
 ----
 
-image::/images/shapes_oval.png[Oval]
+image::/chitra/images/shapes_oval.png[Oval]
 
 [source, crystal]
 ----
@@ -114,7 +114,7 @@ OR
 ctx.oval 100, 100
 ----
 
-image::/images/shapes_point.png[Point]
+image::/chitra/images/shapes_point.png[Point]
 
 == Line
 
@@ -138,7 +138,7 @@ ctx.stroke_width 10
 ctx.line 100, 100, 600, 600
 ----
 
-image::/images/shapes_line.png[Line]
+image::/chitra/images/shapes_line.png[Line]
 
 == Polygon
 
@@ -156,4 +156,4 @@ OR
 ctx.polygon 50, 450, 50, 50, 450, 50, 100, 100, close: true
 ----
 
-image::/images/shapes_polygon.png[Polygon]
+image::/chitra/images/shapes_polygon.png[Polygon]

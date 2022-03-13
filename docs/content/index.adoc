@@ -6,11 +6,11 @@ title: 2D Graphics with Crystal Programming language
 <div class="bg-blue-400 mb-10">
   <div class="w-full md:w-3/4 m-auto md:grid md:grid-cols-12">
   <div class="col-span-12 text-right pt-2">
- <a class="text-black font-semibold px-2 py-1 hover:underline" href="/usage">docs</a>
+ <a class="text-black font-semibold px-2 py-1 hover:underline" href="/chitra/usage">docs</a>
  <a class="text-black font-semibold px-2 py-1 hover:underline" href="https://github.com/aravindavk/chitra">Github</a>
    </div>
     <div class="col-span-12 text-center p-10">
-        <img class="inline-block" src="/static/logo.png"/>
+        <img class="inline-block" src="/chitra/static/logo.png"/>
         <p class="font-semibold">2D Graphics with <a target="_blank" href="https://crystal-lang.org/" class="text-blue-900">Crystal Programming language</a>.</p>
     </div>
   </div>
@@ -182,23 +182,23 @@ save "saved_state.png"
 
 [.example-img]
 [.pattern-img]
-image::/images/pattern.png[Pattern]
+image::/chitra/images/pattern.png[Pattern]
 
 [.example-img]
 [.dots-img]
-image::/images/dots.png[Dots]
+image::/chitra/images/dots.png[Dots]
 
 [.example-img]
 [.random-blues-img]
-image::/images/blue_rects.png[Random Blues]
+image::/chitra/images/blue_rects.png[Random Blues]
 
 [.example-img]
 [.saved-state-img]
-image::/images/saved_state.png[Saved State]
+image::/chitra/images/saved_state.png[Saved State]
 
 [.example-img]
 [.shapes-img]
-image::/images/shapes.png[Shapes]
+image::/chitra/images/shapes.png[Shapes]
 
 ++++
 </div>
@@ -206,7 +206,7 @@ image::/images/shapes.png[Shapes]
 </div>
 <div class="w-full md:w-3/4 m-auto md:grid md:grid-cols-12" x-data="data">
 <div class="col-span-12 text-center p-10">
- <a class="bg-blue-800 text-blue-50 px-5 py-1 rounded-lg hover:bg-blue-900" href="/usage">Read the docs</a>
+ <a class="bg-blue-800 text-blue-50 px-5 py-1 rounded-lg hover:bg-blue-900" href="/chitra/usage">Read the docs</a>
  <a class="bg-gray-800 text-gray-50 px-5 py-1 rounded-lg hover:bg-gray-900" href="https://github.com/aravindavk/chitra">Github</a>
 </div>
 </div>
