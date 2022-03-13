@@ -1,0 +1,247 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Chitra - 2D Graphics with Crystal Programming language</title>
+        <link rel="stylesheet" href="/stylesheet.css">
+        <link rel="stylesheet" href="/static/syntax-highlight-emacs.css">
+        <script defer src="/static/alpinejs@3.9.0.min.js"></script>
+
+        <!-- you don't need to keep this, but it's cool for stats! -->
+        <meta name="generator" content="Nanoc 4.12.5">
+    </head>
+    <body>
+        <div class="bg-blue-400 mb-10">
+  <div class="w-full md:w-3/4 m-auto md:grid md:grid-cols-12">
+  <div class="col-span-12 text-right pt-2">
+ <a class="text-black font-semibold px-2 py-1 hover:underline" href="/usage">docs</a>
+ <a class="text-black font-semibold px-2 py-1 hover:underline" href="https://github.com/aravindavk/chitra">Github</a>
+   </div>
+    <div class="col-span-12 text-center p-10">
+        <img class="inline-block" src="/static/logo.png"/>
+        <p class="font-semibold">2D Graphics with <a target="_blank" href="https://crystal-lang.org/" class="text-blue-900">Crystal Programming language</a>.</p>
+    </div>
+  </div>
+</div>
+
+<div class="w-full md:w-3/4 m-auto md:grid md:grid-cols-12" x-data="data">
+<div class="col-span-12">
+         <select class="mx-5" x-model="selectedExample" :change="onSelect">
+             <template x-for="example in examples" :key="example">
+             <option :value="example" x-text="example" :selected="selectedExample == example"></option>
+             </template>
+         </select>
+</div>
+    <div class="col-span-6">
+    <div class="p-5">
+<div class="listingblock random-blues example">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="nb">require</span> <span class="s2">"chitra/global_context"</span>
+
+<span class="n">size</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">200</span>
+
+<span class="n">rect_s</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">gap</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">gap</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">gap</span>
+<span class="kp">loop</span> <span class="k">do</span>
+  <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">width</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">gap</span>
+    <span class="n">y</span> <span class="o">+=</span> <span class="n">rect_s</span> <span class="o">+</span> <span class="n">gap</span>
+  <span class="k">end</span>
+
+  <span class="k">break</span> <span class="k">if</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="n">height</span>
+
+  <span class="n">fill</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="no">Random</span><span class="p">.</span><span class="nf">new</span><span class="p">.</span><span class="nf">rand</span><span class="p">(</span><span class="mf">0.0</span><span class="o">...</span><span class="mf">1.0</span><span class="p">)</span>
+
+  <span class="n">rect</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">rect_s</span><span class="p">,</span> <span class="n">rect_s</span>
+  <span class="n">x</span> <span class="o">+=</span> <span class="n">rect_s</span> <span class="o">+</span> <span class="n">gap</span>
+<span class="k">end</span>
+
+<span class="n">save</span> <span class="s2">"blue_rects.png"</span></code></pre>
+</div>
+</div>
+<div class="listingblock dots example">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="nb">require</span> <span class="s2">"chitra/global_context"</span>
+
+<span class="n">background</span> <span class="mi">1</span>
+<span class="n">gap</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">=</span> <span class="n">gap</span>
+<span class="kp">loop</span> <span class="k">do</span>
+  <span class="k">break</span> <span class="k">if</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="n">height</span>
+
+  <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">width</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">gap</span>
+    <span class="n">y</span> <span class="o">+=</span> <span class="n">gap</span>
+  <span class="k">end</span>
+
+  <span class="n">no_stroke</span>
+  <span class="n">oval</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+  <span class="n">x</span> <span class="o">+=</span> <span class="n">gap</span>
+<span class="k">end</span>
+
+<span class="n">save</span> <span class="s2">"./docs/content/images/dots.png"</span></code></pre>
+</div>
+</div>
+<div class="listingblock pattern example">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="nb">require</span> <span class="s2">"chitra/global_context"</span>
+
+<span class="n">size</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">600</span>
+<span class="n">background</span> <span class="mi">255</span><span class="o">/</span><span class="mi">256</span><span class="p">,</span> <span class="mi">88</span><span class="o">/</span><span class="mi">256</span><span class="p">,</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">pattern</span>
+  <span class="n">no_stroke</span>
+
+  <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="mi">50</span>
+  <span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">20</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span>
+    <span class="n">fill</span> <span class="mi">255</span><span class="o">/</span><span class="mi">256</span><span class="p">,</span> <span class="mi">132</span><span class="o">/</span><span class="mi">256</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="n">rect</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">100</span>
+    <span class="n">rect</span> <span class="n">x</span><span class="o">+</span><span class="mi">50</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">150</span>
+
+    <span class="n">fill</span> <span class="mi">255</span><span class="o">/</span><span class="mi">256</span><span class="p">,</span> <span class="mi">48</span><span class="o">/</span><span class="mi">256</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="n">rect</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">50</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">50</span>
+    <span class="n">rect</span> <span class="n">x</span><span class="o">+</span><span class="mi">100</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">150</span>
+
+    <span class="n">x</span> <span class="o">+=</span> <span class="mi">150</span>
+    <span class="n">y</span> <span class="o">+=</span> <span class="mi">150</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">ty</span> <span class="o">=</span> <span class="o">-</span><span class="mf">600.0</span>
+<span class="p">(</span><span class="mi">0</span><span class="o">..</span><span class="mi">4</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span>
+  <span class="n">translate</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ty</span>
+  <span class="n">pattern</span>
+  <span class="n">translate</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">ty</span>
+  <span class="n">ty</span> <span class="o">+=</span> <span class="mi">300</span>
+<span class="k">end</span>
+
+<span class="n">save</span> <span class="s2">"./output/pattern.png"</span></code></pre>
+</div>
+</div>
+<div class="listingblock shapes example">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="nb">require</span> <span class="s2">"chitra/global_context"</span>
+
+<span class="n">size</span> <span class="mi">600</span>
+
+<span class="c1"># Square</span>
+<span class="c1">#    x   y   w    h</span>
+<span class="n">rect</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span>
+
+<span class="c1"># Rectangle</span>
+<span class="c1">#    x   y    w    h</span>
+<span class="n">rect</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span>
+
+<span class="c1"># Circle</span>
+<span class="c1">#    x   y    w    h</span>
+<span class="n">oval</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span>
+
+<span class="c1"># Oval</span>
+<span class="c1">#    x   y    w    h</span>
+<span class="n">oval</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">290</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span>
+
+<span class="c1"># Polygon</span>
+<span class="c1">#       x1  y1   x2  y2   x3  y3   close</span>
+<span class="n">polygon</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="ss">close: </span><span class="kp">true</span>
+
+<span class="n">save</span> <span class="s2">"shapes.png"</span></code></pre>
+</div>
+</div>
+<div class="listingblock saved-state example">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="nb">require</span> <span class="s2">"chitra/global_context"</span>
+
+<span class="c1"># Set Fill color Red</span>
+<span class="n">fill</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="n">saved_state</span> <span class="k">do</span>
+  <span class="c1"># Change the fill color to Blue</span>
+  <span class="n">fill</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+  <span class="n">rect</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span>
+<span class="k">end</span>
+
+<span class="c1"># Draw rect with the fill color set previously</span>
+<span class="n">rect</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span>
+
+<span class="n">save</span> <span class="s2">"saved_state.png"</span></code></pre>
+</div>
+</div>
+    </div>
+    </div>
+    <div class="col-span-6">
+    <div class="p-5 md:pt-10">
+<div class="imageblock example-img pattern-img">
+<div class="content">
+<img src="/images/pattern.png" alt="Pattern">
+</div>
+</div>
+<div class="imageblock example-img dots-img">
+<div class="content">
+<img src="/images/dots.png" alt="Dots">
+</div>
+</div>
+<div class="imageblock example-img random-blues-img">
+<div class="content">
+<img src="/images/blue_rects.png" alt="Random Blues">
+</div>
+</div>
+<div class="imageblock example-img saved-state-img">
+<div class="content">
+<img src="/images/saved_state.png" alt="Saved State">
+</div>
+</div>
+<div class="imageblock example-img shapes-img">
+<div class="content">
+<img src="/images/shapes.png" alt="Shapes">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full md:w-3/4 m-auto md:grid md:grid-cols-12" x-data="data">
+<div class="col-span-12 text-center p-10">
+ <a class="bg-blue-800 text-blue-50 px-5 py-1 rounded-lg hover:bg-blue-900" href="/usage">Read the docs</a>
+ <a class="bg-gray-800 text-gray-50 px-5 py-1 rounded-lg hover:bg-gray-900" href="https://github.com/aravindavk/chitra">Github</a>
+</div>
+</div>
+
+<script>
+function random(items) {
+    var item = items[Math.floor(Math.random()*items.length)];
+    return item;
+}
+
+var examples = ['pattern', 'dots', 'random-blues', 'saved-state', 'shapes'];
+var data = {
+  selectedExample: random(examples),
+  examples: examples,
+  onSelect: function() {
+     var cls = document.getElementsByClassName("example");
+     for (var i=0; i<cls.length; i++) {
+         cls[i].style.display = "none";
+         if (document.getElementsByClassName(this.selectedExample).length > 0) {
+             document.getElementsByClassName(this.selectedExample)[0].style.display = "block";
+         }
+     }
+
+     var img_cls = document.getElementsByClassName("example-img");
+     for (var i=0; i<img_cls.length; i++) {
+         img_cls[i].style.display = "none";
+         if (document.getElementsByClassName(this.selectedExample + "-img").length > 0) {
+             document.getElementsByClassName(this.selectedExample + "-img")[0].style.display = "block";
+         }
+     }
+  }
+}
+</script>
+        <div class="bg-blue-300 py-10">
+            <div class="text-center px-5">
+                &copy; 2022 <a class="text-blue-900" href="https://aravindavk.in">Aravinda Vishwanathapura</a>. Created using <a href="https://nanoc.app/" class="text-blue-900">Nanoc</a>.
+            </div>
+        </div>
+        <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+    </body>
+</html>

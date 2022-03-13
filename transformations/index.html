@@ -1,0 +1,319 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Chitra - Transformations</title>
+        <link rel="stylesheet" href="/stylesheet.css">
+        <link rel="stylesheet" href="/static/syntax-highlight-emacs.css">
+        <script defer src="/static/alpinejs@3.9.0.min.js"></script>
+
+        <!-- you don't need to keep this, but it's cool for stats! -->
+        <meta name="generator" content="Nanoc 4.12.5">
+    </head>
+    <body class="">
+        
+        
+        <div id="main" class="md:grid md:grid-cols-12 w-full mx-auto bg-blue-50" x-data="{ menuOpen : false }">
+            <div class="hidden md:block md:col-span-3">
+                <a href="/"><img class="block -ml-5" src="/static/logo.png"/></a>
+                <nav class="absolute md:relative top-16 left-1 md:top-0 z-20 font-semibold w-full md:w-auto bg-indigo-200 shadow-md rounded-lg md:rounded-none md:shadow-none md:bg-transparent p-6 pt-5 md:p-0">
+                    
+                    <a href="/usage" class="text-gray-700 hover:text-black py-1 md:py-1 px-3 block text-sm font-medium">Usage</a>
+                    
+                    <a href="/context" class="text-gray-700 hover:text-black py-1 md:py-1 px-3 block text-sm font-medium">Context</a>
+                    
+                    <a href="/canvas" class="text-gray-700 hover:text-black py-1 md:py-1 px-3 block text-sm font-medium">Canvas</a>
+                    
+                    <a href="/colors" class="text-gray-700 hover:text-black py-1 md:py-1 px-3 block text-sm font-medium">Colors and Stroke</a>
+                    
+                    <a href="/shapes" class="text-gray-700 hover:text-black py-1 md:py-1 px-3 block text-sm font-medium">Shapes</a>
+                    
+                    <a href="/transformations" class="text-black font-semibold py-2 px-3 text-sm font-medium block">Transformations</a>
+                    
+                    <a href="/text" class="text-gray-700 hover:text-black py-1 md:py-1 px-3 block text-sm font-medium">Text</a>
+                    
+                    <a href="/saving" class="text-gray-700 hover:text-black py-1 md:py-1 px-3 block text-sm font-medium">Saving</a>
+                    
+                    <a href="/examples" class="text-gray-700 hover:text-black py-1 md:py-1 px-3 block text-sm font-medium">Examples</a>
+                    
+                    <a href="https://github.com/aravindavk/chitra" class="text-gray-700 hover:text-black py-1 md:py-1 px-3 block text-sm font-medium">Github</a>
+                </nav>
+            </div>
+            <div class="col-span-12 block md:hidden">
+                <button @click="menuOpen = !menuOpen" x-on:click.stop class="block absolute md:hidden right-7 top-5 w-8 h-8 text-black p-1">
+                    <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+                </button>
+                <nav class="absolute md:relative top-20 left-0 md:top-0 z-20 font-semibold w-full md:w-auto bg-indigo-200 md:bg-transparent h-screen p-6 pt-5 md:p-0"
+                     :class="{ 'hidden' : !menuOpen}"  @click.away="menuOpen = false"
+                >
+                    <a href="/"><img class="block -ml-5" src="/static/logo.png"/></a>
+                    
+                    
+                    <a href="/usage" class="text-gray-700 hover:text-black py-1 md:py-1 px-3 block text-sm font-medium">Usage</a>
+                    
+                    
+                    <a href="/context" class="text-gray-700 hover:text-black py-1 md:py-1 px-3 block text-sm font-medium">Context</a>
+                    
+                    
+                    <a href="/canvas" class="text-gray-700 hover:text-black py-1 md:py-1 px-3 block text-sm font-medium">Canvas</a>
+                    
+                    
+                    <a href="/colors" class="text-gray-700 hover:text-black py-1 md:py-1 px-3 block text-sm font-medium">Colors and Stroke</a>
+                    
+                    
+                    <a href="/shapes" class="text-gray-700 hover:text-black py-1 md:py-1 px-3 block text-sm font-medium">Shapes</a>
+                    
+                    
+                    <a href="/transformations" class="text-black font-semibold py-2 px-3 text-sm font-medium block">Transformations</a>
+                    
+                    
+                    <a href="/text" class="text-gray-700 hover:text-black py-1 md:py-1 px-3 block text-sm font-medium">Text</a>
+                    
+                    
+                    <a href="/saving" class="text-gray-700 hover:text-black py-1 md:py-1 px-3 block text-sm font-medium">Saving</a>
+                    
+                    
+                    <a href="/examples" class="text-gray-700 hover:text-black py-1 md:py-1 px-3 block text-sm font-medium">Examples</a>
+                    
+                    <a href="https://github.com/aravindavk/chitra" class="text-gray-700 hover:text-black py-1 md:py-1 px-3 block text-sm font-medium">Github</a>
+                </nav>
+            </div>
+            <div class="content md:col-span-9 py-5 px-10 md:px-0">
+                <h1>Transformations</h1>
+                <div class="sect1">
+<h2 id="_translate">Translate</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To shift the co-ordinates origin to a given x and y.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="k">def</span> <span class="nf">draw_rects</span>
+  <span class="n">fill</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+  <span class="n">rect</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span>
+
+  <span class="n">fill</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+  <span class="n">rect</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span>
+<span class="k">end</span>
+
+<span class="c1"># Move to middle of the canvas</span>
+<span class="n">translate</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">height</span><span class="o">/</span><span class="mi">2</span>
+
+<span class="n">draw_rects</span>
+
+<span class="c1"># Move back to original origin</span>
+<span class="n">translate</span> <span class="o">-</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>OR</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="k">def</span> <span class="nf">draw_rects</span>
+  <span class="n">ctx</span><span class="p">.</span><span class="nf">fill</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+  <span class="n">ctx</span><span class="p">.</span><span class="nf">rect</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span>
+
+  <span class="n">ctx</span><span class="p">.</span><span class="nf">fill</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+  <span class="n">ctx</span><span class="p">.</span><span class="nf">rect</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span>
+<span class="k">end</span>
+
+<span class="c1"># Move to middle of the canvas</span>
+<span class="n">ctx</span><span class="p">.</span><span class="nf">translate</span> <span class="n">ctx</span><span class="p">.</span><span class="nf">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">ctx</span><span class="p">.</span><span class="nf">height</span><span class="o">/</span><span class="mi">2</span>
+
+<span class="n">draw_rects</span>
+
+<span class="c1"># Move back to original origin</span>
+<span class="n">ctx</span><span class="p">.</span><span class="nf">translate</span> <span class="o">-</span><span class="n">ctx</span><span class="p">.</span><span class="nf">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">ctx</span><span class="p">.</span><span class="nf">height</span><span class="o">/</span><span class="mi">2</span></code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/transformations_translate.png" alt="Translate">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_rotate">Rotate</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Rotate the drawing canvas in clockwise direction to a given angle in degrees. Negative angle rotates in anti-clockwise direction.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="n">rotate</span> <span class="mi">45</span>
+<span class="n">rect</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span>
+<span class="n">rect</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>OR</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="n">ctx</span><span class="p">.</span><span class="nf">rotate</span> <span class="mi">45</span>
+<span class="n">ctx</span><span class="p">.</span><span class="nf">rect</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span>
+<span class="n">ctx</span><span class="p">.</span><span class="nf">rect</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span></code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/transformations_rotate_1.png" alt="Rotate with center (0,0)">
+</div>
+</div>
+<div class="paragraph">
+<p>By default center of rotation is <code>(0, 0)</code>. Change the center by</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="n">rotate</span> <span class="mi">45</span><span class="p">,</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">height</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">rect</span> <span class="p">(</span><span class="n">width</span><span class="o">-</span><span class="mi">200</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">height</span><span class="o">-</span><span class="mi">200</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>OR</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="n">ctx</span><span class="p">.</span><span class="nf">rotate</span> <span class="mi">45</span><span class="p">,</span> <span class="n">ctx</span><span class="p">.</span><span class="nf">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">ctx</span><span class="p">.</span><span class="nf">height</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">ctx</span><span class="p">.</span><span class="nf">rect</span> <span class="p">(</span><span class="n">ctx</span><span class="p">.</span><span class="nf">width</span><span class="o">-</span><span class="mi">200</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">ctx</span><span class="p">.</span><span class="nf">height</span><span class="o">-</span><span class="mi">200</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span></code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/transformations_rotate_2.png" alt="Rotate with center (350,350)">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_scale">Scale</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Scale the canvas to given x and y scales.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="n">rect</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span>
+<span class="n">translate</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">240</span>
+<span class="n">scale</span> <span class="mi">2</span>
+<span class="n">rect</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>OR</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="n">ctx</span><span class="p">.</span><span class="nf">rect</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span>
+<span class="n">ctx</span><span class="p">.</span><span class="nf">translate</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">240</span>
+<span class="n">ctx</span><span class="p">.</span><span class="nf">scale</span> <span class="mi">2</span>
+<span class="n">ctx</span><span class="p">.</span><span class="nf">rect</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span></code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/transformations_scale_1.png" alt="Uniform Scale">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="n">rect</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span>
+<span class="n">translate</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">240</span>
+<span class="n">scale</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">rect</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>OR</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="n">ctx</span><span class="p">.</span><span class="nf">rect</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span>
+<span class="n">ctx</span><span class="p">.</span><span class="nf">translate</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">240</span>
+<span class="n">ctx</span><span class="p">.</span><span class="nf">scale</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">ctx</span><span class="p">.</span><span class="nf">rect</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span></code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/transformations_scale_2.png" alt="Scale">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_saved_state">Saved state</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>saved_state</code> block makes any changes you make to the graphics state like colors and transformations temporary.
+Canvas state will be reset to previous state at the end of this block.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="c1"># Fill color red</span>
+<span class="n">fill</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+
+<span class="n">translate</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span>
+
+<span class="n">saved_state</span> <span class="k">do</span>
+  <span class="c1"># Effective translate is (200, 200)</span>
+  <span class="n">translate</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span>
+
+  <span class="n">scale</span> <span class="mi">2</span>
+
+  <span class="c1"># Fill color blue</span>
+  <span class="n">fill</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+  <span class="n">rect</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span>
+<span class="k">end</span>
+
+<span class="c1"># Rect with Red background, no scale</span>
+<span class="c1"># and translation moved back to (50,50)</span>
+<span class="n">rect</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>OR</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="c1"># Fill color red</span>
+<span class="n">ctx</span><span class="p">.</span><span class="nf">fill</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+
+<span class="n">ctx</span><span class="p">.</span><span class="nf">translate</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span>
+
+<span class="n">ctx</span><span class="p">.</span><span class="nf">saved_state</span> <span class="k">do</span>
+  <span class="c1"># Effective translate is (200, 200)</span>
+  <span class="n">ctx</span><span class="p">.</span><span class="nf">translate</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span>
+
+  <span class="n">ctx</span><span class="p">.</span><span class="nf">scale</span> <span class="mi">2</span>
+
+  <span class="c1"># Fill color blue</span>
+  <span class="n">ctx</span><span class="p">.</span><span class="nf">fill</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+  <span class="n">ctx</span><span class="p">.</span><span class="nf">rect</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span>
+<span class="k">end</span>
+
+<span class="c1"># Rect with Red background, no scale</span>
+<span class="c1"># and translation moved back to (50,50)</span>
+<span class="n">ctx</span><span class="p">.</span><span class="nf">rect</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span></code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/transformations_saved_state.png" alt="Saved State">
+</div>
+</div>
+</div>
+</div>
+            </div>
+        </div>
+        <div class="bg-blue-300 py-10">
+            <div class="text-center px-5">
+                &copy; 2022 <a class="text-blue-900" href="https://aravindavk.in">Aravinda Vishwanathapura</a>. Created using <a href="https://nanoc.app/" class="text-blue-900">Nanoc</a>.
+            </div>
+        </div>
+        <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+    </body>
+</html>
