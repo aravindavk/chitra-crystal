@@ -20,7 +20,7 @@ ctx.no_stroke
 ctx.text "Hello World!", 20, 20
 ----
 
-image::/images/text_default.png[Text]
+image::/chitra/images/text_default.png[Text]
 
 == Set font
 
@@ -40,7 +40,7 @@ ctx.font "Latin Modern Roman", 20
 ctx.text "Hello World!", 20, 20
 ----
 
-image::/images/text_font.png[Text Custom font]
+image::/chitra/images/text_font.png[Text Custom font]
 
 == Text color
 
@@ -62,7 +62,7 @@ ctx.no_stroke
 ctx.text "Hello World!", 20, 20
 ----
 
-image::/images/text_color.png[Text Color]
+image::/chitra/images/text_color.png[Text Color]
 
 == Text Box
 
@@ -84,7 +84,7 @@ ctx.font "Times", 20
 ctx.text_box "Hello World!", 0, 10, ctx.width, ctx.height
 ----
 
-image::/images/text_box_align.png[Text Box Align]
+image::/chitra/images/text_box_align.png[Text Box Align]
 
 `text_box` API returns the overflow text. Use that to create the text boxes when required.
 
@@ -134,4 +134,4 @@ loop do
 end
 ----
 
-image::/images/text_box_overflow.png[Text Box Overflow]
+image::/chitra/images/text_box_overflow.png[Text Box Overflow]

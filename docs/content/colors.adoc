@@ -26,7 +26,7 @@ ctx.stroke 0
 ctx.rect 100, 100, 500, 500
 ----
 
-image::/images/colors_gray_scale.png[Gray Scale]
+image::/chitra/images/colors_gray_scale.png[Gray Scale]
 
 == Gray scale with Opacity
 
@@ -50,7 +50,7 @@ ctx.stroke 0
 ctx.rect 100, 100, 500, 500
 ----
 
-image::/images/colors_gray_scale_opacity.png[Gray Scale with Opacity]
+image::/chitra/images/colors_gray_scale_opacity.png[Gray Scale with Opacity]
 
 == RGB color
 
@@ -70,7 +70,7 @@ ctx.stroke 0
 ctx.rect 100, 100, 500, 500
 ----
 
-image::/images/colors_rgb.png[RGB]
+image::/chitra/images/colors_rgb.png[RGB]
 
 == RGBA color
 
@@ -90,7 +90,7 @@ ctx.stroke 0
 ctx.rect 100, 100, 500, 500
 ----
 
-image::/images/colors_rgb_opacity.png[RGBA]
+image::/chitra/images/colors_rgb_opacity.png[RGBA]
 
 == Disable fill
 
@@ -110,7 +110,7 @@ ctx.stroke 0
 ctx.rect 100, 100, 500, 500
 ----
 
-image::/images/colors_no_fill.png[No fill]
+image::/chitra/images/colors_no_fill.png[No fill]
 
 == Stroke width
 
@@ -130,7 +130,7 @@ ctx.stroke_width 10
 ctx.rect 100, 100, 500, 500
 ----
 
-image::/images/colors_no_fill_stroke_width.png[Stroke Width]
+image::/chitra/images/colors_no_fill_stroke_width.png[Stroke Width]
 
 == Disable Stroke
 
@@ -160,4 +160,4 @@ ctx.no_stroke
 ctx.rect 100, 100, 500, 500
 ----
 
-image::/images/colors_no_stroke.png[No Stroke]
+image::/chitra/images/colors_no_stroke.png[No Stroke]

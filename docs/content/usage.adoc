@@ -52,7 +52,7 @@ save "all_red.png"
 
 Above example produces nice gradient like below.
 
-image::/images/all_red.png[All Red]
+image::/chitra/images/all_red.png[All Red]
 
 == Without using global context
 

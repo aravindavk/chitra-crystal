@@ -60,7 +60,7 @@ end
 ctx.save "random_blue_rects.png"
 ----
 
-image::/images/blue_rects.png[Random Blues]
+image::/chitra/images/blue_rects.png[Random Blues]
 
 == Random Colors
 
@@ -120,7 +120,7 @@ end
 ctx.save "random_color_rects.png"
 ----
 
-image::/images/random_color_rects.png[Random Colors]
+image::/chitra/images/random_color_rects.png[Random Colors]
 
 == Pattern
 
@@ -200,4 +200,4 @@ end
 ctx.save "./output/pattern.png"
 ----
 
-image::/images/pattern.png[Pattern]
+image::/chitra/images/pattern.png[Pattern]
