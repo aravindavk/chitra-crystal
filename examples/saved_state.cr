@@ -11,4 +11,4 @@ end
 # Draw rect with the fill color set previously
 rect 200, 200, 200, 200
 
-save "saved_state.png"
+save "docs/content/images/saved_state.png"

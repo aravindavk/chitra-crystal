@@ -1,13 +1,25 @@
 #!/usr/bin/env ruby
 
 compile '/**/*.html' do
-  layout '/default.*'
+  layout '/plain.*'
 
   if item.identifier =~ '**/index.*'
     write item.identifier.to_s
   else
     write item.identifier.without_ext + '/index.html'
   end
+end
+
+compile '/**/index.adoc' do
+  filter :asciidoctor, :standalone => false, :attributes => [
+           'last-update-label!=', # Do not show last updated label in every page
+           'source-highlighter=rouge',
+           'showtitle=yes',
+           'stylesheet!='
+         ]
+  layout '/plain.*'
+
+  write item.identifier.without_ext + ".html"
 end
 
 compile '/**/*.adoc' do
@@ -19,11 +31,7 @@ compile '/**/*.adoc' do
          ]
   layout '/default.*'
 
-  if item.identifier =~ '**/index.*'
-    write item.identifier
-  else
-    write item.identifier.without_ext + '/index.html'
-  end
+  write item.identifier.without_ext + '/index.html'
 end
 
 compile '/**/*' do
