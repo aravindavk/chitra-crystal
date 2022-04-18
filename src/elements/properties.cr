@@ -37,6 +37,25 @@ module Chitra
       fill(gray, gray, gray, a)
     end
 
+    # Set fill color in hex format.
+    # Default color is Black/Hex(#000000)
+    # ```
+    # # Black color
+    # #        hex_color
+    # ctx.fill "#000000"
+    #
+    # # White color
+    # ctx.fill "#ffffff"
+    #
+    # # Fill black with 50% opacity
+    # # 00 - 0% and FF - 100% opacity
+    # gray a
+    # ctx.fill "#00000080"
+    # ```
+    def fill(hexcol : String)
+      @fill.r, @fill.g, @fill.b, @fill.a = *Color.hex2rgb(hexcol)
+    end
+
     # Disable fill
     # ```
     # ctx.no_fill
@@ -79,6 +98,24 @@ module Chitra
     # ```
     def stroke(gray, a = 1.0)
       stroke(gray, gray, gray, a)
+    end
+
+    # Set Stroke color in hex format.
+    # Default color is Black/Hex(#000000)
+    # ```
+    # # Black color
+    # #          hex_color
+    # ctx.stroke "#000000"
+    #
+    # # White color
+    # ctx.stroke "#ffffff"
+    #
+    # # Fill black with 50% opacity
+    # # 00 - 0% and FF - 100% opacity
+    # ctx.stroke "#00000080"
+    # ```
+    def stroke(hexcol : String)
+      @stroke.r, @stroke.g, @stroke.b, @stroke.a = *Color.hex2rgb(hexcol)
     end
 
     # Set Stroke/Line width. Default value is 1.

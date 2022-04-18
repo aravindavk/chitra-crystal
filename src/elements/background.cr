@@ -52,5 +52,16 @@ module Chitra
       r = g = b = gray
       background(r, g, b, a)
     end
+
+    # Fill background color(Hex Color)
+    # ```
+    # ctx = Chitra.new
+    # # white background
+    # ctx.background "#ffffff"
+    # ```
+    def background(hexcol : String)
+      r, g, b, a = Color.hex2rgb(hexcol)
+      background(r, g, b, a)
+    end
   end
 end
