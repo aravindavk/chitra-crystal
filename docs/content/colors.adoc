@@ -92,6 +92,21 @@ ctx.rect 100, 100, 500, 500
 
 image::/chitra/images/colors_rgb_opacity.png[RGBA]
 
+== Using Hex Colors
+
+[source,crystal]
+----
+background "#715842"
+
+fill "#333333"
+stroke "#daa520"
+stroke_width 5
+
+rect 100, 100, 100, 100 
+----
+
+image::/chitra/images/hex_colors.png[Hex Colors]
+
 == Disable fill
 
 [source,crystal]

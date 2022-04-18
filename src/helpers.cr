@@ -123,6 +123,16 @@ module Chitra
     def debug
       "RGBA(%.2f, %.2f, %.2f, %.2f)" % {@r, @g, @b, @a}
     end
+
+    def self.hex2rgb(hexcol)
+      h = hexcol.lstrip("#")
+      {
+        h[0...2].to_i(16)/256,
+        h[2...4].to_i(16)/256,
+        h[4...6].to_i(16)/256,
+        h.size == 8 ? h[6...8].to_i(16)/256 : 1.0,
+      }
+    end
   end
 
   struct Size
