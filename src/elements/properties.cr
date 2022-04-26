@@ -56,6 +56,17 @@ module Chitra
       @fill.r, @fill.g, @fill.b, @fill.a = *Color.hex2rgb(hexcol)
     end
 
+    # Set fill opacity. Opacity values are
+    # between 0 and 1.
+    # ```
+    # # 50% Opacity
+    # #                opacity
+    # ctx.fill_opacity 0.5
+    # ```
+    def fill_opacity(a)
+      fill(@fill.r, @fill.g, @fill.b, a)
+    end
+
     # Disable fill
     # ```
     # ctx.no_fill
@@ -116,6 +127,17 @@ module Chitra
     # ```
     def stroke(hexcol : String)
       @stroke.r, @stroke.g, @stroke.b, @stroke.a = *Color.hex2rgb(hexcol)
+    end
+
+    # Set stroke opacity. Opacity values are
+    # between 0 and 1.
+    # ```
+    # # 50% Opacity
+    # #                  opacity
+    # ctx.stroke_opacity 0.5
+    # ```
+    def stroke_opacity(a)
+      stroke(@stroke.r, @stroke.g, @stroke.b, a)
     end
 
     # Set Stroke/Line width. Default value is 1.

@@ -9,7 +9,7 @@ FUNCS = %w[width height enable_debug fill no_fill stroke
   line_dash line_cap line_join translate rotate scale
   polygon background no_stroke font font_size text text_box
   hyphenation hyphen_char text_align line_height point
-  save_state restore_state
+  save_state restore_state fill_opacity stroke_opacity
 ]
 
 # Define the above global functions
