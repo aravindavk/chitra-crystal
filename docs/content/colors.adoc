@@ -102,10 +102,31 @@ fill "#333333"
 stroke "#daa520"
 stroke_width 5
 
-rect 100, 100, 100, 100 
+rect 100, 100, 100, 100
+
+# With 50% Opacity
+fill "#daa52080"
+rect 125, 125, 50, 50
 ----
 
 image::/chitra/images/hex_colors.png[Hex Colors]
+
+== Fill and Stroke Opacity
+
+[source,crystal]
+----
+fill "#555555"
+stroke "#555555"
+(0...10).each do |x|
+  so = x > 10 ? 10 : x+1
+  fill_opacity x/10
+  stroke_opacity so/10
+
+  rect x*30, 0, 30, 30
+end
+----
+
+image::/chitra/images/fill_stroke_opacity.png[Fill and Stroke Opacity]
 
 == Disable fill
 
