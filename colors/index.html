@@ -215,12 +215,39 @@
 <span class="n">stroke</span> <span class="s2">"#daa520"</span>
 <span class="n">stroke_width</span> <span class="mi">5</span>
 
-<span class="n">rect</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span></code></pre>
+<span class="n">rect</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span>
+
+<span class="c1"># With 50% Opacity</span>
+<span class="n">fill</span> <span class="s2">"#daa52080"</span>
+<span class="n">rect</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span></code></pre>
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="/chitra/images/hex_colors.png" alt="Hex Colors">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_fill_and_stroke_opacity">Fill and Stroke Opacity</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="n">fill</span> <span class="s2">"#555555"</span>
+<span class="n">stroke</span> <span class="s2">"#555555"</span>
+<span class="p">(</span><span class="mi">0</span><span class="o">...</span><span class="mi">10</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+  <span class="n">so</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="p">?</span> <span class="mi">10</span> <span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span>
+  <span class="n">fill_opacity</span> <span class="n">x</span><span class="o">/</span><span class="mi">10</span>
+  <span class="n">stroke_opacity</span> <span class="n">so</span><span class="o">/</span><span class="mi">10</span>
+
+  <span class="n">rect</span> <span class="n">x</span><span class="o">*</span><span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span>
+<span class="k">end</span></code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/chitra/images/fill_stroke_opacity.png" alt="Fill and Stroke Opacity">
 </div>
 </div>
 </div>
