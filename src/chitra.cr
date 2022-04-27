@@ -37,7 +37,7 @@ module Chitra
       @elements = [] of Element
       surface = Cairo::Surface.new(Cairo::Format::ARGB32, @size.width, @size.height)
       @default_cairo_ctx = Cairo::Context.new surface
-      @saved_context = State.new(@size.width, @size.height)
+      @current_saved_context = State.new(@size.width, @size.height)
     end
 
     # :nodoc:

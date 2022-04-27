@@ -142,7 +142,7 @@ module Chitra
     end
   end
 
-  struct State
+  class State
     include ShapeProperties
     include TextProperties
 
@@ -211,42 +211,42 @@ module Chitra
     # ctx.save_state
     # ctx.fill 0, 0, 1
     # ```
-    def save_state
-      @saved_context.enabled = true
-      @saved_context.fill = @fill
-      @saved_context.stroke = @stroke
-      @saved_context.stroke_width = @stroke_width
-      @saved_context.no_fill = @no_fill
-      @saved_context.line_dash = @line_dash
-      @saved_context.line_cap = @line_cap
-      @saved_context.line_join = @line_join
-      @saved_context.font = @font
-      @saved_context.line_height = @line_height
-      @saved_context.align = @align
-      @saved_context.hyphenation = @hyphenation
-      @saved_context.hyphen_char = @hyphen_char
+    def save_state(saved_context)
+      saved_context.enabled = true
+      saved_context.fill = @fill
+      saved_context.stroke = @stroke
+      saved_context.stroke_width = @stroke_width
+      saved_context.no_fill = @no_fill
+      saved_context.line_dash = @line_dash
+      saved_context.line_cap = @line_cap
+      saved_context.line_join = @line_join
+      saved_context.font = @font
+      saved_context.line_height = @line_height
+      saved_context.align = @align
+      saved_context.hyphenation = @hyphenation
+      saved_context.hyphen_char = @hyphen_char
     end
 
     # Restore Context state
     # ```
     # ctx.restore_state
     # ```
-    def restore_state
-      @fill = @saved_context.fill
-      @stroke = @saved_context.stroke
-      @stroke_width = @saved_context.stroke_width
-      @no_fill = @saved_context.no_fill
-      @line_dash = @saved_context.line_dash
-      @line_cap = @saved_context.line_cap
-      @line_join = @saved_context.line_join
-      @font = @saved_context.font
-      @line_height = @saved_context.line_height
-      @align = @saved_context.align
-      @hyphenation = @saved_context.hyphenation
-      @hyphen_char = @saved_context.hyphen_char
+    def restore_state(saved_context)
+      @fill = saved_context.fill
+      @stroke = saved_context.stroke
+      @stroke_width = saved_context.stroke_width
+      @no_fill = saved_context.no_fill
+      @line_dash = saved_context.line_dash
+      @line_cap = saved_context.line_cap
+      @line_join = saved_context.line_join
+      @font = saved_context.font
+      @line_height = saved_context.line_height
+      @align = saved_context.align
+      @hyphenation = saved_context.hyphenation
+      @hyphen_char = saved_context.hyphen_char
 
       # Reverse the Transformations added during the saved state
-      @saved_context.transformations.reverse_each do |ele|
+      saved_context.transformations.reverse_each do |ele|
         case ele
         when Translate
           t = Translate.new -ele.@x, -ele.@y
@@ -264,8 +264,8 @@ module Chitra
           draw_on_default_surface(r)
         end
       end
-      @saved_context.enabled = false
-      @saved_context.reset_transformations
+      saved_context.enabled = false
+      saved_context.reset_transformations
     end
 
     # Use Saved state as block that applies save_state and
@@ -281,9 +281,15 @@ module Chitra
     # ctx.rect 200, 200, 200, 200
     # ```
     def saved_state(&block)
-      save_state
+      prev_saved_context = @current_saved_context
+      saved_context = State.new(@size.width, @size.height)
+      @current_saved_context = saved_context
+
+      save_state(saved_context)
       block.call
-      restore_state
+      restore_state(saved_context)
+
+      @current_saved_context = prev_saved_context
     end
   end
 end

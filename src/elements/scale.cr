@@ -35,7 +35,7 @@ module Chitra
       s = Scale.new(scale_x, scale_y)
       @elements << s
 
-      @saved_context.add_transformation(s) if @saved_context.enabled
+      @current_saved_context.add_transformation(s) if @current_saved_context.enabled
 
       draw_on_default_surface(s)
     end
