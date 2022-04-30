@@ -128,7 +128,7 @@ ctx.text_align "justify"
 txt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula scelerisque ..."
 
 loop do
-   txt = ctx.text_box txt, x, y, w, h
+   txt, _w, _h = ctx.text_box txt, x, y, w, h
    x += w + gap
     break if txt == ""
 end
