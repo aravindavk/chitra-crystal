@@ -238,7 +238,7 @@
 <span class="n">txt</span> <span class="o">=</span> <span class="s2">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula scelerisque ..."</span>
 
 <span class="kp">loop</span> <span class="k">do</span>
-   <span class="n">txt</span> <span class="o">=</span> <span class="n">ctx</span><span class="p">.</span><span class="nf">text_box</span> <span class="n">txt</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span>
+   <span class="n">txt</span><span class="p">,</span> <span class="n">_w</span><span class="p">,</span> <span class="n">_h</span> <span class="o">=</span> <span class="n">ctx</span><span class="p">.</span><span class="nf">text_box</span> <span class="n">txt</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span>
    <span class="n">x</span> <span class="o">+=</span> <span class="n">w</span> <span class="o">+</span> <span class="n">gap</span>
     <span class="k">break</span> <span class="k">if</span> <span class="n">txt</span> <span class="o">==</span> <span class="s2">""</span>
 <span class="k">end</span></code></pre>
