@@ -60,7 +60,9 @@ module Chitra
       cairo_ctx.antialias = Cairo::Antialias::Best
       layout = LibPangoCairo.pango_cairo_create_layout(cairo_ctx)
       LibPangoCairo.pango_layout_set_width(layout, @w*LibPangoCairo::SCALE)
-      LibPangoCairo.pango_layout_set_height(layout, @h*LibPangoCairo::SCALE)
+      if @h > 0
+        LibPangoCairo.pango_layout_set_height(layout, @h*LibPangoCairo::SCALE)
+      end
       desc = LibPangoCairo.pango_font_description_from_string("#{@font.family}, #{@font.slant} #{@font.weight} #{@font.height}px")
       LibPangoCairo.pango_layout_set_font_description(layout, desc)
       LibPangoCairo.pango_font_description_free(desc)
@@ -77,31 +79,37 @@ module Chitra
       txt = ""
       overflow_text = ""
       overflow = false
-      @txt.each_grapheme do |letter|
-        unless overflow
-          LibPangoCairo.pango_layout_set_text(layout, txt + letter.to_s, -1)
-          LibPangoCairo.pango_layout_get_size(layout, out w, out h)
 
-          if h/LibPangoCairo::SCALE > @h
-            overflow = true
+      if @h > 0
+        @txt.each_grapheme do |letter|
+          unless overflow
+            LibPangoCairo.pango_layout_set_text(layout, txt + letter.to_s, -1)
+            LibPangoCairo.pango_layout_get_size(layout, out w, out h)
+
+            if h/LibPangoCairo::SCALE > @h
+              overflow = true
+            end
+          end
+
+          if overflow
+            overflow_text += letter.to_s
+          else
+            txt += letter.to_s
           end
         end
-
-        if overflow
-          overflow_text += letter.to_s
-        else
-          txt += letter.to_s
-        end
+      else
+        txt = @txt
       end
 
       LibPangoCairo.pango_layout_set_text(layout, txt, -1)
+      LibPangoCairo.pango_layout_get_size(layout, out w, out h)
 
       LibPangoCairo.pango_cairo_update_layout(cairo_ctx, layout)
       LibPangoCairo.pango_cairo_show_layout(cairo_ctx, layout)
       LibPangoCairo.pango_cairo_layout_path(cairo_ctx, layout)
       draw_shape_properties(cairo_ctx)
 
-      overflow_text
+      {overflow_text, w/LibPangoCairo::SCALE, h/LibPangoCairo::SCALE}
     end
 
     # :nodoc:
@@ -121,12 +129,12 @@ module Chitra
       draw_on_default_surface(@elements[idx])
     end
 
-    def text_box(txt, x, y, w, h)
+    def text_box(txt, x, y, w, h = 0.0)
       t = TextBox.new(txt, x, y, w, h)
       idx = add_shape_properties(t)
 
       overflow = draw_on_default_surface(@elements[idx])
-      overflow.is_a?(String) ? overflow : ""
+      overflow.is_a?(Tuple(String, Float64, Float64)) ? overflow : {"", w, h}
     end
   end
 end

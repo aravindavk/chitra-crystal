@@ -321,7 +321,7 @@ text_align "justify"
 txt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec est velit, posuere ac molestie et, pharetra nec magna. Morbi vel sapien vulputate, malesuada enim a, fringilla risus. Nam vulputate risus id euismod finibus. Vestibulum molestie volutpat mauris, vitae viverra tortor. Nam non felis non nibh laoreet semper nec ut felis. Donec tempus augue a urna venenatis laoreet. Donec mi nunc, blandit vel augue nec, ullamcorper mattis nunc. Ut tristique laoreet laoreet. In purus eros, rhoncus ut ante in, tincidunt tristique nulla. Proin elit nunc, eleifend eu ex eget, imperdiet molestie nibh. Nullam vel viverra elit. Nullam tempus sodales libero, id aliquam lacus tempus ut. Vestibulum suscipit efficitur lacus eu condimentum. Nunc iaculis velit vel eros pulvinar, sed vestibulum nulla semper. Ut nibh erat, porta sit amet ipsum at, aliquet vehicula dui."
 
 loop do
-   txt = text_box txt, x, 10*u, w, h
+   txt, _w, _h = text_box txt, x, 10*u, w, h
    x += w + gap
     break if txt == ""
 end
