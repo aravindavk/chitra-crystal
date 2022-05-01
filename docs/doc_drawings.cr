@@ -327,3 +327,11 @@ loop do
 end
 
 save "docs/content/images/text_box_overflow.png"
+
+new_drawing
+size 300, 300
+background 1
+
+image "docs/content/static/logo.png", 100, 100
+
+save "docs/content/images/image.png"

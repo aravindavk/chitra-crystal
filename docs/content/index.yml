@@ -13,6 +13,8 @@ chapters:
     slug: transformations
   - title: Text
     slug: text
+  - title: Images
+    slug: images
   - title: Saving
     slug: saving
   - title: Examples
