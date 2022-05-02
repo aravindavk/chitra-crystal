@@ -1,0 +1,23 @@
+---
+title: Images
+---
+
+Embed `png` images
+
+[source, crystal]
+----
+#     path        x    y
+image "logo.png", 100, 100
+----
+
+image::/chitra/images/image.png[Square]
+
+Resize image
+
+[source,crystal]
+----
+saved_state do
+  scale 1/2
+  image "logo.png", 100, 100
+end
+----
