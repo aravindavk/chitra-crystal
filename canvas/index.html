@@ -328,6 +328,59 @@
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_new_page">New page</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create multiple page PDF document using this helper function.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="c1"># A4 Page size</span>
+<span class="n">size</span> <span class="mi">2480</span><span class="p">,</span> <span class="mi">3508</span>
+
+<span class="n">fill</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="n">rect</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span>
+
+<span class="n">new_page</span>
+
+<span class="n">fill</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span>
+<span class="n">rect</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span>
+
+<span class="n">new_page</span>
+
+<span class="n">fill</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">rect</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span>
+
+<span class="n">save</span> <span class="s2">"multipage.pdf"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>OR</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="c1"># A4 Page size</span>
+<span class="n">ctx</span> <span class="o">=</span> <span class="no">Chitra</span><span class="p">.</span><span class="nf">new</span> <span class="mi">2480</span><span class="p">,</span> <span class="mi">3508</span>
+
+<span class="n">ctx</span><span class="p">.</span><span class="nf">fill</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="n">ctx</span><span class="p">.</span><span class="nf">rect</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span>
+
+<span class="n">ctx</span><span class="p">.</span><span class="nf">new_page</span>
+
+<span class="n">ctx</span><span class="p">.</span><span class="nf">fill</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span>
+<span class="n">ctx</span><span class="p">.</span><span class="nf">rect</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span>
+
+<span class="n">ctx</span><span class="p">.</span><span class="nf">new_page</span>
+
+<span class="n">ctx</span><span class="p">.</span><span class="nf">fill</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">ctx</span><span class="p">.</span><span class="nf">rect</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span>
+
+<span class="n">ctx</span><span class="p">.</span><span class="nf">save</span> <span class="s2">"multipage.pdf"</span></code></pre>
+</div>
+</div>
+</div>
+</div>
             </div>
         </div>
         <div class="bg-blue-300 py-10">
