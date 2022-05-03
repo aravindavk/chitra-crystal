@@ -189,3 +189,52 @@ ctx.save "all_blue.png"
 ----
 
 image::/chitra/images/new_drawing.png[New drawing]
+
+== New page
+
+Create multiple page PDF document using this helper function.
+
+[source,crystal]
+----
+# A4 Page size
+size 2480, 3508
+
+fill 1, 0, 0
+rect 500, 500, 500, 500
+
+new_page
+
+fill 0, 1, 0
+rect 500, 500, 500, 500
+
+new_page
+
+fill 0, 0, 1
+rect 500, 500, 500, 500
+
+save "multipage.pdf"
+----
+
+OR
+
+[source,crystal]
+----
+# A4 Page size
+ctx = Chitra.new 2480, 3508
+
+ctx.fill 1, 0, 0
+ctx.rect 500, 500, 500, 500
+
+ctx.new_page
+
+ctx.fill 0, 1, 0
+ctx.rect 500, 500, 500, 500
+
+ctx.new_page
+
+ctx.fill 0, 0, 1
+ctx.rect 500, 500, 500, 500
+
+ctx.save "multipage.pdf"
+----
+
