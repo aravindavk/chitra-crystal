@@ -335,3 +335,18 @@ background 1
 image "docs/content/static/logo.png", 100, 100
 
 save "docs/content/images/image.png"
+
+new_drawing
+txt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec est velit, posuere ac molestie et, pharetra nec magna. Morbi vel sapien vulputate, malesuada enim a, fringilla risus. Nam vulputate risus id euismod finibus. Vestibulum molestie volutpat mauris, vitae viverra tortor. Nam non felis non nibh laoreet semper nec ut felis. Donec tempus augue a urna venenatis laoreet. Donec mi nunc, blandit vel augue nec, ullamcorper mattis nunc. Ut tristique laoreet laoreet. In purus eros, rhoncus ut ante in, tincidunt tristique nulla. Proin elit nunc, eleifend eu ex eget, imperdiet molestie nibh. Nullam vel viverra elit. Nullam tempus sodales libero, id aliquam lacus tempus ut. Vestibulum suscipit efficitur lacus eu condimentum. Nunc iaculis velit vel eros pulvinar, sed vestibulum nulla semper. Ut nibh erat, porta sit amet ipsum at, aliquet vehicula dui."
+
+size 400, 300
+background 1
+
+font "Latin Modern Roman", 12
+no_stroke
+line_height 1.1
+
+hyphenation true
+text_box txt, 50, 50, 300, 200
+
+save "docs/content/images/text_hyphenation.png"
