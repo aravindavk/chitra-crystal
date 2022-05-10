@@ -135,3 +135,21 @@ end
 ----
 
 image::/chitra/images/text_box_overflow.png[Text Box Overflow]
+
+== Text Hyphenation
+
+Enable Text hyphenation.
+
+[source,crystal]
+----
+txt = "Lorem ipsum dolor sit amet, .."
+
+font "Latin Modern Roman", 12
+no_stroke
+line_height 1.1
+
+hyphenation true
+text_box txt, 400, 50, 300, 200
+----
+
+image::/chitra/images/text_hyphenation.png[Text Hyphenation]

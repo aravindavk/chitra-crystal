@@ -67,13 +67,17 @@ module Chitra
       LibPangoCairo.pango_layout_set_font_description(layout, desc)
       LibPangoCairo.pango_font_description_free(desc)
       LibPangoCairo.pango_layout_set_line_spacing(layout, @line_height)
-      LibPangoCairo.pango_layout_set_wrap(layout, LibPangoCairo::WrapMode::WordChar)
-      case @align
-      when "justify" then LibPangoCairo.pango_layout_set_justify(layout, true)
-      when "center"  then LibPangoCairo.pango_layout_set_alignment(layout, LibPangoCairo::Alignment::Center)
-      when "right"   then LibPangoCairo.pango_layout_set_alignment(layout, LibPangoCairo::Alignment::Right)
+
+      if @hyphenation
+        LibPangoCairo.pango_layout_set_wrap(layout, LibPangoCairo::WrapMode::Char)
       else
-        LibPangoCairo.pango_layout_set_alignment(layout, LibPangoCairo::Alignment::Left)
+        case @align
+        when "justify" then LibPangoCairo.pango_layout_set_justify(layout, true)
+        when "center"  then LibPangoCairo.pango_layout_set_alignment(layout, LibPangoCairo::Alignment::Center)
+        when "right"   then LibPangoCairo.pango_layout_set_alignment(layout, LibPangoCairo::Alignment::Right)
+        else
+          LibPangoCairo.pango_layout_set_alignment(layout, LibPangoCairo::Alignment::Left)
+        end
       end
 
       txt = ""
