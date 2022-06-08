@@ -1,0 +1,55 @@
+= JSON APIs
+
+Chitra supports generating 2D graphics by taking input in JSON format.
+
+[source,crystal]
+----
+require "chitra/json_api"
+
+chitra_from_json(%Q[
+  [
+    {"type": "size", "w": 300, "h": 300},
+    {"type": "background", "gray": 1},
+    {"type": "stroke", "r": 1},
+    {"type": "fill", "hex": "#ffff00"},
+    {"type": "rect", "x": 50.0, "y": 50.0, "w": 200, "h": 200},
+    {"type": "save", "path": "docs/content/images/hello_json.png"}
+  ]
+])
+----
+
+Above code produces the following image.
+
+image::/chitra/images/hello_json.png[Hello JSON]
+
+JSON support is useful to generate the graphics while integrating with external applications or other Programming languages. Following example shows a ReST API to generate the graphics.
+
+[source,crystal]
+----
+require "kemal"
+require "chitra/json_api"
+
+post "/draw" do |env|
+  data = env.request.body.not_nil!.try(&.gets_to_end)
+  chitra_from_json(data)
+end
+
+Kemal.run
+----
+
+----
+$ curl -i -X POST http://localhost:3000/draw -d '[
+    {"type": "size", "w": 300, "h": 300},
+    {"type": "background", "gray": 1},
+    {"type": "stroke", "r": 1},
+    {"type": "fill", "hex": "#ffff00"},
+    {"type": "rect", "x": 50.0, "y": 50.0, "w": 200, "h": 200},
+    {"type": "save", "path": "hello_json.png"}
+  ]'
+HTTP/1.1 200 OK
+Connection: keep-alive
+X-Powered-By: Kemal
+Content-Type: text/html
+Content-Length: 0
+----
+
