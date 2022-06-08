@@ -36,5 +36,19 @@ module Chitra
 
       draw_on_default_surface(@elements[idx])
     end
+
+    # Draw polygon shape. By default closes the path
+    # ```
+    # ctx = Chitra.new
+    # x y w h
+    # ctx.polygon [50, 450, 50, 50, 450, 50, 100, 100], close: true
+    # ```
+    def polygon(points : Array(Float64), close = true)
+      values = coord_pairs_validate(points)
+      p = Polygon.new(values, close)
+      idx = add_shape_properties(p)
+
+      draw_on_default_surface(@elements[idx])
+    end
   end
 end
