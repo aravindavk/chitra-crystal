@@ -7,7 +7,7 @@ Embed `png` images
 [source, crystal]
 ----
 #     path        x    y
-image "logo.png", 100, 100
+image "logo.png", 20, 20
 ----
 
 image::/chitra/images/image.png[Square]
@@ -18,6 +18,6 @@ Resize image
 ----
 saved_state do
   scale 1/2
-  image "logo.png", 100, 100
+  image "logo.png", 20, 20
 end
 ----
