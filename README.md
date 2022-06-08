@@ -1,5 +1,7 @@
 # Chitra - 2D graphics library
 
+![Chitra](docs/content/static/logo.png)
+
 Crystal language library to generate 2D graphics.
 
 ## Name
