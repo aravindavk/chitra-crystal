@@ -173,6 +173,24 @@ module Chitra
     # ctx.line_dash 2, 4, 10, offset: 1
     # ```
     def line_dash(*values, offset = 0)
+      line_dash(values, offset: offset)
+    end
+
+    # Set line dash pattern. `line_dash 0` disables
+    # the dash.Symmetric dash pattern with one value
+    # to this function.
+    # ```
+    # ctx.line_dash [2]
+    # ```
+    # Asymmetric pattern
+    # ```
+    # ctx.line_dash [2, 4, 10]
+    # ```
+    # To set the offset value to start the pattern
+    # ```
+    # ctx.line_dash [2, 4, 10], offset: 1
+    # ```
+    def line_dash(values : Array(Int32), offset = 0)
       if values.size == 1 && values[0] == 0
         @line_dash.enabled = false
         return
