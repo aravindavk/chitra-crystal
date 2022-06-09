@@ -6,6 +6,7 @@ title: 2D Graphics with Crystal Programming language
 <div class="bg-blue-400 mb-10">
   <div class="w-full md:w-3/4 m-auto md:grid md:grid-cols-12">
   <div class="col-span-12 text-right pt-2">
+  <iframe src="https://github.com/sponsors/aravindavk/button" title="Sponsor aravindavk" height="35" width="116" style="border: 0;"></iframe>
  <a class="text-black font-semibold px-2 py-1 hover:underline" href="/chitra/usage">docs</a>
  <a class="text-black font-semibold px-2 py-1 hover:underline" href="https://github.com/aravindavk/chitra">Github</a>
    </div>
