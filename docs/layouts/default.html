@@ -32,6 +32,7 @@
                      :class="{ 'hidden' : !menuOpen}"  @click.away="menuOpen = false"
                 >
                     <a href="/chitra/"><img class="block -ml-5" src="/chitra/static/logo.png"/></a>
+                    <iframe src="https://github.com/sponsors/aravindavk/button" title="Sponsor aravindavk" height="35" width="116" style="border: 0;"></iframe>
                     <% for chapter in chapters %>
                     <% @item.path %>
                     <a href="/chitra/<%= chapter["slug"] %>" class="<% if @item.path == "/" + chapter["slug"] + "/" %><%= selected_cls %><% else %><%= cls %><% end %>"><%= chapter["title"] %></a>
