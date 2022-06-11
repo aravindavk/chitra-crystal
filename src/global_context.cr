@@ -10,7 +10,7 @@ FUNCS = %w[width height enable_debug fill no_fill stroke
   polygon background no_stroke font font_size text text_box
   hyphenation hyphen_char text_align line_height point
   save_state restore_state fill_opacity stroke_opacity
-  image new_page
+  image new_page group_start group_end composite
 ]
 
 # Define the above global functions
@@ -49,4 +49,16 @@ end
 # ```
 def saved_state(&block)
   Chitra.global_context.saved_state(&block)
+end
+
+# Create group for composite drawings.
+# ```
+# ctx.grouped do
+#   ctx.rect 10, 10, 100, 100
+#   ctx.composite "In"
+#   ctx.rect 50, 50, 100, 100
+# end
+# ```
+def grouped(&block)
+  Chitra.global_context.grouped(&block)
 end

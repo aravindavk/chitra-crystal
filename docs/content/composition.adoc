@@ -1,0 +1,61 @@
+= Composition
+
+Normally Chitra draw elements on top of the previously drawn elements. Chitra provides option to adjust the composite behaviour to create interesting drawings.
+
+Following example shows a Compositing Operator to extract the intersecting area from two elements.
+
+[source,crystal]
+----
+size 200, 200
+background 1
+
+no_stroke
+font "Quicksand", 160
+
+# Text and Circle in Red
+fill 1, 0, 0
+text "8", 40, 20
+oval 80, 40, 200, 200
+
+# Create intersecting area of the
+# text and Circle in White color.
+fill 1
+grouped do
+  text "8", 40, 20
+  composite "in"
+  oval 80, 40, 200, 200
+end
+
+save "composite.png"
+----
+
+OR
+
+[source,crystal]
+----
+ctx = Chitra.new 200, 200
+ctx.background 1
+
+ctx.no_stroke
+ctx.font "Quicksand", 160
+
+# Text and Circle in Red
+ctx.fill 1, 0, 0
+ctx.text "8", 40, 20
+ctx.oval 80, 40, 200, 200
+
+# Create intersecting area of the
+# text and Circle in White color.
+ctx.fill 1
+ctx.grouped do
+  ctx.text "8", 40, 20
+  ctx.composite "in"
+  ctx.oval 80, 40, 200, 200
+end
+
+ctx.save "composite.png"
+----
+
+image::/chitra/images/composite.png[Composite]
+
+Read the https://www.cairographics.org/operators/[Cairo documentation] to understand all the available Operators.
