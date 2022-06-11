@@ -170,6 +170,31 @@
 <span class="n">save</span> <span class="s2">"saved_state.png"</span></code></pre>
 </div>
 </div>
+<div class="listingblock composition example">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="n">size</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span>
+<span class="n">background</span> <span class="mi">1</span>
+
+<span class="n">no_stroke</span>
+<span class="n">font</span> <span class="s2">"Quicksand"</span><span class="p">,</span> <span class="mi">160</span>
+
+<span class="c1"># Text and Circle in Red</span>
+<span class="n">fill</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="n">text</span> <span class="s2">"8"</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">20</span>
+<span class="n">oval</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span>
+
+<span class="c1"># Create intersecting area of the</span>
+<span class="c1"># text and Circle in White color.</span>
+<span class="n">fill</span> <span class="mi">1</span>
+<span class="n">grouped</span> <span class="k">do</span>
+  <span class="n">text</span> <span class="s2">"8"</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">20</span>
+  <span class="n">composite</span> <span class="s2">"in"</span>
+  <span class="n">oval</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span>
+<span class="k">end</span>
+
+<span class="n">save</span> <span class="s2">"composite.png"</span></code></pre>
+</div>
+</div>
     </div>
     </div>
     <div class="col-span-6">
@@ -199,6 +224,11 @@
 <img src="/chitra/images/shapes.png" alt="Shapes">
 </div>
 </div>
+<div class="imageblock example-img composition-img">
+<div class="content">
+<img src="/chitra/images/composite.png" alt="Composite">
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -215,7 +245,7 @@ function random(items) {
     return item;
 }
 
-var examples = ['pattern', 'dots', 'random-blues', 'saved-state', 'shapes'];
+var examples = ['pattern', 'dots', 'random-blues', 'saved-state', 'shapes', 'composition'];
 var data = {
   selectedExample: random(examples),
   examples: examples,
