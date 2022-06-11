@@ -174,6 +174,33 @@ rect 200, 200, 200, 200
 save "saved_state.png"
 ----
 
+[source,crystal]
+[.composition]
+[.example]
+----
+size 200, 200
+background 1
+
+no_stroke
+font "Quicksand", 160
+
+# Text and Circle in Red
+fill 1, 0, 0
+text "8", 40, 20
+oval 80, 40, 200, 200
+
+# Create intersecting area of the
+# text and Circle in White color.
+fill 1
+grouped do
+  text "8", 40, 20
+  composite "in"
+  oval 80, 40, 200, 200
+end
+
+save "composite.png"
+----
+
 ++++
     </div>
     </div>
@@ -201,6 +228,9 @@ image::/chitra/images/saved_state.png[Saved State]
 [.shapes-img]
 image::/chitra/images/shapes.png[Shapes]
 
+[.example-img]
+[.composition-img]
+image::/chitra/images/composite.png[Composite]
 ++++
 </div>
 </div>
@@ -218,7 +248,7 @@ function random(items) {
     return item;
 }
 
-var examples = ['pattern', 'dots', 'random-blues', 'saved-state', 'shapes'];
+var examples = ['pattern', 'dots', 'random-blues', 'saved-state', 'shapes', 'composition'];
 var data = {
   selectedExample: random(examples),
   examples: examples,

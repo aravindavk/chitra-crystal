@@ -19,3 +19,7 @@
 .content p {
     @apply mb-5;
 }
+
+.content a {
+    @apply text-blue-600 underline underline-offset-8;
+}
