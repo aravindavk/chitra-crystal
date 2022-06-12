@@ -8,11 +8,11 @@ module Chitra
 
     # :nodoc:
     def draw(cairo_ctx)
-      cairo_ctx.move_to(@points[0][0], @points[0][1])
+      LibCairo.cairo_move_to(cairo_ctx, @points[0][0], @points[0][1])
       @points[1..].each do |p|
-        cairo_ctx.line_to(p[0], p[1])
+        LibCairo.cairo_line_to(cairo_ctx, p[0], p[1])
       end
-      cairo_ctx.close_path if @close
+      LibCairo.cairo_close_path(cairo_ctx) if @close
       draw_shape_properties(cairo_ctx)
     end
 

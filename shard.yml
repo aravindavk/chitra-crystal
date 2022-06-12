@@ -7,10 +7,6 @@ authors:
 description: |
   Crystal library to generate 2D graphics.
 
-dependencies:
-  cairo:
-    github: TamasSzekeres/cairo-cr
-
 development_dependencies:
   ameba:
     github: crystal-ameba/ameba

@@ -4,7 +4,8 @@ background 1
 font "Serif", 50
 stroke 1, 0, 1
 fill 0
-text "Hello World", 0, 0
+no_stroke
+text "Hello World", 20, 20
 
 font "Latin Modern Roman", 12
 no_stroke
@@ -14,7 +15,7 @@ text_align "left"
 line_height 1.1
 txt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas rutrum erat eu tincidunt ornare. Donec ut sodales diam, a faucibus sapien. Sed eleifend posuere enim, eget condimentum massa eleifend in. Nullam laoreet tortor sit amet dolor tempor molestie. Pellentesque tincidunt magna nec est rhoncus, eu finibus orci ultrices. Phasellus vitae urna pharetra, tempus eros ut, ornare orci. Vivamus placerat commodo lobortis. Mauris euismod dapibus ipsum, in fermentum libero fringilla ut. Etiam vel diam ut quam cursus imperdiet sit amet eget metus."
 fill 0
-overflow, _w, _h = text_box txt, 20, 100, 300, 300
+overflow, _w, _h = text_box txt*2, 20, 100, 300, 300
 
 fill 0.5, 0.45
 rect 340, 90, 320, 320

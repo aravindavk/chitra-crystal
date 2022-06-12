@@ -35,8 +35,8 @@ module Chitra
       @out_ext = ""
       @output_type = ""
       @elements = [] of Element
-      surface = Cairo::Surface.new(Cairo::Format::ARGB32, @size.width, @size.height)
-      @default_cairo_ctx = Cairo::Context.new surface
+      surface = LibCairo.cairo_image_surface_create(LibCairo::FormatT::ARGB32, @size.width, @size.height)
+      @default_cairo_ctx = LibCairo.cairo_create surface
       @current_saved_context = State.new(@size.width, @size.height)
     end
 
@@ -101,7 +101,7 @@ module Chitra
         raise Exception.new("Unknown output file format. Supported formats: #{available_surfaces.join(",")}")
       end
 
-      cairo_ctx = Cairo::Context.new surface.surface
+      cairo_ctx = LibCairo.cairo_create surface.surface
       if @debug
         @elements.each do |ele|
           puts ele.to_s
@@ -128,8 +128,8 @@ module Chitra
     # ```
     def new_drawing
       @elements = [] of Element
-      surface = Cairo::Surface.new(Cairo::Format::ARGB32, @size.width, @size.height)
-      @default_cairo_ctx = Cairo::Context.new surface
+      surface = LibCairo.cairo_image_surface_create(LibCairo::FormatT::ARGB32, @size.width, @size.height)
+      @default_cairo_ctx = LibCairo.cairo_create surface
       reset_text_properties
       reset_shape_properties
     end

@@ -6,9 +6,9 @@ module Chitra
 
     # :nodoc:
     def draw(cairo_ctx)
-      surface = Cairo::Surface.new(@path)
-      cairo_ctx.set_source_surface(surface, @x, @y)
-      cairo_ctx.paint
+      surface = LibCairo.cairo_image_surface_create_from_png(@path.to_unsafe)
+      LibCairo.cairo_set_source_surface(cairo_ctx, surface, @x, @y)
+      LibCairo.cairo_paint(cairo_ctx)
     end
 
     # :nodoc:

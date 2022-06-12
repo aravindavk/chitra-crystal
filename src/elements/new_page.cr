@@ -6,7 +6,7 @@ module Chitra
 
     # :nodoc:
     def draw(cairo_ctx)
-      cairo_ctx.show_page
+      LibCairo.cairo_show_page(cairo_ctx)
     end
 
     # :nodoc:

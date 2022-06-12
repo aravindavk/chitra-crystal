@@ -7,11 +7,11 @@ module Chitra
     # :nodoc:
     def draw(cairo_ctx)
       if @center_x != 0 && @center_y != 0
-        cairo_ctx.translate @center_x, @center_y
-        cairo_ctx.rotate @angle
-        cairo_ctx.translate -@center_x, -@center_y
+        LibCairo.cairo_translate cairo_ctx, @center_x, @center_y
+        LibCairo.cairo_rotate cairo_ctx, @angle
+        LibCairo.cairo_translate cairo_ctx, -@center_x, -@center_y
       else
-        cairo_ctx.rotate @angle
+        LibCairo.cairo_rotate cairo_ctx, @angle
       end
     end
 
