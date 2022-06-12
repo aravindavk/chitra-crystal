@@ -1,12 +1,6 @@
-require "cairo"
-
-at_exit do
-  GC.collect
-end
+require "./c/lib_cairo"
 
 module Chitra
-  include Cairo
-
   struct LineDash
     property enabled = false, values = [] of Float64, offset = 0.0
 
@@ -40,8 +34,8 @@ module Chitra
       stroke_width = 1,
       no_fill = false,
       line_dash = LineDash.new,
-      line_cap = Cairo::LineCap::Butt,
-      line_join = Cairo::LineJoin::Miter
+      line_cap = LibCairo::LineCapT::Butt,
+      line_join = LibCairo::LineJoinT::Miter
 
     def reset_shape_properties
       @fill = Color.new
@@ -49,8 +43,8 @@ module Chitra
       @stroke_width = 1
       @no_fill = false
       @line_dash = LineDash.new
-      @line_cap = Cairo::LineCap::Butt
-      @line_join = Cairo::LineJoin::Miter
+      @line_cap = LibCairo::LineCapT::Butt
+      @line_join = LibCairo::LineJoinT::Miter
     end
   end
 
@@ -60,25 +54,25 @@ module Chitra
 
     def draw_shape_properties(cairo_ctx)
       if @no_fill
-        cairo_ctx.set_source_rgba 0, 0, 0, 0
+        LibCairo.cairo_set_source_rgba cairo_ctx, 0, 0, 0, 0
       else
-        cairo_ctx.set_source_rgba @fill.r, @fill.g, @fill.b, @fill.a
+        LibCairo.cairo_set_source_rgba cairo_ctx, @fill.r, @fill.g, @fill.b, @fill.a
       end
 
       if @stroke_width > 0
-        cairo_ctx.fill_preserve
-        cairo_ctx.line_width = @stroke_width
+        LibCairo.cairo_fill_preserve(cairo_ctx)
+        LibCairo.cairo_set_line_width cairo_ctx, @stroke_width
         if @line_dash.enabled
-          cairo_ctx.set_dash(@line_dash.values, @line_dash.offset)
+          LibCairo.cairo_set_dash(cairo_ctx, @line_dash.values.to_unsafe, @line_dash.values.size, @line_dash.offset)
         else
-          cairo_ctx.set_dash([] of Float64, 0)
+          LibCairo.cairo_set_dash(cairo_ctx, [] of Float64, 0, 0)
         end
-        cairo_ctx.line_cap = @line_cap
-        cairo_ctx.line_join = @line_join
-        cairo_ctx.set_source_rgba @stroke.r, @stroke.g, @stroke.b, @stroke.a
-        cairo_ctx.stroke
+        LibCairo.cairo_set_line_cap(cairo_ctx, @line_cap)
+        LibCairo.cairo_set_line_join(cairo_ctx, @line_join)
+        LibCairo.cairo_set_source_rgba(cairo_ctx, @stroke.r, @stroke.g, @stroke.b, @stroke.a)
+        LibCairo.cairo_stroke(cairo_ctx)
       else
-        cairo_ctx.fill
+        LibCairo.cairo_fill(cairo_ctx)
       end
     end
 

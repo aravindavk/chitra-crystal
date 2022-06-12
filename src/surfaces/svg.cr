@@ -3,11 +3,11 @@ module Chitra
     getter surface
 
     def initialize(@output_file, w, h)
-      @surface = Cairo::SvgSurface.new @output_file, w, h
+      @surface = LibCairo.cairo_svg_surface_create(@output_file.to_unsafe, w, h)
     end
 
     def draw
-      @surface.finish
+      LibCairo.cairo_surface_finish(@surface)
     end
   end
 end

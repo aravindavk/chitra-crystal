@@ -6,7 +6,7 @@ module Chitra
 
     # :nodoc:
     def draw(cairo_ctx)
-      cairo_ctx.translate @x, @y
+      LibCairo.cairo_translate cairo_ctx, @x, @y
     end
 
     # :nodoc:

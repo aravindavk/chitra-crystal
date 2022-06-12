@@ -8,7 +8,8 @@ module Chitra
 
     # :nodoc:
     def draw(cairo_ctx)
-      cairo_ctx.line @x1, @y1, @x2, @y2
+      LibCairo.cairo_move_to cairo_ctx, @x1, @y1
+      LibCairo.cairo_line_to cairo_ctx, @x2, @y2
       draw_shape_properties(cairo_ctx)
     end
 

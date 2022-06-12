@@ -75,7 +75,6 @@ Read the docs [here](docs/).
 ## Thanks
 
 - [Cairo Graphics](https://www.cairographics.org/)
-- [Cairo crystal bindings](https://github.com/TamasSzekeres/cairo-cr)
 - Drawing API syntax are inspired from [Drawbot](https://drawbot.com/) and [Processing](https://processing.org/).
 
 ## Contributing

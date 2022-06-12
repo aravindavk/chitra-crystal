@@ -8,7 +8,7 @@ module Chitra
 
     # :nodoc:
     def draw(cairo_ctx)
-      cairo_ctx.rectangle @x, @y, @w, @h
+      LibCairo.cairo_rectangle cairo_ctx, @x, @y, @w, @h
       draw_shape_properties(cairo_ctx)
     end
 

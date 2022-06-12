@@ -6,11 +6,11 @@ module Chitra
 
     # :nodoc:
     def draw(cairo_ctx)
-      cairo_ctx.save
-      cairo_ctx.translate(@x + @w/2, @y + @h/2)
-      cairo_ctx.scale(@w/2, @h/2)
-      cairo_ctx.arc(0.0, 0.0, 1.0, 0.0, 2.0 * Math::PI)
-      cairo_ctx.restore
+      LibCairo.cairo_save cairo_ctx
+      LibCairo.cairo_translate(cairo_ctx, @x + @w/2, @y + @h/2)
+      LibCairo.cairo_scale(cairo_ctx, @w/2, @h/2)
+      LibCairo.cairo_arc(cairo_ctx, 0.0, 0.0, 1.0, 0.0, 2.0 * Math::PI)
+      LibCairo.cairo_restore(cairo_ctx)
       draw_shape_properties(cairo_ctx)
     end
 

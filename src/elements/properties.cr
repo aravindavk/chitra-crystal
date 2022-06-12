@@ -210,7 +210,7 @@ module Chitra
     # ctx.line 100, 100, 500, 100
     # ```
     def line_cap(value)
-      parsed = Cairo::LineCap.parse?(value)
+      parsed = LibCairo::LineCapT.parse?(value)
       if parsed.nil?
         raise Exception.new "Invalid line_cap value"
       else
@@ -227,7 +227,7 @@ module Chitra
     # ctx.rect 100, 100, 500, 500
     # ```
     def line_join(value)
-      parsed = Cairo::LineJoin.parse?(value)
+      parsed = LibCairo::LineJoinT.parse?(value)
       if parsed.nil?
         raise Exception.new "Invalid line_join value"
       else

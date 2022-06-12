@@ -6,7 +6,7 @@ module Chitra
 
     # :nodoc:
     def draw(cairo_ctx)
-      cairo_ctx.push_group
+      LibCairo.cairo_push_group(cairo_ctx)
     end
 
     # :nodoc:
@@ -18,12 +18,12 @@ module Chitra
   struct Composite < Element
     # :nodoc:
     def initialize(operator : String)
-      @operator = Cairo::Operator.parse(operator.camelcase)
+      @operator = LibCairo::OperatorT.parse(operator.camelcase)
     end
 
     # :nodoc:
     def draw(cairo_ctx)
-      cairo_ctx.operator = @operator
+      LibCairo.cairo_set_operator(cairo_ctx, @operator)
     end
 
     # :nodoc:
@@ -35,14 +35,14 @@ module Chitra
   struct GroupEnd < Element
     # :nodoc:
     def initialize
-      @operator = Cairo::Operator::Over
+      @operator = LibCairo::OperatorT::Over
     end
 
     # :nodoc:
     def draw(cairo_ctx)
-      cairo_ctx.pop_group_to_source
-      cairo_ctx.paint
-      cairo_ctx.operator = @operator
+      LibCairo.cairo_pop_group_to_source(cairo_ctx)
+      LibCairo.cairo_paint(cairo_ctx)
+      LibCairo.cairo_set_operator(cairo_ctx, @operator)
     end
 
     # :nodoc:

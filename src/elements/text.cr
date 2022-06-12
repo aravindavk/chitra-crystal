@@ -1,4 +1,4 @@
-require "../pangocairo"
+require "../c/lib_pango_cairo"
 
 module Chitra
   struct Text < Element
@@ -14,13 +14,13 @@ module Chitra
       # Set fill color before Pango drawing to
       # avoid using previously used color for fill
       if @no_fill
-        cairo_ctx.set_source_rgba 0, 0, 0, 0
+        LibCairo.cairo_set_source_rgba cairo_ctx, 0, 0, 0, 0
       else
-        cairo_ctx.set_source_rgba @fill.r, @fill.g, @fill.b, @fill.a
+        LibCairo.cairo_set_source_rgba cairo_ctx, @fill.r, @fill.g, @fill.b, @fill.a
       end
 
-      cairo_ctx.antialias = Cairo::Antialias::Best
-      cairo_ctx.move_to(@x, @y)
+      LibCairo.cairo_set_antialias(cairo_ctx, LibCairo::AntialiasT::Best)
+      LibCairo.cairo_move_to(cairo_ctx, @x, @y)
       layout = LibPangoCairo.pango_cairo_create_layout(cairo_ctx)
       LibPangoCairo.pango_layout_set_text(layout, @txt, -1)
       desc = LibPangoCairo.pango_font_description_from_string("#{@font.family},  #{@font.slant} #{@font.weight} #{@font.height}px")
@@ -51,13 +51,13 @@ module Chitra
       # Set fill color before Pango drawing to
       # avoid using previously used color for fill
       if @no_fill
-        cairo_ctx.set_source_rgba 0, 0, 0, 0
+        LibCairo.cairo_set_source_rgba cairo_ctx, 0, 0, 0, 0
       else
-        cairo_ctx.set_source_rgba @fill.r, @fill.g, @fill.b, @fill.a
+        LibCairo.cairo_set_source_rgba cairo_ctx, @fill.r, @fill.g, @fill.b, @fill.a
       end
 
-      cairo_ctx.move_to(@x, @y)
-      cairo_ctx.antialias = Cairo::Antialias::Best
+      LibCairo.cairo_move_to(cairo_ctx, @x, @y)
+      LibCairo.cairo_set_antialias cairo_ctx, LibCairo::AntialiasT::Best
       layout = LibPangoCairo.pango_cairo_create_layout(cairo_ctx)
       LibPangoCairo.pango_layout_set_width(layout, @w*LibPangoCairo::SCALE)
       if @h > 0

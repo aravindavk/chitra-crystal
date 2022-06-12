@@ -7,7 +7,7 @@ module Chitra
     # :nodoc:
     def draw(cairo_ctx)
       scale_y = @scale_y == 0 ? @scale_x : @scale_y
-      cairo_ctx.scale @scale_x, scale_y
+      LibCairo.cairo_scale cairo_ctx, @scale_x, scale_y
     end
 
     # :nodoc:
