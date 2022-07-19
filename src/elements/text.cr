@@ -1,5 +1,7 @@
 require "../c/lib_pango_cairo"
 
+require "./markup_tokens"
+
 module Chitra
   struct Text < Element
     include ShapeProperties
@@ -81,28 +83,29 @@ module Chitra
       end
 
       txt = ""
-      overflow_text = ""
       overflow = false
+      overflow_text = ""
 
       if @h > 0
-        @txt.each_grapheme do |letter|
-          unless overflow
-            LibPangoCairo.pango_layout_set_text(layout, txt + letter.to_s, -1)
-            LibPangoCairo.pango_layout_get_size(layout, out w, out h)
+        overflow_text = ""
+        MarkupTokens.new(@txt).each do |t, rest|
+          LibPangoCairo.pango_layout_set_text(layout, t, -1)
+          LibPangoCairo.pango_layout_get_size(layout, out w, out h)
 
-            if h/LibPangoCairo::SCALE > @h
-              overflow = true
-            end
+          if h/LibPangoCairo::SCALE > @h
+            overflow = true
+            break
           end
 
-          if overflow
-            overflow_text += letter.to_s
-          else
-            txt += letter.to_s
-          end
+          txt = t
+          overflow_text = rest
         end
       else
         txt = @txt
+      end
+
+      unless overflow
+        overflow_text = ""
       end
 
       LibPangoCairo.pango_layout_set_text(layout, txt, -1)
