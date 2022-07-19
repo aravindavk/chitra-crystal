@@ -10,7 +10,8 @@ FUNCS = %w[width height enable_debug fill no_fill stroke
   polygon background no_stroke font font_size text text_box
   hyphenation hyphen_char text_align line_height point
   save_state restore_state fill_opacity stroke_opacity
-  image new_page group_start group_end composite
+  image new_page group_start group_end composite markup
+  markup_box
 ]
 
 # Define the above global functions

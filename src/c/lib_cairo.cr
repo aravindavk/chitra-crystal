@@ -182,6 +182,8 @@ lib LibCairo
   fun cairo_paint_with_alpha(cr : PCairoT, alpha : Float64) : Void
   fun cairo_stroke(cr : PCairoT) : Void
   fun cairo_stroke_preserve(cr : PCairoT) : Void
+  fun cairo_close_path(cr : PCairoT) : Void
+  fun cairo_new_path(cr : PCairoT) : Void
   fun cairo_fill(cr : PCairoT) : Void
   fun cairo_fill_preserve(cr : PCairoT) : Void
   fun cairo_get_operator(cr : PCairoT) : OperatorT

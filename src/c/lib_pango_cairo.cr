@@ -30,6 +30,7 @@ lib LibPangoCairo
 
   fun pango_cairo_create_layout(ctx : Void*) : PangoLayout*
   fun pango_layout_set_text(layout : PangoLayout*, text : UInt8*, length : Int32)
+  fun pango_layout_set_markup(layout : PangoLayout*, text : UInt8*, length : Int32)
   fun pango_layout_set_width(layout : PangoLayout*, w : Int32)
   fun pango_layout_set_height(layout : PangoLayout*, w : Int32)
   fun pango_layout_get_line_spacing(layout : PangoLayout*) : Float32
