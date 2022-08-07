@@ -89,7 +89,7 @@ module Chitra
       if @h > 0
         overflow_text = ""
         MarkupTokens.new(@txt).each do |t, rest|
-          LibPangoCairo.pango_layout_set_markup(layout, t, -1)
+          LibPangoCairo.pango_layout_set_markup(layout, t.rstrip, -1)
           LibPangoCairo.pango_layout_get_size(layout, out w, out h)
 
           if h/LibPangoCairo::SCALE > @h

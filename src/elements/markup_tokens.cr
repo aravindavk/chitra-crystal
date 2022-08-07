@@ -34,7 +34,7 @@ module Chitra
           tag_started = false
           @tokens << token
           token = ""
-        elsif !tag_started && letter == " "
+        elsif !tag_started && (letter == " " || letter == "\n")
           @tokens << token
           token = ""
         end
@@ -91,7 +91,7 @@ module Chitra
 
         parse_word(word)
         {
-          @tokens[0..@idx].join + close_tags,
+          @tokens[0..@idx].join.rstrip + close_tags,
           open_tags + @tokens[@idx + 1..-1].join,
         }
       else
