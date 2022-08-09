@@ -11,8 +11,11 @@ rainbow "This$ is$ colorful$ text.$ How$ is$ it?".split("$"), 20, 100
 
 rainbow "Awesome, nice and nice".split(""), 20, 180
 
-rainbow "rainbow colors".split(""), 20, 260
+rainbow "rainbow colors", 20, 260
 
-rainbow "ಒತ್ತಕ್ಷರ".each_grapheme.to_a.map {|g| g.to_s}, 20, 340
+rainbow "ಒತ್ತಕ್ಷರ", 20, 340
+rainbow "Made in India", 20, 430, colors: ["#FF9933", "#FFFFFF", "#138808"]
+
+rainbow "Kannada ಕನ್ನಡ", 20, 500, colors: ["yellow", "red"]
 
 save "rainbow.png"
