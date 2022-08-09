@@ -154,12 +154,20 @@ module Chitra
       overflow.is_a?(Tuple(String, Float64, Float64)) ? overflow : {"", w, h}
     end
 
-    private def rainbow_text(txt)
+    # TODO: Accept Tuple(Float, Float, Float, Float)
+    private def rainbow_text(txt : String | Array(String), colors : Array(String))
+      if txt.is_a?(String)
+        txt_data = txt.each_grapheme.to_a
+      else
+        txt_data = txt
+      end
+
       col_idx = 0
       out_txt = ""
-      txt.each do |t|
-        out_txt += "<span color=\"#{RAINBOW_COLORS[col_idx]}\">#{t}</span>"
-        if col_idx == 6
+      num_colors = colors.size
+      txt_data.each do |t|
+        out_txt += "<span color=\"#{colors[col_idx]}\">#{t}</span>"
+        if col_idx == num_colors - 1
           col_idx = 0
         else
           col_idx += 1
@@ -169,12 +177,12 @@ module Chitra
       out_txt
     end
 
-    def rainbow(txt : Array(String), x, y)
-      markup(rainbow_text(txt), x, y)
+    def rainbow(txt : String | Array(String), x, y, colors = RAINBOW_COLORS)
+      markup(rainbow_text(txt, colors), x, y)
     end
 
-    def rainbow_box(txt : Array(String), x, y, w, h = 0.0)
-      markup_box(rainbow_text(txt), x, y, w, h)
+    def rainbow_box(txt : String | Array(String), x, y, w, h = 0.0, colors = RAINBOW_COLORS)
+      markup_box(rainbow_text(txt, colors), x, y, w, h)
     end
   end
 end
