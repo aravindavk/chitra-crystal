@@ -29,6 +29,10 @@ module Chitra
       @size.height
     end
 
+    def elements
+      @elements
+    end
+
     # :nodoc:
     def initialize
       @output_file = ""
@@ -102,13 +106,9 @@ module Chitra
       end
 
       cairo_ctx = LibCairo.cairo_create surface.surface
-      if @debug
-        @elements.each do |ele|
-          puts ele.to_s
-        end
-      end
 
       @elements.each do |ele|
+        puts ele.to_s if @debug
         ele.draw(cairo_ctx)
       end
 

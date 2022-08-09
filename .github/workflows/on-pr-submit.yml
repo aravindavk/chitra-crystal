@@ -20,8 +20,10 @@ jobs:
       - name: Install Crystal and other dependencies
         run: |
           curl -fsSL https://crystal-lang.org/install.sh | sudo bash
-          sudo apt install libcairo2 libcairo2-dev
+          sudo apt install libcairo2 libcairo2-dev libpango1.0-dev
       - name: Format Check
         run: make fmt-check
       - name: Lint
         run: make lint
+      - name: Spec
+        run: crystal spec
