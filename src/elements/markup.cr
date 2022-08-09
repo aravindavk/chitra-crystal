@@ -3,6 +3,16 @@ require "../c/lib_pango_cairo"
 require "./markup_tokens"
 
 module Chitra
+  RAINBOW_COLORS = [
+    "#9400D3", # Violet
+    "#4B0082", # Indigo
+    "#0000FF", # Blue
+    "#00FF00", # Green
+    "#FFFF00", # Yellow
+    "#FF7F00", # Orange
+    "#FF0000", # Red
+  ]
+
   struct Markup < Element
     include ShapeProperties
     include TextProperties
@@ -142,6 +152,29 @@ module Chitra
 
       overflow = draw_on_default_surface(@elements[idx])
       overflow.is_a?(Tuple(String, Float64, Float64)) ? overflow : {"", w, h}
+    end
+
+    private def rainbow_text(txt)
+      col_idx = 0
+      out_txt = ""
+      txt.each do |t|
+        out_txt += "<span color=\"#{RAINBOW_COLORS[col_idx]}\">#{t}</span>"
+        if col_idx == 6
+          col_idx = 0
+        else
+          col_idx += 1
+        end
+      end
+
+      out_txt
+    end
+
+    def rainbow(txt : Array(String), x, y)
+      markup(rainbow_text(txt), x, y)
+    end
+
+    def rainbow_box(txt : Array(String), x, y, w, h = 0.0)
+      markup_box(rainbow_text(txt), x, y, w, h)
     end
   end
 end
