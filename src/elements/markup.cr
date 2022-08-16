@@ -155,7 +155,7 @@ module Chitra
     end
 
     # TODO: Accept Tuple(Float, Float, Float, Float)
-    private def rainbow_text(txt : String | Array(String), colors : Array(String))
+    private def rainbow_text(txt : String | Array(String), colors : Array(String), join_str = "")
       if txt.is_a?(String)
         txt_data = txt.each_grapheme.to_a
       else
@@ -163,10 +163,10 @@ module Chitra
       end
 
       col_idx = 0
-      out_txt = ""
+      out_txt = [] of String
       num_colors = colors.size
       txt_data.each do |t|
-        out_txt += "<span color=\"#{colors[col_idx]}\">#{t}</span>"
+        out_txt << "<span color=\"#{colors[col_idx]}\">#{t}</span>"
         if col_idx == num_colors - 1
           col_idx = 0
         else
@@ -174,15 +174,15 @@ module Chitra
         end
       end
 
-      out_txt
+      out_txt.join(join_str)
     end
 
-    def rainbow(txt : String | Array(String), x, y, colors = RAINBOW_COLORS)
-      markup(rainbow_text(txt, colors), x, y)
+    def rainbow(txt : String | Array(String), x, y, colors = RAINBOW_COLORS, join_str = "")
+      markup(rainbow_text(txt, colors, join_str), x, y)
     end
 
-    def rainbow_box(txt : String | Array(String), x, y, w, h = 0.0, colors = RAINBOW_COLORS)
-      markup_box(rainbow_text(txt, colors), x, y, w, h)
+    def rainbow_box(txt : String | Array(String), x, y, w, h = 0.0, colors = RAINBOW_COLORS, join_str = "")
+      markup_box(rainbow_text(txt, colors, join_str), x, y, w, h)
     end
   end
 end
