@@ -149,6 +149,65 @@
 <img src="/chitra/images/size_x_y.png" alt="Size">
 </div>
 </div>
+<div class="paragraph">
+<p>By default all the values are treated as pixels. To specify the size in different format,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="n">size</span> <span class="mi">297</span><span class="p">.</span><span class="nf">mm</span><span class="p">,</span> <span class="mi">210</span><span class="p">.</span><span class="nf">mm</span>
+<span class="n">size</span> <span class="mi">4</span><span class="p">.</span><span class="nf">inch</span><span class="p">,</span> <span class="mi">6</span><span class="p">.</span><span class="nf">inch</span>
+<span class="n">size</span> <span class="mf">29.7</span><span class="p">.</span><span class="nf">cm</span><span class="p">,</span> <span class="mi">21</span><span class="p">.</span><span class="nf">cm</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>OR</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="n">ctx</span> <span class="o">=</span> <span class="no">Chitra</span><span class="p">.</span><span class="nf">new</span> <span class="mi">297</span><span class="p">.</span><span class="nf">mm</span><span class="p">,</span> <span class="mi">210</span><span class="p">.</span><span class="nf">mm</span>
+<span class="n">ctx</span> <span class="o">=</span> <span class="no">Chitra</span><span class="p">.</span><span class="nf">new</span> <span class="mi">4</span><span class="p">.</span><span class="nf">inch</span><span class="p">,</span> <span class="mi">6</span><span class="p">.</span><span class="nf">inch</span>
+<span class="n">ctx</span> <span class="o">=</span> <span class="no">Chitra</span><span class="p">.</span><span class="nf">new</span> <span class="mf">29.7</span><span class="p">.</span><span class="nf">cm</span><span class="p">,</span> <span class="mi">21</span><span class="p">.</span><span class="nf">cm</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or using standard paper format names</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="n">size</span> <span class="s2">"A4"</span>
+<span class="n">size</span> <span class="s2">"A4,landscape"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>OR</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="n">ctx</span> <span class="o">=</span> <span class="no">Chitra</span><span class="p">.</span><span class="nf">new</span> <span class="s2">"A4"</span>
+<span class="n">ctx</span> <span class="o">=</span> <span class="no">Chitra</span><span class="p">.</span><span class="nf">new</span> <span class="s2">"A4,landscape"</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_resolution">Resolution</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Default resolution is 72 ppi. Specify the required resolution in the beginning of the file.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="n">resolution</span> <span class="mi">300</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>OR</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="no">Chitra</span><span class="p">.</span><span class="nf">resolution</span> <span class="mi">300</span></code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
