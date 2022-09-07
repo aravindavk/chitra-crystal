@@ -35,6 +35,19 @@ def size(w, h = 0)
   Chitra.global_context.enable_debug if debug
 end
 
+# Set the size and initialize the drawing surface
+# ```
+# #    paper
+# size "A4"
+# size "A4,landscape"
+# size "A4,portrait"
+# ```
+def size(paper : String)
+  debug = Chitra.global_context.debug
+  Chitra.global_context = Chitra::Context.new(paper)
+  Chitra.global_context.enable_debug if debug
+end
+
 # Draw with the state changes that
 # don't change the Global state
 # ```
