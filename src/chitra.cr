@@ -45,11 +45,11 @@ module Chitra
     end
 
     # :nodoc:
-    def initialize(w : Int32, h : Int32 = 0)
+    def initialize(w : Number, h : Number = 0)
       h = w if h == 0
 
-      @size.width = w
-      @size.height = h
+      @size.width = w.to_i
+      @size.height = h.to_i
       initialize
     end
 

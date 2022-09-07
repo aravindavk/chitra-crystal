@@ -1,6 +1,39 @@
 require "./c/lib_cairo"
 
+# Reopen number struct and add conversion utilities
+struct Number
+  def inch
+    # 72 pixels per inch
+    (self * 72 * (Chitra.resolution/72)).round_even
+  end
+
+  def cm
+    (self / 2.54).inch
+  end
+
+  def mm
+    (self / 10).cm
+  end
+end
+
 module Chitra
+  @@resolution = 72 # ppi
+
+  def self.resolution
+    @@resolution
+  end
+
+  # Set resolution
+  # Default value is 72 ppi
+  # ```
+  # Chitra.resolution 300
+  # ctx = Chitra.new 297.mm, 210.mm
+  # ctx.rect 10.mm, 10.mm, 500
+  # ```
+  def self.resolution(val)
+    @@resolution = val
+  end
+
   struct LineDash
     property enabled = false, values = [] of Float64, offset = 0.0
 

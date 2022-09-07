@@ -63,3 +63,14 @@ end
 def grouped(&block)
   Chitra.global_context.grouped(&block)
 end
+
+# Set resolution
+# Default value is 72 ppi
+# ```
+# resolution 300
+# size 297.mm, 210.mm
+# rect 10.mm, 10.mm, 500
+# ```
+def resolution(val)
+  Chitra.resolution val
+end
