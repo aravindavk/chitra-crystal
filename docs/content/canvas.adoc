@@ -40,6 +40,57 @@ ctx = Chitra.new 1600, 900
 
 image::/chitra/images/size_x_y.png[Size]
 
+
+By default all the values are treated as pixels. To specify the size in different format,
+
+[source,crystal]
+----
+size 297.mm, 210.mm
+size 4.inch, 6.inch
+size 29.7.cm, 21.cm
+----
+
+OR
+
+[source,crystal]
+----
+ctx = Chitra.new 297.mm, 210.mm
+ctx = Chitra.new 4.inch, 6.inch
+ctx = Chitra.new 29.7.cm, 21.cm
+----
+
+Or using standard paper format names
+
+[source,crystal]
+----
+size "A4"
+size "A4,landscape"
+----
+
+OR
+
+[source,crystal]
+----
+ctx = Chitra.new "A4"
+ctx = Chitra.new "A4,landscape"
+----
+
+== Resolution
+
+Default resolution is 72 ppi. Specify the required resolution in the beginning of the file.
+
+[source,crystal]
+----
+resolution 300
+----
+
+OR
+
+[source,crystal]
+----
+Chitra.resolution 300
+----
+
 == Background fill
 
 Fill the canvas with a background color.

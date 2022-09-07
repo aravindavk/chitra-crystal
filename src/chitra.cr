@@ -1,6 +1,7 @@
 require "./helpers"
 require "./surfaces/*"
 require "./elements/*"
+require "./paper_sizes"
 
 module Chitra
   class Context
@@ -50,6 +51,28 @@ module Chitra
 
       @size.width = w.to_i
       @size.height = h.to_i
+      initialize
+    end
+
+    # :nodoc:
+    def initialize(paper : String)
+      paper_name, _sep, mode = paper.downcase.partition(",")
+      paper_name = paper_name.strip
+      mode = mode.strip
+
+      unless PAPER_SIZES[paper_name]?
+        raise Exception.new("Invalid paper size specified")
+      end
+
+      w, h = PAPER_SIZES[paper_name]
+      if mode.starts_with?("land") || mode.starts_with?("port")
+        if mode.starts_with?("land") && h > w
+          w, h = h, w
+        end
+      end
+
+      @size.width = w.mm
+      @size.height = h.mm
       initialize
     end
 
