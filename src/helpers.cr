@@ -4,7 +4,7 @@ require "./c/lib_cairo"
 struct Number
   def inch
     # 72 pixels per inch
-    (self * 72 * (Chitra.resolution/72)).round_even.to_i
+    self * 72 * (Chitra.resolution/72)
   end
 
   def cm
