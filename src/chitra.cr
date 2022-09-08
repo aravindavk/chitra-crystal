@@ -49,8 +49,8 @@ module Chitra
     def initialize(w : Number, h : Number = 0)
       h = w if h == 0
 
-      @size.width = w.to_i
-      @size.height = h.to_i
+      @size.width = w.round_even.to_i
+      @size.height = h.round_even.to_i
       initialize
     end
 
@@ -71,8 +71,8 @@ module Chitra
         end
       end
 
-      @size.width = w.mm
-      @size.height = h.mm
+      @size.width = w.mm.round_even.to_i
+      @size.height = h.mm.round_even.to_i
       initialize
     end
 
