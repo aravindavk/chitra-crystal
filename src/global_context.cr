@@ -11,7 +11,8 @@ FUNCS = %w[width height enable_debug fill no_fill stroke
   hyphenation hyphen_char text_align line_height point
   save_state restore_state fill_opacity stroke_opacity
   image new_page group_start group_end composite markup
-  markup_box rainbow rainbow_box
+  markup_box rainbow rainbow_box image_width image_height
+  image_size
 ]
 
 # Define the above global functions

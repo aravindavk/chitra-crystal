@@ -21,3 +21,26 @@ saved_state do
   image "logo.png", 20, 20
 end
 ----
+
+== Image Size
+
+Find the width of a image
+
+[source,crystal]
+----
+w = image_width "logo.png"
+----
+
+Find the height of a image
+
+[source,crystal]
+----
+h = image_height "logo.png"
+----
+
+Find the width and height together
+
+[source,crystal]
+----
+w, h = image_size "logo.png"
+----

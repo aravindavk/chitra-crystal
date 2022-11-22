@@ -17,6 +17,16 @@ struct Number
 end
 
 module Chitra
+  @@images = Hash(String, LibCairo::PSurfaceT).new
+
+  def self.image_surface(path)
+    if @@images[path]?.nil?
+      @@images[path] = LibCairo.cairo_image_surface_create_from_png(path.to_unsafe)
+    end
+
+    @@images[path]
+  end
+
   @@resolution = 72 # ppi
 
   def self.resolution
