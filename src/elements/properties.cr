@@ -252,6 +252,14 @@ module Chitra
       @font.height = font_size
     end
 
+    # Set Font weight
+    # ```
+    # ctx.font_weight "Heavy"
+    # ```
+    def font_weight(wt)
+      @font.weight = wt
+    end
+
     # Set Text align for text boxes
     # ```
     # ctx.text_align "center"

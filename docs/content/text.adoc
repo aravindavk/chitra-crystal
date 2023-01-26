@@ -42,6 +42,15 @@ ctx.text "Hello World!", 20, 20
 
 image::/chitra/images/text_font.png[Text Custom font]
 
+== Set Font weight
+
+[source,crystal]
+----
+font "Cooper Hewitt", 100
+font_weight "Heavy"
+text "Hello", 20, 20
+----
+
 == Text color
 
 Use fill and Stroke for drawing text as well.
