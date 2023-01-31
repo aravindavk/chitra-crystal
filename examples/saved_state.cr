@@ -1,4 +1,4 @@
-require "../src/global_context"
+require "chitra"
 
 # Set Fill color Red
 fill 1, 0, 0

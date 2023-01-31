@@ -1,4 +1,4 @@
-require "../src/json_api"
+require "chitra/json_api"
 
 chitra_from_json(%Q[
   [

@@ -1,4 +1,4 @@
-require "../src/global_context"
+require "chitra"
 
 size 300, 30
 background 1

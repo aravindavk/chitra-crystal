@@ -1,6 +1,6 @@
 require "spec"
 
-require "../src/global_context"
+require "../src/chitra"
 
 describe Chitra do
   context "width and height" do

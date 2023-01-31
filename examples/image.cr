@@ -1,4 +1,4 @@
-require "../src/global_context"
+require "chitra"
 
 image "./blue_rects.png", 100, 100
 

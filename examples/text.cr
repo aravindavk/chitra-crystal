@@ -1,4 +1,4 @@
-require "../src/global_context"
+require "chitra"
 
 background 1
 font "Serif", 50
