@@ -41,7 +41,7 @@ dependencies:
 ## Example (Global context)
 
 ```crystal
-require "chitra/global_context"
+require "chitra"
 
 size 200, 10
 (0..100).each do |x|
@@ -58,7 +58,7 @@ Above example produces nice gradient like below.
 ## Example (Without using global context)
 
 ```crystal
-require "chitra"
+require "chitra/context"
 
 ctx = Chitra.new 200, 10
 (0..100).each do |x|

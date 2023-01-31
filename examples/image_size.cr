@@ -1,4 +1,4 @@
-require "../src/global_context"
+require "chitra"
 
 image_file = "../docs/content/static/logo.png"
 puts image_width image_file

@@ -1,4 +1,4 @@
-require "../src/global_context"
+require "chitra"
 
 # A4 Page size
 size 2480, 3508

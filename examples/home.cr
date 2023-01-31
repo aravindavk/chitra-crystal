@@ -1,2 +1,2 @@
-require "../src/global_context"
+require "chitra"
 

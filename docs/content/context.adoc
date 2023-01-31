@@ -6,7 +6,7 @@ title: Context
 
 [source,crystal]
 ----
-require "chitra"
+require "chitra/context"
 
 ctx = Chitra.new 500, 500
 ctx.rect 50, 50, 400, 400
@@ -17,7 +17,7 @@ ctx.save "hello_rect.png"
 
 [source,crystal]
 ----
-require "chitra/global_context"
+require "chitra"
 
 size 500, 500
 rect 50, 50, 400, 400

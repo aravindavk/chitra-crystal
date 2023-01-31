@@ -1,4 +1,4 @@
-require "../src/global_context"
+require "chitra"
 
 background 0
 font "Quicksand", 50

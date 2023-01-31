@@ -40,7 +40,7 @@ dependencies:
 
 [source,crystal]
 ----
-require "chitra/global_context"
+require "chitra"
 
 size 200, 10
 (0..100).each do |x|
@@ -58,7 +58,7 @@ image::/chitra/images/all_red.png[All Red]
 
 [source,crystal]
 ----
-require "chitra"
+require "chitra/context"
 
 ctx = Chitra.new 200, 10
 (0..100).each do |x|
