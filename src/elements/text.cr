@@ -1,6 +1,7 @@
 require "../c/lib_pango_cairo"
 
 require "./markup_tokens"
+require "./formatted_string"
 
 module Chitra
   struct Text < Element
@@ -130,18 +131,28 @@ module Chitra
     # ```
     # text "Hello World", 100, 100
     # ```
-    def text(txt, x, y)
-      t = Text.new(txt, x, y)
-      idx = add_shape_properties(t)
-      draw_on_default_surface(@elements[idx])
+    def text(txt : String | FormattedString, x, y)
+      case txt
+      in String
+        t = Text.new(txt, x, y)
+        idx = add_shape_properties(t)
+        draw_on_default_surface(@elements[idx])
+      in FormattedString
+        markup(txt.to_s, x.to_f64, y.to_f64)
+      end
     end
 
-    def text_box(txt, x, y, w, h = 0.0)
-      t = TextBox.new(txt, x, y, w, h)
-      idx = add_shape_properties(t)
+    def text_box(txt : String | FormattedString, x, y, w, h = 0.0)
+      case txt
+      in String
+        t = TextBox.new(txt, x, y, w, h)
+        idx = add_shape_properties(t)
 
-      overflow = draw_on_default_surface(@elements[idx])
-      overflow.is_a?(Tuple(String, Float64, Float64)) ? overflow : {"", w, h}
+        overflow = draw_on_default_surface(@elements[idx])
+        overflow.is_a?(Tuple(String, Float64, Float64)) ? overflow : {"", w, h}
+      in FormattedString
+        markup_box(txt.to_s, x.to_f64, y.to_f64, w.to_f64, h.to_f64)
+      end
     end
   end
 end

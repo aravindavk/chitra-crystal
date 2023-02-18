@@ -26,9 +26,9 @@ module Chitra
       # Set fill color before Pango drawing to
       # avoid using previously used color for fill
       if @no_fill
-        LibCairo.cairo_set_source_rgba cairo_ctx, 0, 0, 0, 0
+        @txt = %Q[<span color="#00000000">#{@txt}</span>]
       else
-        LibCairo.cairo_set_source_rgba cairo_ctx, @fill.r, @fill.g, @fill.b, @fill.a
+        @txt = %Q[<span color="#{Color.rgba2hex(@fill.r, @fill.g, @fill.b, @fill.a)}">#{@txt}</span>]
       end
 
       LibCairo.cairo_set_antialias(cairo_ctx, LibCairo::AntialiasT::Best)
@@ -41,7 +41,11 @@ module Chitra
       LibPangoCairo.pango_cairo_update_layout(cairo_ctx, layout)
       LibPangoCairo.pango_cairo_show_layout(cairo_ctx, layout)
       LibPangoCairo.pango_cairo_layout_path(cairo_ctx, layout)
-      LibCairo.cairo_new_path(cairo_ctx)
+      if @stroke_width > 0
+        draw_shape_properties(cairo_ctx)
+      else
+        LibCairo.cairo_new_path(cairo_ctx)
+      end
     end
 
     # :nodoc:
