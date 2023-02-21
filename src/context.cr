@@ -8,7 +8,8 @@ module Chitra
     include ShapeProperties
     include TextProperties
 
-    property size = Size.new, debug = false
+    property size = Size.new
+    property? debug = false
 
     # Get width of the canvas
     # ```

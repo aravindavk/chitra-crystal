@@ -19,7 +19,7 @@ oval 10, 180, 100, 100
 oval 10, 290, 100, 50
 
 # Polygon
-#       x1  y1   x2  y2   x3  y3   close 
+#       x1  y1   x2  y2   x3  y3   close
 polygon 10, 400, 50, 500, 10, 600, close: true
 
 save "docs/content/images/shapes.png"

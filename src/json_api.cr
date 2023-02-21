@@ -274,10 +274,11 @@ struct RotateAPI < ElementAPI
 end
 
 struct PolygonAPI < ElementAPI
-  property points = [] of Float64, close = true
+  property points = [] of Float64
+  property? close = true
 
   def add_to_context(ctx)
-    ctx.polygon points, close
+    ctx.polygon points, close?
 
     ctx
   end
