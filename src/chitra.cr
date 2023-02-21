@@ -31,9 +31,8 @@ FUNCS = %w[width height enable_debug fill no_fill stroke
 # size 1600, 900
 # ```
 def size(w, h = 0)
-  debug = Chitra.global_context.debug
   Chitra.global_context = Chitra::Context.new(w, h)
-  Chitra.global_context.enable_debug if debug
+  Chitra.global_context.enable_debug if Chitra.global_context.debug?
 end
 
 # Set the size and initialize the drawing surface

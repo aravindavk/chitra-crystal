@@ -6,7 +6,7 @@ background 1
 fill "#555555"
 stroke "#555555"
 (0...10).each do |x|
-  so = x > 10 ? 10 : x+1
+  so = x > 10 ? 10 : x + 1
   fill_opacity x/10
   stroke_opacity so/10
 

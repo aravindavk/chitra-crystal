@@ -1,14 +1,14 @@
 .PHONY: fmt-check lint fmt
 
 fmt-check:
-	crystal tool format --check src spec
+	crystal tool format --check src spec examples
 
 lint:
 	shards install
-	./bin/ameba src
+	./bin/ameba src examples
 
 fmt:
-	crystal tool format src spec
+	crystal tool format src spec examples
 
 docs-build:
 	crystal run docs/doc_drawings.cr

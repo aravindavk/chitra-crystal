@@ -45,7 +45,8 @@ module Chitra
   end
 
   struct LineDash
-    property enabled = false, values = [] of Float64, offset = 0.0
+    property values = [] of Float64, offset = 0.0
+    property? enabled = false
 
     def initialize
     end
@@ -60,7 +61,8 @@ module Chitra
   end
 
   module TextProperties
-    property font = Font.new, line_height = 1.5, align = "left", hyphenation = false, hyphen_char = "-"
+    property font = Font.new, line_height = 1.5, align = "left", hyphen_char = "-"
+    property? hyphenation = false
 
     def reset_text_properties
       @font = Font.new
@@ -75,10 +77,10 @@ module Chitra
     property fill = Color.new,
       stroke = Color.new,
       stroke_width = 1,
-      no_fill = false,
       line_dash = LineDash.new,
       line_cap = LibCairo::LineCapT::Butt,
       line_join = LibCairo::LineJoinT::Miter
+    property? no_fill = false
 
     def reset_shape_properties
       @fill = Color.new
@@ -105,7 +107,7 @@ module Chitra
       if @stroke_width > 0
         LibCairo.cairo_fill_preserve(cairo_ctx)
         LibCairo.cairo_set_line_width cairo_ctx, @stroke_width
-        if @line_dash.enabled
+        if @line_dash.enabled?
           LibCairo.cairo_set_dash(cairo_ctx, @line_dash.values.to_unsafe, @line_dash.values.size, @line_dash.offset)
         else
           LibCairo.cairo_set_dash(cairo_ctx, [] of Float64, 0, 0)
@@ -132,7 +134,7 @@ module Chitra
     end
 
     def line_dash_debug_text
-      if !@line_dash.enabled || @stroke_width == 0
+      if !@line_dash.enabled? || @stroke_width == 0
         "line_dash=nil"
       else
         "line_dash=(#{@line_dash.values.join(",")}, offset: #{@line_dash.offset})"
@@ -164,11 +166,19 @@ module Chitra
     def self.hex2rgb(hexcol)
       h = hexcol.lstrip("#")
       {
-        h[0...2].to_i(16)/256,
-        h[2...4].to_i(16)/256,
-        h[4...6].to_i(16)/256,
-        h.size == 8 ? h[6...8].to_i(16)/256 : 1.0,
+        h[0...2].to_i(16)/255,
+        h[2...4].to_i(16)/255,
+        h[4...6].to_i(16)/255,
+        h.size == 8 ? h[6...8].to_i(16)/255 : 1.0,
       }
+    end
+
+    def self.rgba2hex(r, g, b, a = 1.0)
+      r_hex = (r*255).to_i.to_s(16).rjust(2, '0')
+      g_hex = (g*255).to_i.to_s(16).rjust(2, '0')
+      b_hex = (b*255).to_i.to_s(16).rjust(2, '0')
+      a_hex = (a*255).to_i.to_s(16).rjust(2, '0')
+      "##{r_hex}#{g_hex}#{b_hex}#{a_hex}"
     end
   end
 
@@ -183,9 +193,8 @@ module Chitra
     include ShapeProperties
     include TextProperties
 
-    property size = Size.new, debug = false,
-      enabled = false,
-      transformations = [] of Element
+    property size = Size.new, transformations = [] of Element
+    property? debug = false, enabled = false
 
     def initialize(w, h)
       @size.width = w
