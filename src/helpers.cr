@@ -281,14 +281,14 @@ module Chitra
       @fill = saved_context.fill
       @stroke = saved_context.stroke
       @stroke_width = saved_context.stroke_width
-      @no_fill = saved_context.no_fill
+      @no_fill = saved_context.no_fill?
       @line_dash = saved_context.line_dash
       @line_cap = saved_context.line_cap
       @line_join = saved_context.line_join
       @font = saved_context.font
       @line_height = saved_context.line_height
       @align = saved_context.align
-      @hyphenation = saved_context.hyphenation
+      @hyphenation = saved_context.hyphenation?
       @hyphen_char = saved_context.hyphen_char
 
       # Reverse the Transformations added during the saved state
