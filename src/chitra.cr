@@ -43,9 +43,8 @@ end
 # size "A4,portrait"
 # ```
 def size(paper : String)
-  debug = Chitra.global_context.debug
   Chitra.global_context = Chitra::Context.new(paper)
-  Chitra.global_context.enable_debug if debug
+  Chitra.global_context.enable_debug if Chitra.global_context.debug?
 end
 
 # Draw with the state changes that

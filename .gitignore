@@ -2,3 +2,5 @@ lib
 !docs/lib
 bin
 crash.log
+examples/*.png
+examples/*.pdf
